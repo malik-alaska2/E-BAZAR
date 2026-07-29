@@ -125,6 +125,16 @@
   .success-anim{font-size:80px;text-align:center;padding:30px 0 10px;animation:pop .5s ease}
   @keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
 
+  /* Promo */
+  .promo{background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%);color:#fff;
+    border-radius:var(--radius);padding:16px 16px 14px;margin:6px 0 12px;box-shadow:0 6px 18px rgba(34,164,93,.28)}
+  .promo-title{font-size:15.5px;font-weight:800;margin-bottom:8px;line-height:1.35}
+  .promo-list{font-size:13px;line-height:1.75;opacity:.96}
+  .promo-contacts{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+  .promo-contacts a{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.19);
+    padding:7px 11px;border-radius:99px;font-size:12.5px;font-weight:700;color:#fff;text-decoration:none}
+  .promo-contacts a:active{opacity:.75}
+
   /* Admin */
   .admin-item{border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:10px;background:var(--card)}
   .admin-item input,.admin-item select{padding:8px 10px;font-size:13px;margin-top:6px}
@@ -144,6 +154,15 @@
 
   <!-- ГЛАВНАЯ -->
   <section class="page" id="page-home">
+    <div class="promo">
+      <div class="promo-title">🌟 <b>E-BAZAR</b> — <span data-i18n="promoTitle"></span></div>
+      <div class="promo-list">
+        <div>🔹 <span data-i18n="promo1"></span></div>
+        <div>🔹 <span data-i18n="promo2"></span></div>
+        <div>🔹 <span data-i18n="promo3"></span></div>
+      </div>
+      <div class="promo-contacts" id="promoContacts"></div>
+    </div>
     <div class="search-box"><input id="searchInput" type="search"></div>
     <div class="chips" id="chips"></div>
     <div class="grid" id="productGrid"></div>
@@ -182,9 +201,13 @@
     <div class="field"><label data-i18n="payment"></label>
       <div class="list-card" style="margin-bottom:0;padding:12px 14px">💵 <b data-i18n="payCash"></b> <span class="muted" data-i18n="cashOnly"></span></div>
     </div>
+    <div class="field"><label data-i18n="manager"></label>
+      <div class="seg" id="segManager"></div>
+    </div>
     <div class="field"><label data-i18n="comment"></label><textarea id="fComment" rows="2"></textarea></div>
     <div class="list-card" id="checkoutSummary"></div>
-    <button class="btn btn-primary" id="placeOrderBtn" onclick="placeOrder()" data-i18n="placeOrder"></button>
+    <button class="btn btn-primary" id="placeOrderBtn" onclick="placeOrder()" data-i18n="sendOrder"></button>
+    <p class="muted" style="text-align:center;margin-top:8px" data-i18n="orderHint"></p>
   </section>
 
   <!-- УСПЕХ -->
@@ -206,9 +229,9 @@
   <section class="page" id="page-admin">
     <h2 class="title">⚙️ Admin</h2>
     <div id="adminLogin">
-      <div class="field"><label data-i18n="adminPass"></label><input id="adminPassInput" type="password"></div>
+      <div class="field"><label data-i18n="adminGhToken"></label><input id="adminPassInput" type="password" autocomplete="off"></div>
       <button class="btn btn-primary" onclick="adminLogin()" data-i18n="signIn"></button>
-      <p class="muted" style="margin-top:12px" data-i18n="adminHint"></p>
+      <p class="muted" style="margin-top:12px" data-i18n="adminGhHint"></p>
     </div>
     <div id="adminPanel" style="display:none">
       <h3 style="font-size:16px;font-weight:800;margin:8px 0 10px">📂 <span data-i18n="sections"></span></h3>
@@ -255,6 +278,22 @@ const CONFIG = {
   currency: "₺",                       // валюта — турецкая лира
   minOrder: 0,                         // минимальная сумма заказа в лирах (0 = нет минимума)
   deliveryFee: 0,                      // стоимость доставки в лирах (0 = бесплатно)
+  phone: "+905011153333",              // телефон магазина
+
+  // Менеджеры, которым приходят заказы (без @)
+  managers: [
+    { username: "yusufabdulloh55555", icon: "👳‍♂️", key: "managerMen"   },
+    { username: "Ummumaryam9169",     icon: "🧕",   key: "managerWomen" },
+  ],
+
+  // Где хранятся товары (репозиторий GitHub)
+  github: {
+    owner:  "malik-alaska2",
+    repo:   "E-BAZAR",
+    branch: "main",
+    catalog: "catalog.json",
+    photos:  "photos",
+  },
 };
 
 /* ============================================================
@@ -331,6 +370,13 @@ const I18N = {
     cashOnly:"— оплата при получении",sections:"Разделы магазина",productsTitle:"Товары",addSection:"Добавить раздел",
     uploadPhoto:"Загрузить фото",removePhoto:"Удалить фото",photoAdded:"Фото добавлено ✅",newProduct:"Новый товар",
     catDelWarn:"В этом разделе {n} товар(ов). Они переедут в первый раздел. Удалить?",
+    promoTitle:"Соскучились по узбекскому вкусу?",
+    promo1:"Самые качественные и халяльные продукты",promo2:"Особый выбор для узбекских блюд",promo3:"Вкусно, натурально, надёжно",
+    manager:"Менеджер",managerMen:"Мужской отдел",managerWomen:"Женский отдел",writeUs:"Написать",callUs:"Позвонить",
+    sendOrder:"Отправить заказ в Telegram 📩",orderHint:"Откроется чат с менеджером — нажмите «Отправить»",
+    orderReady:"Заказ готов! Отправьте сообщение менеджеру",orderTitle:"НОВЫЙ ЗАКАЗ",
+    adminGhToken:"Ключ доступа GitHub",adminGhHint:"Введите ключ GitHub, чтобы сохранять товары. Как его получить — написано в инструкции репозитория.",
+    saving:"Сохраняю…",savedGh:"Сохранено! Магазин обновится через минуту ✅",
     kg:"кг",pcs:"шт",l:"л"},
   uz:{search:"Mahsulot qidirish…",all:"Hammasi",fruits:"Mevalar",vegetables:"Sabzavotlar",meat:"Go'sht",dairy:"Sut mahsulotlari",bakery:"Non",grocery:"Oziq-ovqat",drinks:"Ichimliklar",
     navHome:"Asosiy",navFav:"Sevimli",navCart:"Savat",navOrders:"Buyurtmalar",
@@ -349,6 +395,13 @@ const I18N = {
     cashOnly:"— qabul qilishda to'lov",sections:"Do'kon bo'limlari",productsTitle:"Mahsulotlar",addSection:"Bo'lim qo'shish",
     uploadPhoto:"Rasm yuklash",removePhoto:"Rasmni o'chirish",photoAdded:"Rasm qo'shildi ✅",newProduct:"Yangi mahsulot",
     catDelWarn:"Bu bo'limda {n} ta mahsulot bor. Ular birinchi bo'limga o'tadi. O'chirilsinmi?",
+    promoTitle:"O'zbek ta'mini sog'indingizmi?",
+    promo1:"Eng sifatli va halol mahsulotlar",promo2:"O'zbek taomlari uchun maxsus tanlov",promo3:"Mazali, tabiiy va ishonchli",
+    manager:"Menejer",managerMen:"Erkaklar bo'limi",managerWomen:"Ayollar bo'limi",writeUs:"Yozish",callUs:"Qo'ng'iroq",
+    sendOrder:"Buyurtmani Telegramga yuborish 📩",orderHint:"Menejer bilan chat ochiladi — «Yuborish» tugmasini bosing",
+    orderReady:"Buyurtma tayyor! Menejerga xabar yuboring",orderTitle:"YANGI BUYURTMA",
+    adminGhToken:"GitHub kaliti",adminGhHint:"Mahsulotlarni saqlash uchun GitHub kalitini kiriting. Uni qanday olish — repozitoriy qo'llanmasida.",
+    saving:"Saqlanmoqda…",savedGh:"Saqlandi! Do'kon bir daqiqada yangilanadi ✅",
     kg:"kg",pcs:"dona",l:"l"},
   en:{search:"Search products…",all:"All",fruits:"Fruits",vegetables:"Vegetables",meat:"Meat",dairy:"Dairy",bakery:"Bakery",grocery:"Grocery",drinks:"Drinks",
     navHome:"Home",navFav:"Favorites",navCart:"Cart",navOrders:"Orders",
@@ -367,6 +420,13 @@ const I18N = {
     cashOnly:"— pay on delivery",sections:"Shop sections",productsTitle:"Products",addSection:"Add section",
     uploadPhoto:"Upload photo",removePhoto:"Remove photo",photoAdded:"Photo added ✅",newProduct:"New product",
     catDelWarn:"This section has {n} product(s). They will move to the first section. Delete?",
+    promoTitle:"Missing the taste of Uzbekistan?",
+    promo1:"Top quality halal products",promo2:"Specially selected for Uzbek cuisine",promo3:"Delicious, natural, trustworthy",
+    manager:"Manager",managerMen:"Men's desk",managerWomen:"Women's desk",writeUs:"Message",callUs:"Call",
+    sendOrder:"Send order via Telegram 📩",orderHint:"A chat with the manager will open — tap «Send»",
+    orderReady:"Order ready! Send the message to the manager",orderTitle:"NEW ORDER",
+    adminGhToken:"GitHub access key",adminGhHint:"Enter your GitHub key to save products. See the repository guide for how to get it.",
+    saving:"Saving…",savedGh:"Saved! The shop updates in a minute ✅",
     kg:"kg",pcs:"pcs",l:"L"},
 };
 
@@ -381,9 +441,9 @@ if (!I18N[lang]) lang = "ru";
 let cart = {}; try { cart = JSON.parse(localStorage.getItem("cart") || "{}"); } catch(e){}
 let favs = []; try { favs = JSON.parse(localStorage.getItem("favs") || "[]"); } catch(e){}
 let currentCat = "all", search = "", curPage = "home", modalProductId = null;
-let deliveryMode = "delivery";
+let deliveryMode = "delivery", managerIdx = 0;
 const payMode = "cash"; // оплата только наличными
-let adminToken = sessionStorage.getItem("adminToken") || "";
+let adminToken = localStorage.getItem("ghKey") || "";
 
 const $ = id => document.getElementById(id);
 const t = (k) => (I18N[lang][k] ?? k);
@@ -532,6 +592,20 @@ document.querySelectorAll("#segDelivery button").forEach(b => b.onclick = () => 
   $("addressField").style.display = deliveryMode==="delivery" ? "block" : "none";
   renderCheckoutSummary();
 });
+function renderManagers(){
+  const seg = $("segManager");
+  if (seg) {
+    seg.innerHTML = CONFIG.managers.map((m,i) =>
+      `<button class="${i===managerIdx?'active':''}" onclick="managerIdx=${i};renderManagers()">${m.icon} ${t(m.key)}</button>`).join("");
+  }
+  const box = $("promoContacts");
+  if (box) {
+    box.innerHTML = CONFIG.managers.map(m =>
+      `<a href="https://t.me/${esc(m.username)}" target="_blank" rel="noopener">${m.icon} ${t(m.key)}</a>`).join("") +
+      (CONFIG.phone ? `<a href="tel:${esc(CONFIG.phone)}">📞 ${esc(CONFIG.phone)}</a>` : "");
+  }
+}
+
 function renderCheckoutSummary(){
   const items = cartItems();
   const fee = deliveryMode==="delivery" ? CONFIG.deliveryFee : 0;
@@ -539,6 +613,25 @@ function renderCheckoutSummary(){
     items.map(({p,qty}) => `<div class="total-line"><span>${esc(pname(p))} × ${qty}</span><span>${fmt(p.price*qty)}</span></div>`).join("") +
     (deliveryMode==="delivery" ? `<div class="total-line"><span>${t("deliveryFeeLbl")}</span><span>${fee?fmt(fee):t("free")}</span></div>` : "") +
     `<div class="total-line big"><span>${t("total")}</span><span>${fmt(cartTotal()+fee)}</span></div>`;
+}
+
+/* Текст заказа, который уходит менеджеру в Telegram */
+function orderText(order, invoice){
+  const L = [];
+  L.push(`🛍 ${t("orderTitle")} №${invoice}`);
+  L.push("");
+  order.items.forEach(i => L.push(`• ${i.name} — ${i.qty} × ${fmt(i.price)} = ${fmt(i.sum)}`));
+  L.push("");
+  if (order.deliveryFee > 0) L.push(`${t("deliveryFeeLbl")}: ${fmt(order.deliveryFee)}`);
+  L.push(`💰 ${t("total")}: ${fmt(order.total)}`);
+  L.push(t("payCash"));
+  L.push("");
+  L.push(`👤 ${order.name}`);
+  L.push(`📞 ${order.phone}`);
+  L.push(order.deliveryMode === "delivery" ? t("delivery") : t("pickup"));
+  if (order.address && order.address !== "-") L.push(`📍 ${order.address}`);
+  if (order.comment) L.push(`💬 ${order.comment}`);
+  return L.join("\n");
 }
 
 async function placeOrder(){
@@ -555,23 +648,21 @@ async function placeOrder(){
     deliveryMode, payMode, lang,
     items: items.map(({p,qty}) => ({id:p.id, name:pname(p), price:p.price, unit:punit(p), qty, sum:p.price*qty})),
     total: cartTotal()+fee, deliveryFee: fee,
-    tgUser: tg?.initDataUnsafe?.user ? {id:tg.initDataUnsafe.user.id, username:tg.initDataUnsafe.user.username||""} : null,
   };
 
-  const btn = $("placeOrderBtn");
-  btn.disabled = true; btn.textContent = t("sending");
-  try {
-    const res = await fetch("/api/order", {
-      method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(order)
-    });
-    if (!res.ok) throw new Error("api");
-    const data = await res.json();
-    finishOrder(order, data.invoice);
-  } catch(e) {
-    toast(t("orderFail"));
-  } finally {
-    btn.disabled = false; btn.textContent = t("placeOrder");
-  }
+  const invoice =
+    new Date().toISOString().slice(2,10).replace(/-/g,"") + "-" +
+    Math.floor(1000 + Math.random()*9000);
+
+  const manager = CONFIG.managers[managerIdx] || CONFIG.managers[0];
+  const link = `https://t.me/${manager.username}?text=${encodeURIComponent(orderText(order, invoice))}`;
+
+  finishOrder(order, invoice);
+  toast(t("orderReady"));
+
+  // открываем чат с менеджером — покупателю остаётся нажать «Отправить»
+  if (tg?.openTelegramLink) { try { tg.openTelegramLink(link); return; } catch(e){} }
+  window.open(link, "_blank");
 }
 function finishOrder(order, invoice){
   let history = []; try { history = JSON.parse(localStorage.getItem("orders") || "[]"); } catch(e){}
@@ -626,11 +717,15 @@ function toast(msg){
 
 /* ============================================================ АДМИНКА ============================================================ */
 async function adminLogin(){
-  const pass = $("adminPassInput").value;
+  const key = $("adminPassInput").value.trim();
+  if (!key) { toast(t("wrongPass")); return; }
   try {
-    const res = await fetch("/api/admin/check", {method:"POST", headers:{"x-admin-password":pass}});
+    const res = await fetch(`https://api.github.com/repos/${CONFIG.github.owner}/${CONFIG.github.repo}`, {
+      headers: { Authorization: "Bearer " + key, Accept: "application/vnd.github+json" }
+    });
     if (!res.ok) { toast(t("wrongPass")); return; }
-    adminToken = pass; sessionStorage.setItem("adminToken", pass);
+    adminToken = key;
+    localStorage.setItem("ghKey", key);   // ключ хранится только в вашем телефоне
     renderAdmin();
   } catch(e){ toast(t("saveFail")); }
 }
@@ -752,23 +847,67 @@ function adminAdd(){
   window.scrollTo(0, document.body.scrollHeight);
 }
 function adminDel(i){ adminDraft.splice(i,1); renderAdmin(); }
-async function adminSave(){
+/* --- сохранение в GitHub --- */
+const gh = (path) =>
+  `https://api.github.com/repos/${CONFIG.github.owner}/${CONFIG.github.repo}/contents/${path}`;
+const ghHeaders = () => ({
+  Authorization: "Bearer " + adminToken,
+  Accept: "application/vnd.github+json",
+  "Content-Type": "application/json",
+});
+
+async function ghPut(path, contentBase64, message){
+  let sha;
   try {
-    const res = await fetch("/api/admin/products", {
-      method:"PUT", headers:{"Content-Type":"application/json","x-admin-password":adminToken},
-      body: JSON.stringify({products:adminDraft, categories:adminCatDraft})
-    });
-    if (!res.ok) throw new Error();
+    const cur = await fetch(gh(path) + "?ref=" + CONFIG.github.branch, { headers: ghHeaders() });
+    if (cur.ok) sha = (await cur.json()).sha;
+  } catch(e){}
+  const res = await fetch(gh(path), {
+    method: "PUT",
+    headers: ghHeaders(),
+    body: JSON.stringify({ message, content: contentBase64, branch: CONFIG.github.branch, ...(sha ? {sha} : {}) })
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+/* utf-8 текст -> base64 */
+function toBase64(str){
+  return btoa(String.fromCharCode(...new TextEncoder().encode(str)));
+}
+
+async function adminSave(){
+  const btn = event?.target;
+  if (btn) { btn.disabled = true; btn.textContent = t("saving"); }
+  try {
+    // 1. фото, снятые на телефон, сохраняем отдельными файлами
+    for (const p of adminDraft) {
+      const m = typeof p.img === "string" && p.img.match(/^data:image\/(jpeg|jpg|png|webp);base64,(.+)$/);
+      if (!m) continue;
+      const ext = m[1] === "jpeg" ? "jpg" : m[1];
+      const name = `${CONFIG.github.photos}/p${p.id}-${Date.now()}.${ext}`;
+      await ghPut(name, m[2], "photo: " + name);
+      p.img = name;
+    }
+    // 2. сам каталог
+    const catalog = JSON.stringify({ products: adminDraft, categories: adminCatDraft }, null, 2);
+    await ghPut(CONFIG.github.catalog, toBase64(catalog), "catalog update");
+
     PRODUCTS = JSON.parse(JSON.stringify(adminDraft));
     CATS = JSON.parse(JSON.stringify(adminCatDraft));
     if (currentCat!=="all" && !CATS.some(c=>c.id===currentCat)) currentCat="all";
-    toast(t("saved")); renderAll();
-  } catch(e){ toast(t("saveFail")); }
+    toast(t("savedGh")); renderAll();
+  } catch(e){
+    toast(t("saveFail"));
+    console.error(e);
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = t("saveAll"); }
+  }
 }
 
 /* ============================================================ СТАРТ ============================================================ */
 function renderAll(){
-  renderLangSwitch(); applyI18n(); renderChips(); renderGrid(); renderCartBar();
+  renderLangSwitch(); applyI18n(); renderChips(); renderGrid(); renderCartBar(); renderManagers();
   if(curPage==="cart") renderCart();
   if(curPage==="fav") renderFavs();
   if(curPage==="orders") renderOrders();
@@ -777,7 +916,7 @@ function renderAll(){
 }
 async function loadProducts(){
   try {
-    const res = await fetch("/api/products", {cache:"no-store"});
+    const res = await fetch("catalog.json?t=" + Date.now(), {cache:"no-store"});
     if (!res.ok) return;
     const data = await res.json();
     // новый формат {products, categories} и старый (просто массив товаров)

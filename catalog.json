@@ -1,0 +1,278 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "emoji": "🍎",
+      "cat": "fruits",
+      "price": 45,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Свежие фрукты",
+        "uz": "Ho'l mevalar",
+        "en": "Fresh fruits"
+      },
+      "desc": {
+        "ru": "Сезонные фрукты: яблоки, бананы, виноград.",
+        "uz": "Mavsumiy mevalar: olma, banan, uzum.",
+        "en": "Seasonal fruits: apples, bananas, grapes."
+      }
+    },
+    {
+      "id": 2,
+      "emoji": "🥕",
+      "cat": "vegetables",
+      "price": 30,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Овощи",
+        "uz": "Sabzavotlar",
+        "en": "Vegetables"
+      },
+      "desc": {
+        "ru": "Фермерские овощи: морковь, картофель, лук, помидоры.",
+        "uz": "Fermer sabzavotlari: sabzi, kartoshka, piyoz, pomidor.",
+        "en": "Farm vegetables: carrots, potatoes, onions, tomatoes."
+      }
+    },
+    {
+      "id": 3,
+      "emoji": "🥩",
+      "cat": "meat",
+      "price": 450,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Говядина",
+        "uz": "Mol go'shti",
+        "en": "Beef"
+      },
+      "desc": {
+        "ru": "Свежая говядина высшего сорта.",
+        "uz": "Yuqori navli yangi mol go'shti.",
+        "en": "Premium fresh beef."
+      }
+    },
+    {
+      "id": 4,
+      "emoji": "🐎",
+      "cat": "meat",
+      "price": 650,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Казы",
+        "uz": "Qazi",
+        "en": "Kazy"
+      },
+      "desc": {
+        "ru": "Национальная колбаса из конины.",
+        "uz": "Milliy ot go'shtidan qazi.",
+        "en": "Traditional horse meat sausage."
+      }
+    },
+    {
+      "id": 5,
+      "emoji": "🌭",
+      "cat": "meat",
+      "price": 180,
+      "unit": "pcs",
+      "stock": true,
+      "name": {
+        "ru": "Колбаса",
+        "uz": "Kolbasa",
+        "en": "Sausage"
+      },
+      "desc": {
+        "ru": "Колбаса высшего сорта из говядины.",
+        "uz": "Mol go'shtidan yuqori navli kolbasa.",
+        "en": "Premium beef sausage."
+      }
+    },
+    {
+      "id": 6,
+      "emoji": "🥛",
+      "cat": "dairy",
+      "price": 35,
+      "unit": "l",
+      "stock": true,
+      "name": {
+        "ru": "Молоко",
+        "uz": "Sut",
+        "en": "Milk"
+      },
+      "desc": {
+        "ru": "Свежее фермерское молоко.",
+        "uz": "Yangi fermer suti.",
+        "en": "Fresh farm milk."
+      }
+    },
+    {
+      "id": 7,
+      "emoji": "🧀",
+      "cat": "dairy",
+      "price": 220,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Сыр",
+        "uz": "Pishloq",
+        "en": "Cheese"
+      },
+      "desc": {
+        "ru": "Домашний белый сыр.",
+        "uz": "Uy pishlog'i.",
+        "en": "Homemade white cheese."
+      }
+    },
+    {
+      "id": 8,
+      "emoji": "🍞",
+      "cat": "bakery",
+      "price": 15,
+      "unit": "pcs",
+      "stock": true,
+      "name": {
+        "ru": "Хлеб",
+        "uz": "Non",
+        "en": "Bread"
+      },
+      "desc": {
+        "ru": "Свежий горячий хлеб.",
+        "uz": "Yangi issiq non.",
+        "en": "Fresh hot bread."
+      }
+    },
+    {
+      "id": 9,
+      "emoji": "🍯",
+      "cat": "grocery",
+      "price": 350,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Мёд",
+        "uz": "Asal",
+        "en": "Honey"
+      },
+      "desc": {
+        "ru": "Натуральный горный мёд.",
+        "uz": "Tabiiy tog' asali.",
+        "en": "Natural mountain honey."
+      }
+    },
+    {
+      "id": 10,
+      "emoji": "🍚",
+      "cat": "grocery",
+      "price": 60,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Рис",
+        "uz": "Guruch",
+        "en": "Rice"
+      },
+      "desc": {
+        "ru": "Отборный рис для плова.",
+        "uz": "Palov uchun saralangan guruch.",
+        "en": "Selected rice for pilaf."
+      }
+    },
+    {
+      "id": 11,
+      "emoji": "🥤",
+      "cat": "drinks",
+      "price": 25,
+      "unit": "pcs",
+      "stock": true,
+      "name": {
+        "ru": "Напитки",
+        "uz": "Ichimliklar",
+        "en": "Drinks"
+      },
+      "desc": {
+        "ru": "Прохладительные напитки 1 л.",
+        "uz": "Salqin ichimliklar 1 l.",
+        "en": "Soft drinks 1 L."
+      }
+    },
+    {
+      "id": 12,
+      "emoji": "🍫",
+      "cat": "grocery",
+      "price": 40,
+      "unit": "pcs",
+      "stock": true,
+      "name": {
+        "ru": "Шоколад",
+        "uz": "Shokolad",
+        "en": "Chocolate"
+      },
+      "desc": {
+        "ru": "Молочный шоколад 100 г.",
+        "uz": "Sutli shokolad 100 g.",
+        "en": "Milk chocolate 100 g."
+      }
+    }
+  ],
+  "categories": [
+    {
+      "id": "fruits",
+      "name": {
+        "ru": "Фрукты",
+        "uz": "Mevalar",
+        "en": "Fruits"
+      }
+    },
+    {
+      "id": "vegetables",
+      "name": {
+        "ru": "Овощи",
+        "uz": "Sabzavotlar",
+        "en": "Vegetables"
+      }
+    },
+    {
+      "id": "meat",
+      "name": {
+        "ru": "Мясо",
+        "uz": "Go'sht",
+        "en": "Meat"
+      }
+    },
+    {
+      "id": "dairy",
+      "name": {
+        "ru": "Молочное",
+        "uz": "Sut mahsulotlari",
+        "en": "Dairy"
+      }
+    },
+    {
+      "id": "bakery",
+      "name": {
+        "ru": "Выпечка",
+        "uz": "Non",
+        "en": "Bakery"
+      }
+    },
+    {
+      "id": "grocery",
+      "name": {
+        "ru": "Бакалея",
+        "uz": "Oziq-ovqat",
+        "en": "Grocery"
+      }
+    },
+    {
+      "id": "drinks",
+      "name": {
+        "ru": "Напитки",
+        "uz": "Ichimliklar",
+        "en": "Drinks"
+      }
+    }
+  ]
+}
