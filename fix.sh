@@ -8,8 +8,11 @@ blue()  { printf "\033[0;34m%s\033[0m\n" "$1"; }
 warn()  { printf "\033[0;33m%s\033[0m\n" "$1"; }
 red()   { printf "\033[0;31m%s\033[0m\n" "$1"; }
 
-DOMAIN="$(grep -oP '(?<=PUBLIC_URL=https://).*' /opt/ebazar/.env 2>/dev/null | head -1)"
-DOMAIN="${DOMAIN:-$(hostname -f)}"
+# домен берём от самого сервера — надёжнее, чем из настроек
+DOMAIN="$(hostname -f 2>/dev/null | tr -d ' \r\n')"
+case "$DOMAIN" in
+  ""|localhost*|*[!a-zA-Z0-9.-]*) DOMAIN="$(hostname | tr -d ' \r\n').hstgr.cloud" ;;
+esac
 
 blue "=============================================="
 blue "   E-Bazar — проверка и починка"
@@ -17,6 +20,30 @@ blue "=============================================="
 echo
 echo "  Домен: $DOMAIN"
 echo
+
+# 0. Чиним настройки магазина (.env), сохраняя токен, ID и пароль
+blue "[0/5] Проверяю настройки магазина..."
+ENV_FILE=/opt/ebazar/.env
+if [ -f "$ENV_FILE" ]; then
+  TOKEN="$(grep -oP '^BOT_TOKEN=\K[0-9]+:[A-Za-z0-9_-]+' "$ENV_FILE" | head -1)"
+  CHAT="$(grep -oP '^ADMIN_CHAT_ID=\K-?[0-9]+' "$ENV_FILE" | head -1)"
+  PASS="$(grep -oP '^ADMIN_PASSWORD=\K.*' "$ENV_FILE" | head -1 | tr -d '\r')"
+  if [ -n "$TOKEN" ] && [ -n "$CHAT" ] && [ -n "$PASS" ]; then
+    cat > "$ENV_FILE" <<EOF
+BOT_TOKEN=$TOKEN
+ADMIN_CHAT_ID=$CHAT
+ADMIN_PASSWORD=$PASS
+PUBLIC_URL=https://$DOMAIN
+PORT=3000
+EOF
+    chmod 600 "$ENV_FILE"
+    green "      Настройки в порядке: токен, ID $CHAT, пароль ✓"
+  else
+    red "      В настройках чего-то не хватает — запустите заново: bash /root/eb/install.sh"
+  fi
+else
+  red "      Файл настроек не найден — запустите: bash /root/eb/install.sh"
+fi
 
 # 1. Правильный Caddyfile (без HTTP/3 — некоторые провайдеры его режут)
 blue "[1/5] Восстанавливаю настройки HTTPS..."
