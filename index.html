@@ -882,23 +882,42 @@ const ghHeaders = () => ({
   "Content-Type": "application/json",
 });
 
-async function ghPut(path, contentBase64, message){
-  let sha;
+/* свежий номер версии файла (без кэша) */
+async function ghSha(path){
   try {
-    const cur = await fetch(gh(path) + "?ref=" + CONFIG.github.branch, { headers: ghHeaders() });
-    if (cur.ok) sha = (await cur.json()).sha;
+    const res = await fetch(gh(path) + "?ref=" + CONFIG.github.branch + "&_=" + Date.now(), {
+      headers: { ...ghHeaders(), "Cache-Control": "no-cache", "If-None-Match": "" },
+      cache: "no-store",
+    });
+    if (res.ok) return (await res.json()).sha;
   } catch(e){}
-  const res = await fetch(gh(path), {
-    method: "PUT",
-    headers: ghHeaders(),
-    body: JSON.stringify({ message, content: contentBase64, branch: CONFIG.github.branch, ...(sha ? {sha} : {}) })
-  });
-  if (!res.ok) {
+  return undefined;
+}
+
+/* запись файла с повтором, если версия устарела (409) */
+async function ghPut(path, contentBase64, message){
+  let lastErr = "";
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    const sha = await ghSha(path);
+    const res = await fetch(gh(path), {
+      method: "PUT",
+      headers: ghHeaders(),
+      body: JSON.stringify({ message, content: contentBase64, branch: CONFIG.github.branch, ...(sha ? {sha} : {}) })
+    });
+    if (res.ok) return res.json();
+
     let detail = "";
     try { detail = (await res.json()).message || ""; } catch(e){}
-    throw new Error(`${res.status} ${detail}`);
+    lastErr = `${res.status} ${detail}`;
+
+    // 409/422 — файл успели изменить: подождём и возьмём свежую версию
+    if (res.status === 409 || res.status === 422) {
+      await new Promise(r => setTimeout(r, 900 * attempt));
+      continue;
+    }
+    throw new Error(lastErr);
   }
-  return res.json();
+  throw new Error(lastErr);
 }
 
 /* utf-8 текст -> base64 (по кускам, чтобы не падало на больших каталогах) */
@@ -941,6 +960,7 @@ async function adminSave(){
     if (msg.includes("Bad credentials") || msg.includes("401")) msg = "Ключ неверный или устарел";
     else if (msg.includes("Resource not accessible") || msg.includes("403")) msg = "У ключа нет прав на запись (Contents: Read and write)";
     else if (msg.includes("Not Found") || msg.includes("404")) msg = "Репозиторий не найден — проверьте доступ ключа к E-BAZAR";
+    else if (msg.includes("409") || msg.includes("does not match")) msg = "Каталог изменился в другом окне. Обновите страницу и повторите";
     else if (msg.length > 90) msg = t("saveFail");
     toast("⚠️ " + msg);
     const needNewKey = /401|403|404|прав|неверн|устарел|не найден/i.test(msg);
