@@ -216,6 +216,24 @@
         "tr": "Milk chocolate 100 g."
       },
       "img": "photos/p12-1785400398771.jpg"
+    },
+    {
+      "id": 13,
+      "emoji": "📦",
+      "cat": "meat",
+      "price": 150,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Burgerman",
+        "uz": "Burgerman",
+        "tr": "Burgerman"
+      },
+      "desc": {
+        "ru": "",
+        "uz": "",
+        "tr": ""
+      }
     }
   ],
   "categories": [
