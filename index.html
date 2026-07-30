@@ -241,6 +241,7 @@
       <div id="adminList"></div>
       <button class="btn btn-soft" onclick="adminAdd()" style="margin-bottom:10px">＋ <span data-i18n="addProduct"></span></button>
       <button class="btn btn-primary" id="adminSaveBtn" onclick="adminSave()" data-i18n="saveAll"></button>
+      <button class="btn btn-danger-soft" style="margin-top:8px" onclick="adminLogout()" data-i18n="changeKey"></button>
       <p class="muted" style="margin-top:10px" data-i18n="adminNote"></p>
     </div>
   </section>
@@ -378,6 +379,7 @@ const I18N = {
     adminGhToken:"Ключ доступа GitHub",adminGhHint:"Введите ключ GitHub, чтобы сохранять товары. Как его получить — написано в инструкции репозитория.",
     saving:"Сохраняю…",savedGh:"Сохранено! Магазин обновится через минуту ✅",
     newSection:"Новый раздел",
+    changeKey:"🔑 Сменить ключ доступа",keyCleared:"Ключ удалён — введите новый",askNewKey:"Ввести другой ключ?",
     kg:"кг",pcs:"шт",l:"л"},
   uz:{search:"Mahsulot qidirish…",all:"Hammasi",fruits:"Mevalar",vegetables:"Sabzavotlar",meat:"Go'sht",dairy:"Sut mahsulotlari",bakery:"Non",grocery:"Oziq-ovqat",drinks:"Ichimliklar",
     navHome:"Asosiy",navFav:"Sevimli",navCart:"Savat",navOrders:"Buyurtmalar",
@@ -404,6 +406,7 @@ const I18N = {
     adminGhToken:"GitHub kaliti",adminGhHint:"Mahsulotlarni saqlash uchun GitHub kalitini kiriting. Uni qanday olish — repozitoriy qo'llanmasida.",
     saving:"Saqlanmoqda…",savedGh:"Saqlandi! Do'kon bir daqiqada yangilanadi ✅",
     newSection:"Yangi bo'lim",
+    changeKey:"🔑 Kalitni almashtirish",keyCleared:"Kalit o'chirildi — yangisini kiriting",askNewKey:"Boshqa kalit kiritilsinmi?",
     kg:"kg",pcs:"dona",l:"l"},
   tr:{search:"Ürün ara…",all:"Hepsi",
     promoTitle:"Özbek lezzetini özlediniz mi?",
@@ -429,6 +432,7 @@ const I18N = {
     signIn:"Giriş",addProduct:"Ürün ekle",saveAll:"Hepsini kaydet 💾",adminNote:"Değişiklikler kaydedilir ve tüm müşterilere görünür.",
     wrongPass:"Anahtar yanlış",saved:"Kaydedildi ✅",saveFail:"Kaydetme hatası",inStock:"Stokta var",outStock:"Stokta yok",
     newSection:"Yeni bölüm",
+    changeKey:"🔑 Anahtarı değiştir",keyCleared:"Anahtar silindi — yenisini girin",askNewKey:"Başka anahtar girilsin mi?",
     kg:"kg",pcs:"adet",l:"L"},
 };
 
@@ -731,6 +735,15 @@ async function adminLogin(){
     renderAdmin();
   } catch(e){ toast(t("saveFail")); }
 }
+function adminLogout(){
+  adminToken = "";
+  localStorage.removeItem("ghKey");
+  adminDraft = null; adminCatDraft = null;
+  $("adminPassInput").value = "";
+  renderAdmin();
+  toast(t("keyCleared"));
+}
+
 let adminDraft = null, adminCatDraft = null;
 
 /* черновики каталога — создаём при первой правке, чтобы ничего не падало */
@@ -930,7 +943,9 @@ async function adminSave(){
     else if (msg.includes("Not Found") || msg.includes("404")) msg = "Репозиторий не найден — проверьте доступ ключа к E-BAZAR";
     else if (msg.length > 90) msg = t("saveFail");
     toast("⚠️ " + msg);
-    alert("Не удалось сохранить:\n\n" + msg);
+    const needNewKey = /401|403|404|прав|неверн|устарел|не найден/i.test(msg);
+    alert("Не удалось сохранить:\n\n" + msg + (needNewKey ? "\n\n" + t("askNewKey") : ""));
+    if (needNewKey && confirm(t("askNewKey"))) adminLogout();
   } finally {
     if (btn) { btn.disabled = false; btn.textContent = t("saveAll"); }
   }
