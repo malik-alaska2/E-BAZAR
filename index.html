@@ -240,7 +240,7 @@
       <h3 style="font-size:16px;font-weight:800;margin:8px 0 10px">📦 <span data-i18n="productsTitle"></span></h3>
       <div id="adminList"></div>
       <button class="btn btn-soft" onclick="adminAdd()" style="margin-bottom:10px">＋ <span data-i18n="addProduct"></span></button>
-      <button class="btn btn-primary" onclick="adminSave()" data-i18n="saveAll"></button>
+      <button class="btn btn-primary" id="adminSaveBtn" onclick="adminSave()" data-i18n="saveAll"></button>
       <p class="muted" style="margin-top:10px" data-i18n="adminNote"></p>
     </div>
   </section>
@@ -377,6 +377,7 @@ const I18N = {
     orderReady:"Заказ готов! Отправьте сообщение менеджеру",orderTitle:"НОВЫЙ ЗАКАЗ",
     adminGhToken:"Ключ доступа GitHub",adminGhHint:"Введите ключ GitHub, чтобы сохранять товары. Как его получить — написано в инструкции репозитория.",
     saving:"Сохраняю…",savedGh:"Сохранено! Магазин обновится через минуту ✅",
+    newSection:"Новый раздел",
     kg:"кг",pcs:"шт",l:"л"},
   uz:{search:"Mahsulot qidirish…",all:"Hammasi",fruits:"Mevalar",vegetables:"Sabzavotlar",meat:"Go'sht",dairy:"Sut mahsulotlari",bakery:"Non",grocery:"Oziq-ovqat",drinks:"Ichimliklar",
     navHome:"Asosiy",navFav:"Sevimli",navCart:"Savat",navOrders:"Buyurtmalar",
@@ -402,32 +403,33 @@ const I18N = {
     orderReady:"Buyurtma tayyor! Menejerga xabar yuboring",orderTitle:"YANGI BUYURTMA",
     adminGhToken:"GitHub kaliti",adminGhHint:"Mahsulotlarni saqlash uchun GitHub kalitini kiriting. Uni qanday olish — repozitoriy qo'llanmasida.",
     saving:"Saqlanmoqda…",savedGh:"Saqlandi! Do'kon bir daqiqada yangilanadi ✅",
+    newSection:"Yangi bo'lim",
     kg:"kg",pcs:"dona",l:"l"},
-  en:{search:"Search products…",all:"All",fruits:"Fruits",vegetables:"Vegetables",meat:"Meat",dairy:"Dairy",bakery:"Bakery",grocery:"Grocery",drinks:"Drinks",
-    navHome:"Home",navFav:"Favorites",navCart:"Cart",navOrders:"Orders",
-    add:"Add to cart",favorites:"Favorites",emptyFav:"No favorite products yet",cart:"Cart",emptyCart:"Your cart is empty",
-    total:"Total",goCheckout:"Checkout",checkout:"Checkout",yourName:"Your name",phone:"Phone",
-    deliveryMethod:"Delivery method",delivery:"🚚 Delivery",pickup:"🏪 Pickup",address:"Delivery address",
-    payment:"Payment",payCash:"💵 Cash",comment:"Comment (optional)",
-    placeOrder:"Confirm order ✅",orderAccepted:"Order accepted!",backToShop:"← Back to shop",
-    myOrders:"My orders",emptyOrders:"No orders yet",orderNum:"Order",items:"item(s)",
-    deliveryFeeLbl:"Delivery",free:"Free",fillFields:"Please fill in name, phone and address",minOrderMsg:"Minimum order: ",
-    added:"Added to cart ✅",removed:"Removed",sending:"Sending…",orderFail:"Failed to send order. Please try again.",
-    successInfo:"Your order number: {n}. We will contact you soon!",
-    adminPass:"Admin password",signIn:"Sign in",adminHint:"Product management panel. Password is set in Cloudflare settings (ADMIN_PASSWORD).",
-    addProduct:"Add product",saveAll:"Save all 💾",adminNote:"Changes are saved on the server and visible to all customers.",
-    wrongPass:"Wrong password",saved:"Saved ✅",saveFail:"Save failed",inStock:"In stock",outStock:"Out of stock",
-    cashOnly:"— pay on delivery",sections:"Shop sections",productsTitle:"Products",addSection:"Add section",
-    uploadPhoto:"Upload photo",removePhoto:"Remove photo",photoAdded:"Photo added ✅",newProduct:"New product",
-    catDelWarn:"This section has {n} product(s). They will move to the first section. Delete?",
-    promoTitle:"Missing the taste of Uzbekistan?",
-    promo1:"Top quality halal products",promo2:"Specially selected for Uzbek cuisine",promo3:"Delicious, natural, trustworthy",
-    manager:"Manager",managerMen:"Men's desk",managerWomen:"Women's desk",writeUs:"Message",callUs:"Call",
-    sendOrder:"Send order via Telegram 📩",orderHint:"A chat with the manager will open — tap «Send»",
-    orderReady:"Order ready! Send the message to the manager",orderTitle:"NEW ORDER",
-    adminGhToken:"GitHub access key",adminGhHint:"Enter your GitHub key to save products. See the repository guide for how to get it.",
-    saving:"Saving…",savedGh:"Saved! The shop updates in a minute ✅",
-    kg:"kg",pcs:"pcs",l:"L"},
+  tr:{search:"Ürün ara…",all:"Hepsi",
+    promoTitle:"Özbek lezzetini özlediniz mi?",
+    promo1:"En kaliteli ve helal ürünler",promo2:"Özbek yemekleri için özel seçim",promo3:"Lezzetli, doğal ve güvenilir",
+    manager:"Yetkili",managerMen:"Erkek bölümü",managerWomen:"Kadın bölümü",writeUs:"Yaz",callUs:"Ara",
+    sendOrder:"Siparişi Telegram'dan gönder 📩",orderHint:"Yetkili ile sohbet açılır — «Gönder»e basın",
+    orderReady:"Sipariş hazır! Mesajı yetkiliye gönderin",orderTitle:"YENİ SİPARİŞ",
+    adminGhToken:"GitHub erişim anahtarı",adminGhHint:"Ürünleri kaydetmek için GitHub anahtarını girin.",
+    saving:"Kaydediliyor…",savedGh:"Kaydedildi! Mağaza bir dakika içinde güncellenir ✅",
+    navHome:"Ana sayfa",navFav:"Favoriler",navCart:"Sepet",navOrders:"Siparişler",
+    add:"Sepete",favorites:"Favoriler",emptyFav:"Favori ürün yok",cart:"Sepet",emptyCart:"Sepetiniz boş",
+    total:"Toplam",goCheckout:"Siparişi tamamla",checkout:"Sipariş",yourName:"Adınız",phone:"Telefon",
+    deliveryMethod:"Teslim şekli",delivery:"🚚 Teslimat",pickup:"🏪 Mağazadan al",address:"Teslimat adresi",
+    payment:"Ödeme",payCash:"💵 Nakit",cashOnly:"— teslimatta ödeme",comment:"Not (isteğe bağlı)",
+    placeOrder:"Siparişi onayla ✅",orderAccepted:"Sipariş alındı!",backToShop:"← Mağazaya dön",
+    myOrders:"Siparişlerim",emptyOrders:"Henüz sipariş yok",orderNum:"Sipariş",items:"ürün",
+    deliveryFeeLbl:"Teslimat",free:"Ücretsiz",fillFields:"Ad, telefon ve adresi doldurun",minOrderMsg:"Minimum sipariş: ",
+    added:"Sepete eklendi ✅",removed:"Silindi",sending:"Gönderiliyor…",orderFail:"Gönderilemedi. Tekrar deneyin.",
+    successInfo:"Sipariş numaranız: {n}. En kısa sürede sizinle iletişime geçeceğiz!",
+    sections:"Mağaza bölümleri",productsTitle:"Ürünler",addSection:"Bölüm ekle",
+    uploadPhoto:"Fotoğraf yükle",removePhoto:"Fotoğrafı sil",photoAdded:"Fotoğraf eklendi ✅",newProduct:"Yeni ürün",
+    catDelWarn:"Bu bölümde {n} ürün var. Birinci bölüme taşınacak. Silinsin mi?",
+    signIn:"Giriş",addProduct:"Ürün ekle",saveAll:"Hepsini kaydet 💾",adminNote:"Değişiklikler kaydedilir ve tüm müşterilere görünür.",
+    wrongPass:"Anahtar yanlış",saved:"Kaydedildi ✅",saveFail:"Kaydetme hatası",inStock:"Stokta var",outStock:"Stokta yok",
+    newSection:"Yeni bölüm",
+    kg:"kg",pcs:"adet",l:"L"},
 };
 
 /* ============================================================ ЛОГИКА ============================================================ */
@@ -449,10 +451,10 @@ const $ = id => document.getElementById(id);
 const t = (k) => (I18N[lang][k] ?? k);
 const fmt = n => new Intl.NumberFormat("tr-TR", {maximumFractionDigits:2}).format(n) + " " + CONFIG.currency;
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const pname = p => p.name?.[lang] || p.name?.ru || p.name?.uz || p.name?.en || "";
-const pdesc = p => p.desc?.[lang] || p.desc?.ru || p.desc?.uz || p.desc?.en || "";
+const pname = p => p.name?.[lang] || p.name?.ru || p.name?.uz || p.name?.tr || p.name?.en || "";
+const pdesc = p => p.desc?.[lang] || p.desc?.ru || p.desc?.uz || p.desc?.tr || p.desc?.en || "";
 const punit = p => t(p.unit || "pcs");
-const catName = c => c.name?.[lang] || c.name?.ru || c.name?.uz || c.name?.en || c.id;
+const catName = c => c.name?.[lang] || c.name?.ru || c.name?.uz || c.name?.tr || c.name?.en || c.id;
 
 /* Тема */
 let theme = localStorage.getItem("theme") || (tg?.colorScheme) || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
@@ -461,7 +463,7 @@ $("themeBtn").onclick = () => { theme = theme==="dark"?"light":"dark"; localStor
 
 /* Язык */
 function renderLangSwitch(){
-  $("langSwitch").innerHTML = ["ru","uz","en"].map(l =>
+  $("langSwitch").innerHTML = ["ru","uz","tr"].map(l =>
     `<button class="${l===lang?'active':''}" onclick="setLang('${l}')">${l.toUpperCase()}</button>`).join("");
 }
 function setLang(l){ lang=l; localStorage.setItem("lang",l); renderAll(); }
@@ -731,6 +733,12 @@ async function adminLogin(){
 }
 let adminDraft = null, adminCatDraft = null;
 
+/* черновики каталога — создаём при первой правке, чтобы ничего не падало */
+function ensureDrafts(){
+  if (!adminDraft)    adminDraft    = JSON.parse(JSON.stringify(PRODUCTS));
+  if (!adminCatDraft) adminCatDraft = JSON.parse(JSON.stringify(CATS));
+}
+
 /* --- РАЗДЕЛЫ --- */
 function renderAdminCats(){
   $("adminCats").innerHTML = adminCatDraft.map((c,i) => `
@@ -746,20 +754,23 @@ function renderAdminCats(){
       <div class="admin-grid2">
         <input value="${esc(c.name.ru)}" placeholder="Раздел RU" oninput="adminCatDraft[${i}].name.ru=this.value">
         <input value="${esc(c.name.uz)}" placeholder="Bo'lim UZ" oninput="adminCatDraft[${i}].name.uz=this.value">
-        <input value="${esc(c.name.en)}" placeholder="Section EN" oninput="adminCatDraft[${i}].name.en=this.value">
+        <input value="${esc(c.name.tr ?? c.name.en ?? '')}" placeholder="Bölüm TR (турецкий)" oninput="adminCatDraft[${i}].name.tr=this.value">
       </div>
     </div>`).join("");
 }
 function adminCatAdd(){
-  adminCatDraft.push({id:"cat"+Date.now(), name:{ru:"",uz:"",en:""}});
+  ensureDrafts();
+  adminCatDraft.push({id:"cat"+Date.now(), name:{ru:t("newSection"),uz:t("newSection"),tr:t("newSection")}});
   renderAdmin();
 }
 function adminCatMove(i,d){
+  ensureDrafts();
   const j=i+d; if(j<0||j>=adminCatDraft.length) return;
   [adminCatDraft[i],adminCatDraft[j]]=[adminCatDraft[j],adminCatDraft[i]];
   renderAdmin();
 }
 function adminCatDel(i){
+  ensureDrafts();
   const c = adminCatDraft[i];
   const used = adminDraft.filter(p=>p.cat===c.id).length;
   if (used && !confirm(t("catDelWarn").replace("{n}",used))) return;
@@ -770,6 +781,7 @@ function adminCatDel(i){
 
 /* --- ФОТО: загрузка с телефона, сжатие в компактный формат --- */
 function adminPickPhoto(i){
+  ensureDrafts();
   const inp = document.createElement("input");
   inp.type = "file"; inp.accept = "image/*";
   inp.onchange = () => {
@@ -799,13 +811,12 @@ function renderAdmin(){
   $("adminLogin").style.display = logged ? "none" : "block";
   $("adminPanel").style.display = logged ? "block" : "none";
   if (!logged) return;
-  if (!adminDraft) adminDraft = JSON.parse(JSON.stringify(PRODUCTS));
-  if (!adminCatDraft) adminCatDraft = JSON.parse(JSON.stringify(CATS));
+  ensureDrafts();
   renderAdminCats();
   $("adminList").innerHTML = adminDraft.map((p,i) => `
     <div class="admin-item">
       <div class="row" style="justify-content:space-between;margin-bottom:6px">
-        <b>${esc(p.name.ru || p.name.en || t("newProduct"))}</b>
+        <b>${esc(p.name.ru || p.name.tr || p.name.uz || t("newProduct"))}</b>
         <button class="btn btn-danger-soft" style="width:auto;padding:6px 14px;font-size:12px" onclick="adminDel(${i})">🗑</button>
       </div>
       <div class="row" style="align-items:flex-start;gap:10px;margin-bottom:6px">
@@ -820,7 +831,7 @@ function renderAdmin(){
       <div class="admin-grid2">
         <input value="${esc(p.name.ru)}" placeholder="Название RU" oninput="adminDraft[${i}].name.ru=this.value">
         <input value="${esc(p.name.uz)}" placeholder="Nomi UZ" oninput="adminDraft[${i}].name.uz=this.value">
-        <input value="${esc(p.name.en)}" placeholder="Name EN" oninput="adminDraft[${i}].name.en=this.value">
+        <input value="${esc(p.name.tr ?? p.name.en ?? '')}" placeholder="Ad TR (турецкий)" oninput="adminDraft[${i}].name.tr=this.value">
         <input value="${esc(p.emoji||'')}" placeholder="Emoji 🍎" oninput="adminDraft[${i}].emoji=this.value">
         <input type="number" inputmode="decimal" step="0.01" value="${p.price}" placeholder="Цена ₺" oninput="adminDraft[${i}].price=parseFloat(this.value)||0">
         <select onchange="adminDraft[${i}].unit=this.value">
@@ -836,17 +847,19 @@ function renderAdmin(){
       </div>
       <input value="${esc(p.desc.ru)}" placeholder="Описание RU" oninput="adminDraft[${i}].desc.ru=this.value">
       <input value="${esc(p.desc.uz)}" placeholder="Tavsif UZ" oninput="adminDraft[${i}].desc.uz=this.value">
-      <input value="${esc(p.desc.en)}" placeholder="Description EN" oninput="adminDraft[${i}].desc.en=this.value">
+      <input value="${esc(p.desc.tr ?? p.desc.en ?? '')}" placeholder="Açıklama TR (турецкий)" oninput="adminDraft[${i}].desc.tr=this.value">
     </div>`).join("");
 }
 function adminAdd(){
+  ensureDrafts();
   const maxId = Math.max(0, ...adminDraft.map(p=>p.id));
   adminDraft.push({id:maxId+1, emoji:"📦", cat:adminCatDraft[0]?.id||"", price:0, unit:"pcs", stock:true,
-    name:{ru:"",uz:"",en:""}, desc:{ru:"",uz:"",en:""}});
+    name:{ru:"",uz:"",tr:""}, desc:{ru:"",uz:"",tr:""}});
   renderAdmin();
   window.scrollTo(0, document.body.scrollHeight);
 }
-function adminDel(i){ adminDraft.splice(i,1); renderAdmin(); }
+function adminDel(i){
+  ensureDrafts(); adminDraft.splice(i,1); renderAdmin(); }
 /* --- сохранение в GitHub --- */
 const gh = (path) =>
   `https://api.github.com/repos/${CONFIG.github.owner}/${CONFIG.github.repo}/contents/${path}`;
@@ -867,19 +880,31 @@ async function ghPut(path, contentBase64, message){
     headers: ghHeaders(),
     body: JSON.stringify({ message, content: contentBase64, branch: CONFIG.github.branch, ...(sha ? {sha} : {}) })
   });
-  if (!res.ok) throw new Error(await res.text());
+  if (!res.ok) {
+    let detail = "";
+    try { detail = (await res.json()).message || ""; } catch(e){}
+    throw new Error(`${res.status} ${detail}`);
+  }
   return res.json();
 }
 
-/* utf-8 текст -> base64 */
+/* utf-8 текст -> base64 (по кускам, чтобы не падало на больших каталогах) */
 function toBase64(str){
-  return btoa(String.fromCharCode(...new TextEncoder().encode(str)));
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  const CHUNK = 0x8000;
+  for (let i = 0; i < bytes.length; i += CHUNK) {
+    bin += String.fromCharCode.apply(null, bytes.subarray(i, i + CHUNK));
+  }
+  return btoa(bin);
 }
 
 async function adminSave(){
-  const btn = event?.target;
+  ensureDrafts();
+  const btn = $("adminSaveBtn");
   if (btn) { btn.disabled = true; btn.textContent = t("saving"); }
   try {
+    if (!adminToken) throw new Error("Ключ доступа не введён");
     // 1. фото, снятые на телефон, сохраняем отдельными файлами
     for (const p of adminDraft) {
       const m = typeof p.img === "string" && p.img.match(/^data:image\/(jpeg|jpg|png|webp);base64,(.+)$/);
@@ -898,8 +923,14 @@ async function adminSave(){
     if (currentCat!=="all" && !CATS.some(c=>c.id===currentCat)) currentCat="all";
     toast(t("savedGh")); renderAll();
   } catch(e){
-    toast(t("saveFail"));
     console.error(e);
+    let msg = String(e && e.message || e);
+    if (msg.includes("Bad credentials") || msg.includes("401")) msg = "Ключ неверный или устарел";
+    else if (msg.includes("Resource not accessible") || msg.includes("403")) msg = "У ключа нет прав на запись (Contents: Read and write)";
+    else if (msg.includes("Not Found") || msg.includes("404")) msg = "Репозиторий не найден — проверьте доступ ключа к E-BAZAR";
+    else if (msg.length > 90) msg = t("saveFail");
+    toast("⚠️ " + msg);
+    alert("Не удалось сохранить:\n\n" + msg);
   } finally {
     if (btn) { btn.disabled = false; btn.textContent = t("saveAll"); }
   }

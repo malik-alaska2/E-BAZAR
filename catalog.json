@@ -10,12 +10,12 @@
       "name": {
         "ru": "Свежие фрукты",
         "uz": "Ho'l mevalar",
-        "en": "Fresh fruits"
+        "tr": "Taze meyveler"
       },
       "desc": {
         "ru": "Сезонные фрукты: яблоки, бананы, виноград.",
         "uz": "Mavsumiy mevalar: olma, banan, uzum.",
-        "en": "Seasonal fruits: apples, bananas, grapes."
+        "tr": "Seasonal fruits: apples, bananas, grapes."
       }
     },
     {
@@ -28,12 +28,12 @@
       "name": {
         "ru": "Овощи",
         "uz": "Sabzavotlar",
-        "en": "Vegetables"
+        "tr": "Sebzeler"
       },
       "desc": {
         "ru": "Фермерские овощи: морковь, картофель, лук, помидоры.",
         "uz": "Fermer sabzavotlari: sabzi, kartoshka, piyoz, pomidor.",
-        "en": "Farm vegetables: carrots, potatoes, onions, tomatoes."
+        "tr": "Farm vegetables: carrots, potatoes, onions, tomatoes."
       }
     },
     {
@@ -46,12 +46,12 @@
       "name": {
         "ru": "Говядина",
         "uz": "Mol go'shti",
-        "en": "Beef"
+        "tr": "Dana eti"
       },
       "desc": {
         "ru": "Свежая говядина высшего сорта.",
         "uz": "Yuqori navli yangi mol go'shti.",
-        "en": "Premium fresh beef."
+        "tr": "Premium fresh beef."
       }
     },
     {
@@ -64,12 +64,12 @@
       "name": {
         "ru": "Казы",
         "uz": "Qazi",
-        "en": "Kazy"
+        "tr": "Kazı (at sucuğu)"
       },
       "desc": {
         "ru": "Национальная колбаса из конины.",
         "uz": "Milliy ot go'shtidan qazi.",
-        "en": "Traditional horse meat sausage."
+        "tr": "Traditional horse meat sausage."
       }
     },
     {
@@ -82,12 +82,12 @@
       "name": {
         "ru": "Колбаса",
         "uz": "Kolbasa",
-        "en": "Sausage"
+        "tr": "Sucuk"
       },
       "desc": {
         "ru": "Колбаса высшего сорта из говядины.",
         "uz": "Mol go'shtidan yuqori navli kolbasa.",
-        "en": "Premium beef sausage."
+        "tr": "Premium beef sausage."
       }
     },
     {
@@ -100,12 +100,12 @@
       "name": {
         "ru": "Молоко",
         "uz": "Sut",
-        "en": "Milk"
+        "tr": "Süt"
       },
       "desc": {
         "ru": "Свежее фермерское молоко.",
         "uz": "Yangi fermer suti.",
-        "en": "Fresh farm milk."
+        "tr": "Fresh farm milk."
       }
     },
     {
@@ -118,12 +118,12 @@
       "name": {
         "ru": "Сыр",
         "uz": "Pishloq",
-        "en": "Cheese"
+        "tr": "Peynir"
       },
       "desc": {
         "ru": "Домашний белый сыр.",
         "uz": "Uy pishlog'i.",
-        "en": "Homemade white cheese."
+        "tr": "Homemade white cheese."
       }
     },
     {
@@ -136,12 +136,12 @@
       "name": {
         "ru": "Хлеб",
         "uz": "Non",
-        "en": "Bread"
+        "tr": "Ekmek"
       },
       "desc": {
         "ru": "Свежий горячий хлеб.",
         "uz": "Yangi issiq non.",
-        "en": "Fresh hot bread."
+        "tr": "Fresh hot bread."
       }
     },
     {
@@ -154,12 +154,12 @@
       "name": {
         "ru": "Мёд",
         "uz": "Asal",
-        "en": "Honey"
+        "tr": "Bal"
       },
       "desc": {
         "ru": "Натуральный горный мёд.",
         "uz": "Tabiiy tog' asali.",
-        "en": "Natural mountain honey."
+        "tr": "Natural mountain honey."
       }
     },
     {
@@ -172,12 +172,12 @@
       "name": {
         "ru": "Рис",
         "uz": "Guruch",
-        "en": "Rice"
+        "tr": "Pirinç"
       },
       "desc": {
         "ru": "Отборный рис для плова.",
         "uz": "Palov uchun saralangan guruch.",
-        "en": "Selected rice for pilaf."
+        "tr": "Selected rice for pilaf."
       }
     },
     {
@@ -190,12 +190,12 @@
       "name": {
         "ru": "Напитки",
         "uz": "Ichimliklar",
-        "en": "Drinks"
+        "tr": "İçecekler"
       },
       "desc": {
         "ru": "Прохладительные напитки 1 л.",
         "uz": "Salqin ichimliklar 1 l.",
-        "en": "Soft drinks 1 L."
+        "tr": "Soft drinks 1 L."
       }
     },
     {
@@ -208,12 +208,12 @@
       "name": {
         "ru": "Шоколад",
         "uz": "Shokolad",
-        "en": "Chocolate"
+        "tr": "Çikolata"
       },
       "desc": {
         "ru": "Молочный шоколад 100 г.",
         "uz": "Sutli shokolad 100 g.",
-        "en": "Milk chocolate 100 g."
+        "tr": "Milk chocolate 100 g."
       }
     }
   ],
@@ -223,7 +223,7 @@
       "name": {
         "ru": "Фрукты",
         "uz": "Mevalar",
-        "en": "Fruits"
+        "tr": "Meyveler"
       }
     },
     {
@@ -231,7 +231,7 @@
       "name": {
         "ru": "Овощи",
         "uz": "Sabzavotlar",
-        "en": "Vegetables"
+        "tr": "Sebzeler"
       }
     },
     {
@@ -239,7 +239,7 @@
       "name": {
         "ru": "Мясо",
         "uz": "Go'sht",
-        "en": "Meat"
+        "tr": "Et"
       }
     },
     {
@@ -247,7 +247,7 @@
       "name": {
         "ru": "Молочное",
         "uz": "Sut mahsulotlari",
-        "en": "Dairy"
+        "tr": "Süt ürünleri"
       }
     },
     {
@@ -255,7 +255,7 @@
       "name": {
         "ru": "Выпечка",
         "uz": "Non",
-        "en": "Bakery"
+        "tr": "Ekmek"
       }
     },
     {
@@ -263,7 +263,7 @@
       "name": {
         "ru": "Бакалея",
         "uz": "Oziq-ovqat",
-        "en": "Grocery"
+        "tr": "Bakkaliye"
       }
     },
     {
@@ -271,7 +271,7 @@
       "name": {
         "ru": "Напитки",
         "uz": "Ichimliklar",
-        "en": "Drinks"
+        "tr": "İçecekler"
       }
     }
   ]
