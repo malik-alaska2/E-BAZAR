@@ -2,250 +2,456 @@
   "products": [
     {
       "id": 1,
-      "emoji": "🍎",
-      "cat": "fruits",
-      "price": 45,
-      "unit": "kg",
+      "emoji": "🍹",
+      "cat": "drinks",
+      "price": 150,
+      "unit": "pcs",
       "stock": true,
       "name": {
-        "ru": "Свежие фрукты",
-        "uz": "Ho'l mevalar",
-        "tr": "Taze meyveler"
+        "ru": "Мохито",
+        "uz": "Moxito",
+        "tr": "Mojito"
       },
       "desc": {
-        "ru": "Сезонные фрукты: яблоки, бананы, виноград.",
-        "uz": "Mavsumiy mevalar: olma, banan, uzum.",
-        "tr": "Seasonal fruits: apples, bananas, grapes."
+        "ru": "Освежающий лимонад Мохито, 0,45 л.",
+        "uz": "Salqinlatuvchi Moxito limonadi, 0,45 l.",
+        "tr": "Serinletici Mojito limonatası, 0,45 L."
       }
     },
     {
       "id": 2,
-      "emoji": "🥕",
-      "cat": "vegetables",
-      "price": 30,
-      "unit": "kg",
+      "emoji": "🥤",
+      "cat": "drinks",
+      "price": 100,
+      "unit": "pcs",
       "stock": true,
       "name": {
-        "ru": "Овощи",
-        "uz": "Sabzavotlar",
-        "tr": "Sebzeler"
+        "ru": "Роял",
+        "uz": "Royal",
+        "tr": "Royal"
       },
       "desc": {
-        "ru": "Фермерские овощи: морковь, картофель, лук, помидоры.",
-        "uz": "Fermer sabzavotlari: sabzi, kartoshka, piyoz, pomidor.",
-        "tr": "Farm vegetables: carrots, potatoes, onions, tomatoes."
+        "ru": "Прохладительный напиток Royal, 0,3 л.",
+        "uz": "Royal salqin ichimligi, 0,3 l.",
+        "tr": "Royal serinletici içecek, 0,3 L."
       }
     },
     {
       "id": 3,
-      "emoji": "🥩",
+      "emoji": "🐄",
       "cat": "meat",
-      "price": 450,
-      "unit": "kg",
+      "price": 350,
+      "unit": "pcs",
       "stock": true,
       "name": {
-        "ru": "Говядина",
-        "uz": "Mol go'shti",
-        "tr": "Dana eti"
+        "ru": "Тушёнка Ansor (говядина)",
+        "uz": "Ansor tushyonka (mol go'shti)",
+        "tr": "Ansor konserve et (dana)"
       },
       "desc": {
-        "ru": "Свежая говядина высшего сорта.",
-        "uz": "Yuqori navli yangi mol go'shti.",
-        "tr": "Premium fresh beef."
+        "ru": "Говяжья тушёнка Ansor, 325 г.",
+        "uz": "Ansor mol go'shtli tushyonkasi, 325 gr.",
+        "tr": "Ansor dana etli konservesi, 325 gr."
       }
     },
     {
       "id": 4,
-      "emoji": "🐎",
+      "emoji": "🐇",
       "cat": "meat",
-      "price": 650,
-      "unit": "kg",
+      "price": 325,
+      "unit": "pcs",
       "stock": true,
       "name": {
-        "ru": "Казы",
-        "uz": "Qazi",
-        "tr": "Kazı (at sucuğu)"
+        "ru": "Тушёнка Ansor (кролик)",
+        "uz": "Ansor tushyonka (quyon go'shti)",
+        "tr": "Ansor konserve et (tavşan)"
       },
       "desc": {
-        "ru": "Национальная колбаса из конины.",
-        "uz": "Milliy ot go'shtidan qazi.",
-        "tr": "Traditional horse meat sausage."
+        "ru": "Кроличья тушёнка Ansor, 325 г.",
+        "uz": "Ansor quyon go'shtli tushyonkasi, 325 gr.",
+        "tr": "Ansor tavşan etli konservesi, 325 gr."
       }
     },
     {
       "id": 5,
-      "emoji": "🌭",
+      "emoji": "🐄",
       "cat": "meat",
-      "price": 180,
+      "price": 325,
       "unit": "pcs",
       "stock": true,
       "name": {
-        "ru": "Колбаса",
-        "uz": "Kolbasa",
-        "tr": "Sucuk"
+        "ru": "Тушёнка Poyqadam (говядина)",
+        "uz": "Poyqadam tushyonka (mol go'shti)",
+        "tr": "Poyqadam konserve et (dana)"
       },
       "desc": {
-        "ru": "Колбаса высшего сорта из говядины.",
-        "uz": "Mol go'shtidan yuqori navli kolbasa.",
-        "tr": "Premium beef sausage."
+        "ru": "Говяжья тушёнка Poyqadam, 325 г.",
+        "uz": "Poyqadam mol go'shtli tushyonkasi, 325 gr.",
+        "tr": "Poyqadam dana etli konservesi, 325 gr."
       }
     },
     {
       "id": 6,
-      "emoji": "🥛",
-      "cat": "dairy",
-      "price": 35,
-      "unit": "l",
+      "emoji": "🐏",
+      "cat": "meat",
+      "price": 350,
+      "unit": "pcs",
       "stock": true,
       "name": {
-        "ru": "Молоко",
-        "uz": "Sut",
-        "tr": "Süt"
+        "ru": "Тушёнка Poyqadam (баранина)",
+        "uz": "Poyqadam tushyonka (qo'y go'shti)",
+        "tr": "Poyqadam konserve et (kuzu)"
       },
       "desc": {
-        "ru": "Свежее фермерское молоко.",
-        "uz": "Yangi fermer suti.",
-        "tr": "Fresh farm milk."
+        "ru": "Баранья тушёнка Poyqadam, 325 г.",
+        "uz": "Poyqadam qo'y go'shtli tushyonkasi, 325 gr.",
+        "tr": "Poyqadam kuzu etli konservesi, 325 gr."
       }
     },
     {
       "id": 7,
-      "emoji": "🧀",
-      "cat": "dairy",
+      "emoji": "🍔",
+      "cat": "meat",
       "price": 220,
-      "unit": "kg",
+      "unit": "pcs",
       "stock": true,
       "name": {
-        "ru": "Сыр",
-        "uz": "Pishloq",
-        "tr": "Peynir"
+        "ru": "Куриные котлеты для бургера",
+        "uz": "Tovuqli burger kotletlari",
+        "tr": "Tavuklu burger köftesi"
       },
       "desc": {
-        "ru": "Домашний белый сыр.",
-        "uz": "Uy pishlog'i.",
-        "tr": "Homemade white cheese."
+        "ru": "Куриные бургерные котлеты, 4 шт.",
+        "uz": "Tovuq go'shtli burger kotletlari, 4 dona.",
+        "tr": "Tavuk etli burger köftesi, 4 adet."
       }
     },
     {
       "id": 8,
-      "emoji": "🍞",
-      "cat": "bakery",
-      "price": 15,
+      "emoji": "🍔",
+      "cat": "meat",
+      "price": 320,
       "unit": "pcs",
       "stock": true,
       "name": {
-        "ru": "Хлеб",
-        "uz": "Non",
-        "tr": "Ekmek"
+        "ru": "Говяжьи котлеты для бургера",
+        "uz": "Mol go'shtli burger kotletlari",
+        "tr": "Dana etli burger köftesi"
       },
       "desc": {
-        "ru": "Свежий горячий хлеб.",
-        "uz": "Yangi issiq non.",
-        "tr": "Fresh hot bread."
+        "ru": "Говяжьи бургерные котлеты, 4 шт.",
+        "uz": "Mol go'shtli burger kotletlari, 4 dona.",
+        "tr": "Dana etli burger köftesi, 4 adet."
       }
     },
     {
       "id": 9,
-      "emoji": "🍯",
-      "cat": "grocery",
-      "price": 350,
-      "unit": "kg",
+      "emoji": "🍤",
+      "cat": "meat",
+      "price": 280,
+      "unit": "pcs",
       "stock": true,
       "name": {
-        "ru": "Мёд",
-        "uz": "Asal",
-        "tr": "Bal"
+        "ru": "Котлета по-киевски",
+        "uz": "Kiyev kotletasi",
+        "tr": "Kiev köftesi"
       },
       "desc": {
-        "ru": "Натуральный горный мёд.",
-        "uz": "Tabiiy tog' asali.",
-        "tr": "Natural mountain honey."
+        "ru": "Котлета по-киевски, внутри сливочное масло, 4 шт.",
+        "uz": "Ichida sariyog'i bor Kiyev kotletasi, 4 dona.",
+        "tr": "İçinde tereyağı olan Kiev köftesi, 4 adet."
       }
     },
     {
       "id": 10,
-      "emoji": "🍚",
-      "cat": "grocery",
-      "price": 60,
-      "unit": "kg",
+      "emoji": "🥛",
+      "cat": "dairy",
+      "price": 400,
+      "unit": "pcs",
       "stock": true,
       "name": {
-        "ru": "Рис",
-        "uz": "Guruch",
-        "tr": "Pirinç"
+        "ru": "Сгущённое молоко Mari Moloko",
+        "uz": "Mari Moloko quyultirilgan sut",
+        "tr": "Mari Moloko yoğunlaştırılmış süt"
       },
       "desc": {
-        "ru": "Отборный рис для плова.",
-        "uz": "Palov uchun saralangan guruch.",
-        "tr": "Selected rice for pilaf."
+        "ru": "Сгущённое молоко Mari Moloko, 1500 г.",
+        "uz": "Mari Moloko quyultirilgan suti, 1500 gr.",
+        "tr": "Mari Moloko yoğunlaştırılmış süt, 1500 gr."
       }
     },
     {
       "id": 11,
-      "emoji": "🥤",
-      "cat": "drinks",
-      "price": 25,
+      "emoji": "🍮",
+      "cat": "dairy",
+      "price": 300,
       "unit": "pcs",
       "stock": true,
       "name": {
-        "ru": "Напитки",
-        "uz": "Ichimliklar",
-        "tr": "İçecekler"
+        "ru": "Варёная сгущёнка Mari Moloko",
+        "uz": "Mari Moloko qaynatilgan quyuq sut",
+        "tr": "Mari Moloko kaynatılmış yoğun süt"
       },
       "desc": {
-        "ru": "Прохладительные напитки 1 л.",
-        "uz": "Salqin ichimliklar 1 l.",
-        "tr": "Soft drinks 1 L."
+        "ru": "Варёная сгущёнка Mari Moloko, 900 г.",
+        "uz": "Mari Moloko qaynatilgan quyuq suti, 900 gr.",
+        "tr": "Mari Moloko kaynatılmış yoğun süt, 900 gr."
       }
     },
     {
       "id": 12,
-      "emoji": "🍫",
-      "cat": "grocery",
-      "price": 40,
-      "unit": "pcs",
-      "stock": true,
-      "name": {
-        "ru": "Шоколад",
-        "uz": "Shokolad",
-        "tr": "Çikolata"
-      },
-      "desc": {
-        "ru": "Молочный шоколад 100 г.",
-        "uz": "Sutli shokolad 100 g.",
-        "tr": "Milk chocolate 100 g."
-      },
-      "img": "photos/p12-1785400398771.jpg"
-    },
-    {
-      "id": 13,
-      "emoji": "📦",
-      "cat": "meat",
-      "price": 150,
+      "emoji": "🥫",
+      "cat": "dairy",
+      "price": 300,
       "unit": "kg",
       "stock": true,
       "name": {
-        "ru": "Burgerman",
-        "uz": "Burgerman",
-        "tr": "Burgerman"
+        "ru": "Сгущённое молоко Chempion",
+        "uz": "Chempion quyultirilgan sut",
+        "tr": "Chempion yoğunlaştırılmış süt"
       },
       "desc": {
-        "ru": "",
-        "uz": "",
-        "tr": ""
+        "ru": "Сгущённое и варёное молоко Chempion, банка около 3 кг. Цена за килограмм.",
+        "uz": "Chempion quyultirilgan va qaynatilgan suti, banka taxminan 3 kg. Narx kilogrammiga.",
+        "tr": "Chempion yoğunlaştırılmış ve kaynatılmış süt, kutu yaklaşık 3 kg. Fiyat kilogram başına."
+      }
+    },
+    {
+      "id": 13,
+      "emoji": "🧈",
+      "cat": "dairy",
+      "price": 600,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Сливочное масло Yörükoğlu",
+        "uz": "Yörükoğlu sariyog'i",
+        "tr": "Yörükoğlu tereyağı"
       },
-      "img": "photos/p13-1785401090433.jpg"
+      "desc": {
+        "ru": "Сливочное масло Yörükoğlu, 1 кг.",
+        "uz": "Yörükoğlu sariyog'i, 1 kg.",
+        "tr": "Yörükoğlu tereyağı, 1 kg."
+      }
+    },
+    {
+      "id": 14,
+      "emoji": "🍜",
+      "cat": "bakery",
+      "price": 240,
+      "unit": "pcs",
+      "stock": true,
+      "name": {
+        "ru": "Тесто для куксы",
+        "uz": "Kuksi hamiri",
+        "tr": "Kuksi hamuru"
+      },
+      "desc": {
+        "ru": "Готовое тесто (лапша) для куксы, 900 г.",
+        "uz": "Kuksi uchun tayyor hamir (ugra), 900 gr.",
+        "tr": "Kuksi için hazır hamur (erişte), 900 gr."
+      }
+    },
+    {
+      "id": 15,
+      "emoji": "🥟",
+      "cat": "bakery",
+      "price": 200,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Тесто для самсы",
+        "uz": "Somsa hamiri",
+        "tr": "Somsa hamuru"
+      },
+      "desc": {
+        "ru": "Готовое слоёное тесто для самсы, 1 кг.",
+        "uz": "Somsa uchun tayyor qatlama hamir, 1 kg.",
+        "tr": "Somsa için hazır yufka hamuru, 1 kg."
+      }
+    },
+    {
+      "id": 16,
+      "emoji": "🥕",
+      "cat": "vegetables",
+      "price": 200,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Жёлтая морковь",
+        "uz": "Sariq sabzi",
+        "tr": "Sarı havuç"
+      },
+      "desc": {
+        "ru": "Жёлтая морковь для плова.",
+        "uz": "Palov uchun sariq sabzi.",
+        "tr": "Pilav için sarı havuç."
+      }
+    },
+    {
+      "id": 17,
+      "emoji": "🍯",
+      "cat": "grocery",
+      "price": 1100,
+      "unit": "pcs",
+      "stock": true,
+      "name": {
+        "ru": "Мёд с расторопшей, 1,5 кг",
+        "uz": "Rastoropsha asali, 1,5 kg",
+        "tr": "Devedikeni balı, 1,5 kg"
+      },
+      "desc": {
+        "ru": "Российский мёд с расторопшей, 1,5 кг (1 л).",
+        "uz": "Rossiya rastoropsha asali, 1,5 kg (1 l).",
+        "tr": "Rusya devedikeni balı, 1,5 kg (1 L)."
+      }
+    },
+    {
+      "id": 18,
+      "emoji": "🍯",
+      "cat": "grocery",
+      "price": 600,
+      "unit": "pcs",
+      "stock": true,
+      "name": {
+        "ru": "Мёд с расторопшей, 750 г",
+        "uz": "Rastoropsha asali, 750 gr",
+        "tr": "Devedikeni balı, 750 gr"
+      },
+      "desc": {
+        "ru": "Российский мёд с расторопшей, 750 г (0,5 л).",
+        "uz": "Rossiya rastoropsha asali, 750 gr (0,5 l).",
+        "tr": "Rusya devedikeni balı, 750 gr (0,5 L)."
+      }
+    },
+    {
+      "id": 19,
+      "emoji": "🥢",
+      "cat": "grocery",
+      "price": 300,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Новвот на палочке",
+        "uz": "Cho'pli novvot",
+        "tr": "Çubuklu nabat"
+      },
+      "desc": {
+        "ru": "Кристаллический сахар новвот на палочке.",
+        "uz": "Cho'pga qotirilgan novvot.",
+        "tr": "Çubuk üzerinde kristal nabat şekeri."
+      }
+    },
+    {
+      "id": 20,
+      "emoji": "💎",
+      "cat": "grocery",
+      "price": 250,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Новвот «Дур»",
+        "uz": "Dur novvot",
+        "tr": "İnci nabat"
+      },
+      "desc": {
+        "ru": "Кристаллический сахар новвот «Дур».",
+        "uz": "Dur novvot — mayda kristall qand.",
+        "tr": "İnci nabat — kristal şeker."
+      }
+    },
+    {
+      "id": 21,
+      "emoji": "🧂",
+      "cat": "grocery",
+      "price": 25,
+      "unit": "pcs",
+      "stock": true,
+      "name": {
+        "ru": "Зира",
+        "uz": "Zira",
+        "tr": "Kimyon"
+      },
+      "desc": {
+        "ru": "Зира для плова, 25 г.",
+        "uz": "Palov uchun zira, 25 gr.",
+        "tr": "Pilav için kimyon, 25 gr."
+      }
+    },
+    {
+      "id": 22,
+      "emoji": "🍚",
+      "cat": "grocery",
+      "price": 275,
+      "unit": "kg",
+      "stock": true,
+      "name": {
+        "ru": "Рис «Лазер»",
+        "uz": "Lazer guruch",
+        "tr": "Lazer pirinci"
+      },
+      "desc": {
+        "ru": "Отборный рис «Лазер» для плова.",
+        "uz": "Palov uchun saralangan Lazer guruch.",
+        "tr": "Pilav için seçme Lazer pirinci."
+      }
+    },
+    {
+      "id": 23,
+      "emoji": "🫙",
+      "cat": "grocery",
+      "price": 225,
+      "unit": "pcs",
+      "stock": true,
+      "name": {
+        "ru": "Кабачковая икра Marinelle",
+        "uz": "Marinelle qovoq ikrasi",
+        "tr": "Marinelle kabak ezmesi"
+      },
+      "desc": {
+        "ru": "Кабачковая икра Marinelle, 500 мл.",
+        "uz": "Marinelle qovoq ikrasi, 500 ml.",
+        "tr": "Marinelle kabak ezmesi, 500 ml."
+      }
+    },
+    {
+      "id": 24,
+      "emoji": "🥡",
+      "cat": "grocery",
+      "price": 175,
+      "unit": "pcs",
+      "stock": true,
+      "name": {
+        "ru": "Фунчоза Finchuza «Gold 1»",
+        "uz": "Finchuza «Gold 1»",
+        "tr": "Finchuza «Gold 1»"
+      },
+      "desc": {
+        "ru": "Фунчоза Gold 1 для корейских салатов, 400 г.",
+        "uz": "Koreys salatlari uchun Finchuza Gold 1, 400 gr.",
+        "tr": "Kore salataları için Finchuza Gold 1, 400 gr."
+      }
+    },
+    {
+      "id": 25,
+      "emoji": "🧂",
+      "cat": "grocery",
+      "price": 30,
+      "unit": "pcs",
+      "stock": true,
+      "name": {
+        "ru": "Приправа Finchuza",
+        "uz": "Finchuza ziravori",
+        "tr": "Finchuza baharatı"
+      },
+      "desc": {
+        "ru": "Приправа для фунчозы и салатов, 20 г.",
+        "uz": "Finchuza va salatlar uchun ziravor, 20 gr.",
+        "tr": "Finchuza ve salatalar için baharat, 20 gr."
+      }
     }
   ],
   "categories": [
-    {
-      "id": "fruits",
-      "name": {
-        "ru": "Фрукты",
-        "uz": "Mevalar",
-        "tr": "Meyveler"
-      }
-    },
     {
       "id": "vegetables",
       "name": {

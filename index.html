@@ -884,12 +884,29 @@ const ghHeaders = () => ({
 
 /* свежий номер версии файла (без кэша) */
 async function ghSha(path){
+  const q = "?ref=" + encodeURIComponent(CONFIG.github.branch) + "&_=" + Date.now();
+  /* 1) прямой запрос файла.
+     ВАЖНО: заголовок If-None-Match здесь не ставим — GitHub отвечал на него 304,
+     res.ok становился false, sha терялся и запись падала с 422 "sha wasn't supplied". */
   try {
-    const res = await fetch(gh(path) + "?ref=" + CONFIG.github.branch + "&_=" + Date.now(), {
-      headers: { ...ghHeaders(), "Cache-Control": "no-cache", "If-None-Match": "" },
-      cache: "no-store",
-    });
-    if (res.ok) return (await res.json()).sha;
+    const res = await fetch(gh(path) + q, { headers: ghHeaders(), cache: "no-store" });
+    if (res.ok) {
+      const j = await res.json();
+      if (j && j.sha) return j.sha;
+    }
+    if (res.status === 404) return undefined;   // файла ещё нет — создаём новый
+  } catch(e){}
+  /* 2) запасной путь: ищем файл в списке содержимого папки */
+  try {
+    const dir = path.includes("/") ? path.slice(0, path.lastIndexOf("/")) : "";
+    const res = await fetch(gh(dir) + q, { headers: ghHeaders(), cache: "no-store" });
+    if (res.ok) {
+      const list = await res.json();
+      if (Array.isArray(list)) {
+        const hit = list.find(f => f && f.path === path);
+        if (hit && hit.sha) return hit.sha;
+      }
+    }
   } catch(e){}
   return undefined;
 }
@@ -961,6 +978,7 @@ async function adminSave(){
     else if (msg.includes("Resource not accessible") || msg.includes("403")) msg = "У ключа нет прав на запись (Contents: Read and write)";
     else if (msg.includes("Not Found") || msg.includes("404")) msg = "Репозиторий не найден — проверьте доступ ключа к E-BAZAR";
     else if (msg.includes("409") || msg.includes("does not match")) msg = "Каталог изменился в другом окне. Обновите страницу и повторите";
+    else if (msg.includes("422") || msg.includes("sha")) msg = "GitHub не отдал версию файла (sha). Проверьте, что у ключа есть доступ к репозиторию " + CONFIG.github.repo;
     else if (msg.length > 90) msg = t("saveFail");
     toast("⚠️ " + msg);
     const needNewKey = /401|403|404|прав|неверн|устарел|не найден/i.test(msg);
