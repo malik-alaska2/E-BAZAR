@@ -16,7 +16,8 @@
         "ru": "Освежающий лимонад Мохито, 0,45 л.",
         "uz": "Salqinlatuvchi Moxito limonadi, 0,45 l.",
         "tr": "Serinletici Mojito limonatası, 0,45 L."
-      }
+      },
+      "img": "photos/m2656_0.jpg"
     },
     {
       "id": 2,
@@ -34,7 +35,8 @@
         "ru": "Прохладительный напиток Royal, 0,3 л.",
         "uz": "Royal salqin ichimligi, 0,3 l.",
         "tr": "Royal serinletici içecek, 0,3 L."
-      }
+      },
+      "img": "photos/m2659_0.jpg"
     },
     {
       "id": 3,
@@ -52,7 +54,8 @@
         "ru": "Говяжья тушёнка Ansor, 325 г.",
         "uz": "Ansor mol go'shtli tushyonkasi, 325 gr.",
         "tr": "Ansor dana etli konservesi, 325 gr."
-      }
+      },
+      "img": "photos/m2671_0.jpg"
     },
     {
       "id": 4,
@@ -70,7 +73,8 @@
         "ru": "Кроличья тушёнка Ansor, 325 г.",
         "uz": "Ansor quyon go'shtli tushyonkasi, 325 gr.",
         "tr": "Ansor tavşan etli konservesi, 325 gr."
-      }
+      },
+      "img": "photos/m2671_1.jpg"
     },
     {
       "id": 5,
@@ -88,7 +92,8 @@
         "ru": "Говяжья тушёнка Poyqadam, 325 г.",
         "uz": "Poyqadam mol go'shtli tushyonkasi, 325 gr.",
         "tr": "Poyqadam dana etli konservesi, 325 gr."
-      }
+      },
+      "img": "photos/m2540_0.jpg"
     },
     {
       "id": 6,
@@ -106,7 +111,8 @@
         "ru": "Баранья тушёнка Poyqadam, 325 г.",
         "uz": "Poyqadam qo'y go'shtli tushyonkasi, 325 gr.",
         "tr": "Poyqadam kuzu etli konservesi, 325 gr."
-      }
+      },
+      "img": "photos/m2540_0.jpg"
     },
     {
       "id": 7,
@@ -124,7 +130,8 @@
         "ru": "Куриные бургерные котлеты, 4 шт.",
         "uz": "Tovuq go'shtli burger kotletlari, 4 dona.",
         "tr": "Tavuk etli burger köftesi, 4 adet."
-      }
+      },
+      "img": "photos/m2646_0.jpg"
     },
     {
       "id": 8,
@@ -142,7 +149,8 @@
         "ru": "Говяжьи бургерные котлеты, 4 шт.",
         "uz": "Mol go'shtli burger kotletlari, 4 dona.",
         "tr": "Dana etli burger köftesi, 4 adet."
-      }
+      },
+      "img": "photos/m2644_0.jpg"
     },
     {
       "id": 9,
@@ -160,7 +168,8 @@
         "ru": "Котлета по-киевски, внутри сливочное масло, 4 шт.",
         "uz": "Ichida sariyog'i bor Kiyev kotletasi, 4 dona.",
         "tr": "İçinde tereyağı olan Kiev köftesi, 4 adet."
-      }
+      },
+      "img": "photos/m2642_0.jpg"
     },
     {
       "id": 10,
@@ -178,7 +187,8 @@
         "ru": "Сгущённое молоко Mari Moloko, 1500 г.",
         "uz": "Mari Moloko quyultirilgan suti, 1500 gr.",
         "tr": "Mari Moloko yoğunlaştırılmış süt, 1500 gr."
-      }
+      },
+      "img": "photos/m2647_0.jpg"
     },
     {
       "id": 11,
@@ -196,7 +206,8 @@
         "ru": "Варёная сгущёнка Mari Moloko, 900 г.",
         "uz": "Mari Moloko qaynatilgan quyuq suti, 900 gr.",
         "tr": "Mari Moloko kaynatılmış yoğun süt, 900 gr."
-      }
+      },
+      "img": "photos/m2650_0.jpg"
     },
     {
       "id": 12,
@@ -214,7 +225,8 @@
         "ru": "Сгущённое и варёное молоко Chempion, банка около 3 кг. Цена за килограмм.",
         "uz": "Chempion quyultirilgan va qaynatilgan suti, banka taxminan 3 kg. Narx kilogrammiga.",
         "tr": "Chempion yoğunlaştırılmış ve kaynatılmış süt, kutu yaklaşık 3 kg. Fiyat kilogram başına."
-      }
+      },
+      "img": "photos/m2568_0.jpg"
     },
     {
       "id": 13,
@@ -232,7 +244,8 @@
         "ru": "Сливочное масло Yörükoğlu, 1 кг.",
         "uz": "Yörükoğlu sariyog'i, 1 kg.",
         "tr": "Yörükoğlu tereyağı, 1 kg."
-      }
+      },
+      "img": "photos/m2507_0.jpg"
     },
     {
       "id": 14,
@@ -250,7 +263,8 @@
         "ru": "Готовое тесто (лапша) для куксы, 900 г.",
         "uz": "Kuksi uchun tayyor hamir (ugra), 900 gr.",
         "tr": "Kuksi için hazır hamur (erişte), 900 gr."
-      }
+      },
+      "img": "photos/m2614_0.jpg"
     },
     {
       "id": 15,
@@ -268,7 +282,8 @@
         "ru": "Готовое слоёное тесто для самсы, 1 кг.",
         "uz": "Somsa uchun tayyor qatlama hamir, 1 kg.",
         "tr": "Somsa için hazır yufka hamuru, 1 kg."
-      }
+      },
+      "img": "photos/m2521_0.jpg"
     },
     {
       "id": 16,
@@ -286,7 +301,8 @@
         "ru": "Жёлтая морковь для плова.",
         "uz": "Palov uchun sariq sabzi.",
         "tr": "Pilav için sarı havuç."
-      }
+      },
+      "img": "photos/m2666_0.jpg"
     },
     {
       "id": 17,
@@ -304,7 +320,8 @@
         "ru": "Российский мёд с расторопшей, 1,5 кг (1 л).",
         "uz": "Rossiya rastoropsha asali, 1,5 kg (1 l).",
         "tr": "Rusya devedikeni balı, 1,5 kg (1 L)."
-      }
+      },
+      "img": "photos/m2654_0.jpg"
     },
     {
       "id": 18,
@@ -322,7 +339,8 @@
         "ru": "Российский мёд с расторопшей, 750 г (0,5 л).",
         "uz": "Rossiya rastoropsha asali, 750 gr (0,5 l).",
         "tr": "Rusya devedikeni balı, 750 gr (0,5 L)."
-      }
+      },
+      "img": "photos/m2654_1.jpg"
     },
     {
       "id": 19,
@@ -340,7 +358,8 @@
         "ru": "Кристаллический сахар новвот на палочке.",
         "uz": "Cho'pga qotirilgan novvot.",
         "tr": "Çubuk üzerinde kristal nabat şekeri."
-      }
+      },
+      "img": "photos/m2667_0.jpg"
     },
     {
       "id": 20,
@@ -358,7 +377,8 @@
         "ru": "Кристаллический сахар новвот «Дур».",
         "uz": "Dur novvot — mayda kristall qand.",
         "tr": "İnci nabat — kristal şeker."
-      }
+      },
+      "img": "photos/m2667_1.jpg"
     },
     {
       "id": 21,
@@ -376,7 +396,8 @@
         "ru": "Зира для плова, 25 г.",
         "uz": "Palov uchun zira, 25 gr.",
         "tr": "Pilav için kimyon, 25 gr."
-      }
+      },
+      "img": "photos/m2630_0.jpg"
     },
     {
       "id": 22,
@@ -394,7 +415,8 @@
         "ru": "Отборный рис «Лазер» для плова.",
         "uz": "Palov uchun saralangan Lazer guruch.",
         "tr": "Pilav için seçme Lazer pirinci."
-      }
+      },
+      "img": "photos/m2665_0.jpg"
     },
     {
       "id": 23,
@@ -412,7 +434,8 @@
         "ru": "Кабачковая икра Marinelle, 500 мл.",
         "uz": "Marinelle qovoq ikrasi, 500 ml.",
         "tr": "Marinelle kabak ezmesi, 500 ml."
-      }
+      },
+      "img": "photos/m2559_0.jpg"
     },
     {
       "id": 24,
@@ -430,7 +453,8 @@
         "ru": "Фунчоза Gold 1 для корейских салатов, 400 г.",
         "uz": "Koreys salatlari uchun Finchuza Gold 1, 400 gr.",
         "tr": "Kore salataları için Finchuza Gold 1, 400 gr."
-      }
+      },
+      "img": "photos/m2615_0.jpg"
     },
     {
       "id": 25,
@@ -448,6 +472,425 @@
         "ru": "Приправа для фунчозы и салатов, 20 г.",
         "uz": "Finchuza va salatlar uchun ziravor, 20 gr.",
         "tr": "Finchuza ve salatalar için baharat, 20 gr."
+      },
+      "img": "photos/m2616_0.jpg"
+    },
+    {
+      "id": 26,
+      "emoji": "🧀",
+      "cat": "dairy",
+      "price": 60,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2661_0.jpg",
+      "name": {
+        "ru": "Сырок «MiShu!»",
+        "uz": "Si'rok «MiShu!»",
+        "tr": "Peynirli tatlı «MiShu!»"
+      },
+      "desc": {
+        "ru": "Глазированный сырок «MiShu!», 1 шт.",
+        "uz": "Glazurlangan si'rok «MiShu!», 1 dona.",
+        "tr": "Kaplamalı peynirli tatlı «MiShu!», 1 adet."
+      }
+    },
+    {
+      "id": 27,
+      "emoji": "🧀",
+      "cat": "dairy",
+      "price": 50,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2661_1.jpg",
+      "name": {
+        "ru": "Сырок «Savushkin»",
+        "uz": "Si'rok «Savushkin»",
+        "tr": "Peynirli tatlı «Savushkin»"
+      },
+      "desc": {
+        "ru": "Глазированный сырок «Savushkin», 1 шт.",
+        "uz": "Glazurlangan si'rok «Savushkin», 1 dona.",
+        "tr": "Kaplamalı peynirli tatlı «Savushkin», 1 adet."
+      }
+    },
+    {
+      "id": 28,
+      "emoji": "🧀",
+      "cat": "dairy",
+      "price": 40,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2661_2.jpg",
+      "name": {
+        "ru": "Сырок «Мусаффо»",
+        "uz": "Si'rok «Musaffo»",
+        "tr": "Peynirli tatlı «Musaffo»"
+      },
+      "desc": {
+        "ru": "Глазированный сырок «Мусаффо», 1 шт.",
+        "uz": "Glazurlangan si'rok «Musaffo», 1 dona.",
+        "tr": "Kaplamalı peynirli tatlı «Musaffo», 1 adet."
+      }
+    },
+    {
+      "id": 29,
+      "emoji": "🧀",
+      "cat": "dairy",
+      "price": 40,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2661_2.jpg",
+      "name": {
+        "ru": "Сырок «Вкусняша»",
+        "uz": "Si'rok «Vkusnyasha»",
+        "tr": "Peynirli tatlı «Vkusnyasha»"
+      },
+      "desc": {
+        "ru": "Глазированный сырок «Вкусняша», 1 шт.",
+        "uz": "Glazurlangan si'rok «Vkusnyasha», 1 dona.",
+        "tr": "Kaplamalı peynirli tatlı «Vkusnyasha», 1 adet."
+      }
+    },
+    {
+      "id": 30,
+      "emoji": "🥛",
+      "cat": "dairy",
+      "price": 200,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2670_0.jpg",
+      "name": {
+        "ru": "Курт Ermak, мелкий (30 шт.)",
+        "uz": "Qurt Ermak, mayda (30 talik)",
+        "tr": "Ermak kurut, küçük (30 adet)"
+      },
+      "desc": {
+        "ru": "Сушёный курт Ermak, упаковка 30 шт.",
+        "uz": "Quritilgan Ermak qurti, 30 talik qadoq.",
+        "tr": "Kurutulmuş Ermak kurut, 30 adetlik paket."
+      }
+    },
+    {
+      "id": 31,
+      "emoji": "🥛",
+      "cat": "dairy",
+      "price": 80,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2670_0.jpg",
+      "name": {
+        "ru": "Курт Ermak, крупный (6 шт.)",
+        "uz": "Qurt Ermak, yirik (6 talik)",
+        "tr": "Ermak kurut, büyük (6 adet)"
+      },
+      "desc": {
+        "ru": "Сушёный курт Ermak, упаковка 6 шт.",
+        "uz": "Quritilgan Ermak qurti, 6 talik qadoq.",
+        "tr": "Kurutulmuş Ermak kurut, 6 adetlik paket."
+      }
+    },
+    {
+      "id": 32,
+      "emoji": "🥛",
+      "cat": "dairy",
+      "price": 75,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2670_0.jpg",
+      "name": {
+        "ru": "Курт Ermak, мелкий (10 шт.)",
+        "uz": "Qurt Ermak, mayda (10 talik)",
+        "tr": "Ermak kurut, küçük (10 adet)"
+      },
+      "desc": {
+        "ru": "Сушёный курт Ermak, упаковка 10 шт.",
+        "uz": "Quritilgan Ermak qurti, 10 talik qadoq.",
+        "tr": "Kurutulmuş Ermak kurut, 10 adetlik paket."
+      }
+    },
+    {
+      "id": 33,
+      "emoji": "🥛",
+      "cat": "dairy",
+      "price": 60,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2670_0.jpg",
+      "name": {
+        "ru": "Курт Ermak, мелкий (6 шт.)",
+        "uz": "Qurt Ermak, mayda (6 talik)",
+        "tr": "Ermak kurut, küçük (6 adet)"
+      },
+      "desc": {
+        "ru": "Сушёный курт Ermak, упаковка 6 шт.",
+        "uz": "Quritilgan Ermak qurti, 6 talik qadoq.",
+        "tr": "Kurutulmuş Ermak kurut, 6 adetlik paket."
+      }
+    },
+    {
+      "id": 34,
+      "emoji": "🥜",
+      "cat": "grocery",
+      "price": 150,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2669_0.jpg",
+      "name": {
+        "ru": "Фисташки Ermak, 200 г",
+        "uz": "Ermak pista, 200 gr",
+        "tr": "Ermak antep fıstığı, 200 gr"
+      },
+      "desc": {
+        "ru": "Фисташки Ermak, 200 г.",
+        "uz": "Ermak pistasi, 200 gr.",
+        "tr": "Ermak antep fıstığı, 200 gr."
+      }
+    },
+    {
+      "id": 35,
+      "emoji": "🥜",
+      "cat": "grocery",
+      "price": 75,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2669_0.jpg",
+      "name": {
+        "ru": "Фисташки Ermak, 100 г",
+        "uz": "Ermak pista, 100 gr",
+        "tr": "Ermak antep fıstığı, 100 gr"
+      },
+      "desc": {
+        "ru": "Фисташки Ermak, 100 г.",
+        "uz": "Ermak pistasi, 100 gr.",
+        "tr": "Ermak antep fıstığı, 100 gr."
+      }
+    },
+    {
+      "id": 36,
+      "emoji": "🍘",
+      "cat": "grocery",
+      "price": 100,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2634_0.jpg",
+      "name": {
+        "ru": "Сухарики Flint, 190 г",
+        "uz": "Flint suxariklari, 190 gr",
+        "tr": "Flint kraker, 190 gr"
+      },
+      "desc": {
+        "ru": "Вкусные сухарики Flint, 190 г.",
+        "uz": "Mazali Flint suxariklari, 190 gr.",
+        "tr": "Lezzetli Flint kraker, 190 gr."
+      }
+    },
+    {
+      "id": 37,
+      "emoji": "🍘",
+      "cat": "grocery",
+      "price": 60,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2634_0.jpg",
+      "name": {
+        "ru": "Сухарики Flint, 100 г",
+        "uz": "Flint suxariklari, 100 gr",
+        "tr": "Flint kraker, 100 gr"
+      },
+      "desc": {
+        "ru": "Вкусные сухарики Flint, 100 г.",
+        "uz": "Mazali Flint suxariklari, 100 gr.",
+        "tr": "Lezzetli Flint kraker, 100 gr."
+      }
+    },
+    {
+      "id": 38,
+      "emoji": "🍘",
+      "cat": "grocery",
+      "price": 40,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2634_0.jpg",
+      "name": {
+        "ru": "Сухарики Flint, 60 г",
+        "uz": "Flint suxariklari, 60 gr",
+        "tr": "Flint kraker, 60 gr"
+      },
+      "desc": {
+        "ru": "Вкусные сухарики Flint, 60 г.",
+        "uz": "Mazali Flint suxariklari, 60 gr.",
+        "tr": "Lezzetli Flint kraker, 60 gr."
+      }
+    },
+    {
+      "id": 39,
+      "emoji": "🍵",
+      "cat": "drinks",
+      "price": 125,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2637_0.jpg",
+      "name": {
+        "ru": "Чай Tess, зелёный с фруктами, 36 г",
+        "uz": "Tess choyi, ko'k mevali, 36 gr",
+        "tr": "Tess çayı, meyveli yeşil, 36 gr"
+      },
+      "desc": {
+        "ru": "Зелёный чай Tess с фруктами, 20 пакетиков, 36 г.",
+        "uz": "Mevali ko'k Tess choyi, 20 paket, 36 gr.",
+        "tr": "Meyveli yeşil Tess çayı, 20 poşet, 36 gr."
+      }
+    },
+    {
+      "id": 40,
+      "emoji": "🍵",
+      "cat": "drinks",
+      "price": 125,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2637_0.jpg",
+      "name": {
+        "ru": "Чай Tess, чёрный с фруктами, 37,5 г",
+        "uz": "Tess choyi, qora mevali, 37,5 gr",
+        "tr": "Tess çayı, meyveli siyah, 37,5 gr"
+      },
+      "desc": {
+        "ru": "Чёрный чай Tess с фруктами, 25 пакетиков, 37,5 г.",
+        "uz": "Mevali qora Tess choyi, 25 paket, 37,5 gr.",
+        "tr": "Meyveli siyah Tess çayı, 25 poşet, 37,5 gr."
+      }
+    },
+    {
+      "id": 41,
+      "emoji": "🍵",
+      "cat": "drinks",
+      "price": 125,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2637_0.jpg",
+      "name": {
+        "ru": "Чай Tess, рассыпной, 100 г",
+        "uz": "Tess choyi, dona choy, 100 gr",
+        "tr": "Tess çayı, dökme, 100 gr"
+      },
+      "desc": {
+        "ru": "Рассыпной чай Tess, чёрный или зелёный, 100 г.",
+        "uz": "Dona Tess choyi, qora yoki ko'k, 100 gr.",
+        "tr": "Dökme Tess çayı, siyah veya yeşil, 100 gr."
+      }
+    },
+    {
+      "id": 42,
+      "emoji": "🍵",
+      "cat": "drinks",
+      "price": 125,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2637_0.jpg",
+      "name": {
+        "ru": "Чай Tess, 45 г (25 пакетиков)",
+        "uz": "Tess choyi, 45 gr (25 paket)",
+        "tr": "Tess çayı, 45 gr (25 poşet)"
+      },
+      "desc": {
+        "ru": "Чай Tess, чёрный или зелёный, 25 пакетиков, 45 г.",
+        "uz": "Tess choyi, qora yoki ko'k, 25 paket, 45 gr.",
+        "tr": "Tess çayı, siyah veya yeşil, 25 poşet, 45 gr."
+      }
+    },
+    {
+      "id": 43,
+      "emoji": "🥫",
+      "cat": "dairy",
+      "price": 300,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2647_1.jpg",
+      "name": {
+        "ru": "«Mari Moloko» сгущённое, 1000 г (консерва)",
+        "uz": "«Mari Moloko» quyultirilgan sut, 1000 gr (konserva)",
+        "tr": "«Mari Moloko» yoğunlaştırılmış süt, 1000 gr (konserve)"
+      },
+      "desc": {
+        "ru": "Сгущённое молоко «Mari Moloko» в консерве, 1000 г.",
+        "uz": "«Mari Moloko» quyultirilgan suti, konserva, 1000 gr.",
+        "tr": "«Mari Moloko» yoğunlaştırılmış süt, konserve, 1000 gr."
+      }
+    },
+    {
+      "id": 44,
+      "emoji": "🥫",
+      "cat": "dairy",
+      "price": 280,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2647_2.jpg",
+      "name": {
+        "ru": "«Mari Moloko» сгущённое, 1000 г",
+        "uz": "«Mari Moloko» quyultirilgan sut, 1000 gr",
+        "tr": "«Mari Moloko» yoğunlaştırılmış süt, 1000 gr"
+      },
+      "desc": {
+        "ru": "Сгущённое молоко «Mari Moloko», 1000 г.",
+        "uz": "«Mari Moloko» quyultirilgan suti, 1000 gr.",
+        "tr": "«Mari Moloko» yoğunlaştırılmış süt, 1000 gr."
+      }
+    },
+    {
+      "id": 45,
+      "emoji": "🥫",
+      "cat": "dairy",
+      "price": 150,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2647_0.jpg",
+      "name": {
+        "ru": "«Mari Moloko» сгущённое, 380 г",
+        "uz": "«Mari Moloko» quyultirilgan sut, 380 gr",
+        "tr": "«Mari Moloko» yoğunlaştırılmış süt, 380 gr"
+      },
+      "desc": {
+        "ru": "Сгущённое молоко «Mari Moloko», 380 г.",
+        "uz": "«Mari Moloko» quyultirilgan suti, 380 gr.",
+        "tr": "«Mari Moloko» yoğunlaştırılmış süt, 380 gr."
+      }
+    },
+    {
+      "id": 46,
+      "emoji": "🥫",
+      "cat": "dairy",
+      "price": 150,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2650_1.jpg",
+      "name": {
+        "ru": "«Mari Moloko» варёное сгущённое, 380 г",
+        "uz": "«Mari Moloko» qaynatilgan quyuq sut, 380 gr",
+        "tr": "«Mari Moloko» kaynatılmış yoğunlaştırılmış süt, 380 gr"
+      },
+      "desc": {
+        "ru": "Варёное сгущённое молоко «Mari Moloko», 380 г.",
+        "uz": "«Mari Moloko» qaynatilgan quyuq suti, 380 gr.",
+        "tr": "«Mari Moloko» kaynatılmış yoğunlaştırılmış süt, 380 gr."
+      }
+    },
+    {
+      "id": 47,
+      "emoji": "🧴",
+      "cat": "grocery",
+      "price": 125,
+      "unit": "pcs",
+      "stock": true,
+      "img": "photos/m2631_0.jpg",
+      "name": {
+        "ru": "Уксус 70%, 150 мл",
+        "uz": "Uksus 70%, 150 ml",
+        "tr": "Sirke %70, 150 ml"
+      },
+      "desc": {
+        "ru": "Уксусная эссенция 70%, 150 мл.",
+        "uz": "Uksus essensiyasi 70%, 150 ml.",
+        "tr": "Sirke esansı %70, 150 ml."
       }
     }
   ],
