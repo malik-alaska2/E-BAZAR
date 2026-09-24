@@ -577,9 +577,19 @@
   <section class="page" id="page-admin">
     <div class="page-head"><button class="back-btn" onclick="goBack()" aria-label="Back" data-ic="arrowL"></button><h2>Admin</h2></div>
     <div id="adminLogin" class="panel">
-      <div class="field"><label for="adminPassInput" data-i18n="adminGhToken"></label><input id="adminPassInput" type="password" autocomplete="off"></div>
-      <button class="btn btn-primary" onclick="adminLogin()"><span data-ic="key"></span><span data-i18n="signIn"></span></button>
-      <p class="muted" style="margin-top:12px;line-height:1.5" data-i18n="adminGhHint"></p>
+      <form id="admPwForm" onsubmit="adminPwLogin(event)" autocomplete="on">
+        <div class="field"><label for="admLoginIn" data-i18n="loginLbl"></label><input id="admLoginIn" name="username" autocomplete="username" autocapitalize="none" spellcheck="false"></div>
+        <div class="field"><label for="admPassIn" data-i18n="passLbl"></label><input id="admPassIn" name="password" type="password" autocomplete="current-password"><div class="err" id="admLoginErr"></div></div>
+        <button class="btn btn-primary" type="submit" id="admPwBtn"><span data-ic="user"></span><span data-i18n="signIn"></span></button>
+        <button class="link-btn" type="button" style="display:block;margin:14px auto 0" onclick="admShowKey(true)" data-i18n="useGhKey"></button>
+      </form>
+      <div id="admKeyForm" style="display:none">
+        <div class="field"><label for="adminPassInput" data-i18n="adminGhToken"></label><input id="adminPassInput" type="password" autocomplete="off"></div>
+        <button class="btn btn-primary" onclick="adminLogin()"><span data-ic="key"></span><span data-i18n="signIn"></span></button>
+        <p class="muted" style="margin-top:12px;line-height:1.5" data-i18n="adminGhHint"></p>
+        <p class="muted" id="admVercelNote" style="margin-top:10px;line-height:1.5;display:none"></p>
+        <button class="link-btn" type="button" id="admBackPw" style="display:block;margin:14px auto 0" onclick="admShowKey(false)" data-i18n="usePassword"></button>
+      </div>
     </div>
     <div id="adminPanel" style="display:none">
       <div class="adm-bar">
@@ -600,7 +610,7 @@
       <div id="admPaneCats" style="display:none">
         <div id="adminCats"></div>
         <button class="btn btn-dashed" onclick="adminCatAdd()"><span data-ic="plus"></span><span data-i18n="addSection"></span></button>
-        <button class="btn btn-danger-soft" style="margin-top:24px" onclick="adminLogout()"><span data-ic="key"></span><span data-i18n="changeKey"></span></button>
+        <button class="btn btn-danger-soft" style="margin-top:24px" onclick="adminLogout()"><span data-ic="key"></span><span data-i18n="logout"></span></button>
         <p class="muted" style="margin-top:10px" data-i18n="adminNote"></p>
       </div>
       <div class="adm-save" id="admSaveBar">
@@ -656,6 +666,9 @@ const CONFIG = {
     { username: "yusufabdulloh55555", key: "managerMen"   },
     { username: "Ummumaryam9169",     key: "managerWomen" },
   ],
+
+  // Адрес магазина на Vercel — там работает вход в админку по логину и паролю
+  adminUrl: "https://e-bazar-sage.vercel.app/#admin",
 
   // Где хранятся товары (репозиторий GitHub)
   github: {
@@ -759,7 +772,8 @@ function paintIcons(root=document){ root.querySelectorAll("[data-ic]").forEach(e
 
 /* ============================================================ ПЕРЕВОДЫ ============================================================ */
 const I18N = {
-  ru:{admSearch:"Найти товар",tabSections:"Разделы",expandAll:"Развернуть все",collapseAll:"Свернуть все",unsaved:"Есть изменения",allSaved:"Всё сохранено",noCat:"Без раздела",addHere:"Добавить товар сюда",done:"Готово",del:"Удалить",delProduct:"Удалить этот товар?",save:"Сохранить",fName:"Название",fDesc:"Описание",fPrice:"Цена",fUnit:"Единица",fCat:"Раздел",productsWord:"товаров",
+  ru:{loginLbl:"Логин",passLbl:"Пароль",useGhKey:"Войти через ключ GitHub",usePassword:"Войти по логину и паролю",wrongLogin:"Неверный логин или пароль",notConfigured:"Вход по паролю ещё не настроен на сервере — пока войдите через ключ GitHub",sessionExpired:"Вход истёк — войдите снова, изменения не потеряются",logout:"Выйти из админки",loggedOut:"Вы вышли из админки",pwOnVercel:"Вход по логину и паролю работает на",fillLogin:"Введите логин и пароль",
+    admSearch:"Найти товар",tabSections:"Разделы",expandAll:"Развернуть все",collapseAll:"Свернуть все",unsaved:"Есть изменения",allSaved:"Всё сохранено",noCat:"Без раздела",addHere:"Добавить товар сюда",done:"Готово",del:"Удалить",delProduct:"Удалить этот товар?",save:"Сохранить",fName:"Название",fDesc:"Описание",fPrice:"Цена",fUnit:"Единица",fCat:"Раздел",productsWord:"товаров",
     search:"Найти продукты",all:"Все",
     navHome:"Главная",navFav:"Избранное",navCart:"Корзина",navOrders:"Заказы",
     add:"В корзину",favorites:"Избранное",emptyFav:"Здесь пока пусто",emptyFavHint:"Нажмите на сердечко у товара, чтобы сохранить его сюда.",
@@ -791,7 +805,8 @@ const I18N = {
     newSection:"Новый раздел",notFound:"Ничего не нашлось",notFoundHint:"Попробуйте другое слово или раздел.",
     changeKey:"Сменить ключ доступа",keyCleared:"Ключ удалён — введите новый",askNewKey:"Ввести другой ключ?",
     kg:"кг",pcs:"шт",l:"л"},
-  uz:{admSearch:"Mahsulot qidirish",tabSections:"Bo'limlar",expandAll:"Hammasini ochish",collapseAll:"Hammasini yopish",unsaved:"O'zgarishlar bor",allSaved:"Hammasi saqlangan",noCat:"Bo'limsiz",addHere:"Shu yerga mahsulot qo'shish",done:"Tayyor",del:"O'chirish",delProduct:"Bu mahsulot o'chirilsinmi?",save:"Saqlash",fName:"Nomi",fDesc:"Tavsif",fPrice:"Narx",fUnit:"O'lchov",fCat:"Bo'lim",productsWord:"mahsulot",
+  uz:{loginLbl:"Login",passLbl:"Parol",useGhKey:"GitHub kaliti orqali kirish",usePassword:"Login va parol bilan kirish",wrongLogin:"Login yoki parol noto'g'ri",notConfigured:"Parol bilan kirish serverda hali sozlanmagan — hozircha GitHub kaliti bilan kiring",sessionExpired:"Kirish muddati tugadi — qayta kiring, o'zgarishlar yo'qolmaydi",logout:"Admindan chiqish",loggedOut:"Admindan chiqdingiz",pwOnVercel:"Login va parol bilan kirish bu yerda ishlaydi:",fillLogin:"Login va parolni kiriting",
+    admSearch:"Mahsulot qidirish",tabSections:"Bo'limlar",expandAll:"Hammasini ochish",collapseAll:"Hammasini yopish",unsaved:"O'zgarishlar bor",allSaved:"Hammasi saqlangan",noCat:"Bo'limsiz",addHere:"Shu yerga mahsulot qo'shish",done:"Tayyor",del:"O'chirish",delProduct:"Bu mahsulot o'chirilsinmi?",save:"Saqlash",fName:"Nomi",fDesc:"Tavsif",fPrice:"Narx",fUnit:"O'lchov",fCat:"Bo'lim",productsWord:"mahsulot",
     search:"Mahsulot qidirish",all:"Hammasi",
     navHome:"Asosiy",navFav:"Sevimli",navCart:"Savat",navOrders:"Buyurtmalar",
     add:"Savatga",favorites:"Sevimlilar",emptyFav:"Hozircha bo'sh",emptyFavHint:"Mahsulotni saqlash uchun yurakchani bosing.",
@@ -823,7 +838,8 @@ const I18N = {
     newSection:"Yangi bo'lim",notFound:"Hech narsa topilmadi",notFoundHint:"Boshqa so'z yoki bo'limni sinab ko'ring.",
     changeKey:"Kalitni almashtirish",keyCleared:"Kalit o'chirildi — yangisini kiriting",askNewKey:"Boshqa kalit kiritilsinmi?",
     kg:"kg",pcs:"dona",l:"l"},
-  tr:{admSearch:"Ürün ara",tabSections:"Bölümler",expandAll:"Tümünü aç",collapseAll:"Tümünü kapat",unsaved:"Değişiklikler var",allSaved:"Her şey kaydedildi",noCat:"Bölümsüz",addHere:"Buraya ürün ekle",done:"Tamam",del:"Sil",delProduct:"Bu ürün silinsin mi?",save:"Kaydet",fName:"Ad",fDesc:"Açıklama",fPrice:"Fiyat",fUnit:"Birim",fCat:"Bölüm",productsWord:"ürün",
+  tr:{loginLbl:"Kullanıcı adı",passLbl:"Şifre",useGhKey:"GitHub anahtarıyla giriş",usePassword:"Kullanıcı adı ve şifreyle giriş",wrongLogin:"Kullanıcı adı veya şifre yanlış",notConfigured:"Şifreyle giriş sunucuda henüz ayarlanmadı — şimdilik GitHub anahtarıyla girin",sessionExpired:"Oturum süresi doldu — tekrar girin, değişiklikler kaybolmaz",logout:"Yönetimden çık",loggedOut:"Yönetimden çıktınız",pwOnVercel:"Kullanıcı adı ve şifreyle giriş burada çalışır:",fillLogin:"Kullanıcı adı ve şifreyi girin",
+    admSearch:"Ürün ara",tabSections:"Bölümler",expandAll:"Tümünü aç",collapseAll:"Tümünü kapat",unsaved:"Değişiklikler var",allSaved:"Her şey kaydedildi",noCat:"Bölümsüz",addHere:"Buraya ürün ekle",done:"Tamam",del:"Sil",delProduct:"Bu ürün silinsin mi?",save:"Kaydet",fName:"Ad",fDesc:"Açıklama",fPrice:"Fiyat",fUnit:"Birim",fCat:"Bölüm",productsWord:"ürün",
     search:"Ürün ara",all:"Hepsi",
     navHome:"Ana sayfa",navFav:"Favoriler",navCart:"Sepet",navOrders:"Siparişler",
     add:"Sepete",favorites:"Favoriler",emptyFav:"Henüz boş",emptyFavHint:"Ürünü kaydetmek için kalbe dokunun.",
@@ -872,7 +888,9 @@ let favs = []; try { favs = JSON.parse(localStorage.getItem("favs") || "[]"); } 
 let currentCat = "all", search = "", curPage = "home", modalProductId = null;
 let deliveryMode = "delivery", managerIdx = 0, lastOrderLink = "";
 const payMode = "cash"; // оплата только наличными
-let adminToken = localStorage.getItem("ghKey") || "";
+let adminToken = localStorage.getItem("ghKey") || "";        // вход через ключ GitHub (запасной способ)
+let adminSession = localStorage.getItem("adminSession") || ""; // вход по логину и паролю (сервер Vercel)
+let serverAuth = null, admKeyMode = false;
 
 const $ = id => document.getElementById(id);
 const t = (k) => (I18N[lang][k] ?? I18N.ru[k] ?? k);
@@ -926,7 +944,7 @@ function go(page){
   if (page==="fav") renderFavs();
   if (page==="orders") renderOrders();
   if (page==="checkout") { if (!cartItems().length) return go("cart"); renderCheckoutSummary(); }
-  if (page==="admin") renderAdmin();
+  if (page==="admin") { renderAdmin(); if (serverAuth===null) probeServer(); }
   renderCartBar();
   if (inTg && tg.BackButton) { try { page==="home" ? tg.BackButton.hide() : tg.BackButton.show(); } catch(e){} }
   window.scrollTo({top:0, behavior:"instant"});
@@ -1244,13 +1262,47 @@ async function adminLogin(){
     renderAdmin();
   } catch(e){ toast(t("saveFail"), "info"); }
 }
+/* есть ли на этом адресе сервер для входа по паролю (на Vercel — да, на GitHub Pages — нет) */
+async function probeServer(){
+  try {
+    const res = await fetch("api/me", { cache:"no-store", headers: adminSession ? { Authorization: "Bearer " + adminSession } : {} });
+    const j = res.ok ? await res.json() : null;
+    serverAuth = !!(j && j.configured);
+    if (adminSession && !(j && j.ok)) { adminSession = ""; localStorage.removeItem("adminSession"); }
+  } catch(e){ serverAuth = false; }
+  renderAdmin();
+}
+function admShowKey(on){ admKeyMode = on; renderAdmin(); }
+async function adminPwLogin(ev){
+  if (ev) ev.preventDefault();
+  const login = $("admLoginIn").value.trim(), password = $("admPassIn").value;
+  const err = msg => { $("admLoginErr").textContent = msg; $("admPassIn").closest(".field").classList.toggle("invalid", !!msg); };
+  if (!login || !password) return err(t("fillLogin"));
+  err(""); $("admPwBtn").disabled = true;
+  try {
+    const res = await fetch("api/login", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ login, password }) });
+    const j = await res.json().catch(() => ({}));
+    if (res.status === 503 || res.status === 404) { serverAuth = false; err(""); toast(t("notConfigured"), "info"); admShowKey(true); return; }
+    if (!res.ok || !j.token) return err(t("wrongLogin"));
+    adminSession = j.token;
+    localStorage.setItem("adminSession", j.token);   // хранится только в этом телефоне, действует 30 дней
+    $("admPassIn").value = "";
+    renderAdmin();
+  } catch(e){ err(t("saveFail")); }
+  finally { $("admPwBtn").disabled = false; }
+}
 function adminLogout(){
-  adminToken = "";
-  localStorage.removeItem("ghKey");
+  adminToken = ""; adminSession = "";
+  localStorage.removeItem("ghKey"); localStorage.removeItem("adminSession");
   adminDraft = null; adminCatDraft = null; admDirty = false; admEditId = null;
   $("adminPassInput").value = "";
   renderAdmin();
-  toast(t("keyCleared"), "key");
+  toast(t("loggedOut"), "key");
+}
+/* вход истёк во время работы: просим войти снова, черновик не трогаем */
+function adminSessionExpired(){
+  adminSession = ""; localStorage.removeItem("adminSession");
+  renderAdmin(); toast(t("sessionExpired"), "info");
 }
 
 let adminDraft = null, adminCatDraft = null;
@@ -1449,10 +1501,19 @@ function admMove(id, cid){ const p = admP(id); if (!p) return; p.cat = cid; admO
 function admEdit(id){ admEditId = admEditId===id ? null : id; renderAdminList(); if (admEditId!==null) admScrollTo(id); }
 
 function renderAdmin(){
-  const logged = !!adminToken;
+  const logged = !!(adminSession || adminToken);
   $("adminLogin").style.display = logged ? "none" : "block";
   $("adminPanel").style.display = logged ? "block" : "none";
-  if (!logged) return;
+  if (!logged) {
+    const keyForm = admKeyMode || serverAuth===false;
+    $("admPwForm").style.display = keyForm ? "none" : "block";
+    $("admKeyForm").style.display = keyForm ? "block" : "none";
+    $("admBackPw").style.display = serverAuth===false ? "none" : "block";
+    const onVercel = location.href.startsWith(CONFIG.adminUrl.split("#")[0]);
+    $("admVercelNote").style.display = (serverAuth===false && !onVercel) ? "block" : "none";
+    $("admVercelNote").innerHTML = `${t("pwOnVercel")} <a href="${esc(CONFIG.adminUrl)}" style="color:var(--accent);font-weight:700">${esc(CONFIG.adminUrl.replace(/^https:\/\//,""))}</a>`;
+    return;
+  }
   ensureDrafts();
   document.querySelectorAll(".adm-tabs button").forEach(b => b.classList.toggle("active", b.dataset.tab===admTab));
   $("admPaneProducts").style.display = admTab==="products" ? "block" : "none";
@@ -1554,25 +1615,37 @@ function toBase64(str){
   return btoa(bin);
 }
 
+/* запись файла: через сервер (вход по паролю) или напрямую в GitHub (вход по ключу) */
+async function savePut(path, contentBase64, message){
+  if (!adminSession) return ghPut(path, contentBase64, message);
+  const res = await fetch("api/put", {
+    method: "POST",
+    headers: { "Content-Type":"application/json", Authorization: "Bearer " + adminSession },
+    body: JSON.stringify({ path, content: contentBase64, message }),
+  });
+  if (res.status === 401) throw new Error("SESSION");
+  if (!res.ok) { let d = ""; try { const j = await res.json(); d = j.detail || j.error || ""; } catch(e){} throw new Error(`${res.status} ${d}`); }
+}
+
 async function adminSave(){
   ensureDrafts();
   const btn = $("adminSaveBtn");
   const setBtn = (busy) => { if (btn) { btn.disabled = busy; btn.innerHTML = busy ? t("saving") : ic("check") + `<span>${t("save")}</span>`; } };
   setBtn(true);
   try {
-    if (!adminToken) throw new Error("Ключ доступа не введён");
+    if (!adminSession && !adminToken) throw new Error("SESSION");
     // 1. фото, снятые на телефон, сохраняем отдельными файлами
     for (const p of adminDraft) {
       const m = typeof p.img === "string" && p.img.match(/^data:image\/(jpeg|jpg|png|webp);base64,(.+)$/);
       if (!m) continue;
       const ext = m[1] === "jpeg" ? "jpg" : m[1];
       const name = `${CONFIG.github.photos}/p${p.id}-${Date.now()}.${ext}`;
-      await ghPut(name, m[2], "photo: " + name);
+      await savePut(name, m[2], "photo: " + name);
       p.img = name;
     }
     // 2. сам каталог
     const catalog = JSON.stringify({ products: adminDraft, categories: adminCatDraft }, null, 2);
-    await ghPut(CONFIG.github.catalog, toBase64(catalog), "catalog update");
+    await savePut(CONFIG.github.catalog, toBase64(catalog), "catalog update");
 
     PRODUCTS = JSON.parse(JSON.stringify(adminDraft));
     CATS = JSON.parse(JSON.stringify(adminCatDraft));
@@ -1582,6 +1655,8 @@ async function adminSave(){
   } catch(e){
     console.error(e);
     let msg = String(e && e.message || e);
+    if (msg === "SESSION") { adminSessionExpired(); return; }
+    if (adminSession) { toast(msg.includes("502") ? "GitHub: " + t("saveFail") : t("saveFail"), "info"); return; }
     if (msg.includes("Bad credentials") || msg.includes("401")) msg = "Ключ неверный или устарел";
     else if (msg.includes("Resource not accessible") || msg.includes("403")) msg = "У ключа нет прав на запись (Contents: Read and write)";
     else if (msg.includes("Not Found") || msg.includes("404")) msg = "Репозиторий не найден — проверьте доступ ключа к E-BAZAR";
