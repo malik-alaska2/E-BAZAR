@@ -5,31 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>E-Bazar</title>
 <meta name="description" content="E-Bazar — халяльные узбекские продукты в Турции. Доставка, оплата наличными, заказ через Telegram.">
-<meta name="theme-color" content="#eff3ef">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%231f7a4d'/%3E%3Cpath d='M9 12h14l-1.2 12H10.2z' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linejoin='round'/%3E%3Cpath d='M12.5 12v-1.5a3.5 3.5 0 0 1 7 0V12' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f3f3f5">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/logo-mark.png">
+<meta property="og:title" content="e-bazar">
+<meta property="og:description" content="Doim siz uchun xizmatda. Sifatli va tezkor albatta.">
+<meta property="og:image" content="assets/logo.png">
+<link rel="preload" as="image" href="assets/logo-cart.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
   :root{
-    --bg:#eff3ef; --surface:#ffffff; --surface-2:#e6ebe6; --text:#1b1d1a; --muted:#5f645c;
-    --line:rgba(27,29,26,.08);
-    --accent:#1f7a4d; --accent-press:#186a42; --accent-soft:#e2eee6;
-    --ink:#1b1d1a; --ink-text:#eff3ef;
-    --danger:#c8423a; --danger-soft:#f6e3e0;
-    --shadow-sm:0 1px 2px rgba(38,48,32,.06);
-    --shadow-md:0 14px 34px -14px rgba(24,56,36,.35);
+    --bg:#f3f3f5; --surface:#ffffff; --surface-2:#e9e9ed; --text:#1c1c1f; --muted:#5e5f67;
+    --line:rgba(28,28,31,.08);
+    --accent:#c81e25; --accent-press:#a8181e; --accent-soft:#fce8e8;
+    --ink:#1f1f22; --ink-text:#f3f3f5;
+    --danger:#c62828; --danger-soft:#fbe4e4;
+    --shadow-sm:0 1px 2px rgba(22,22,30,.06);
+    --shadow-md:0 14px 34px -14px rgba(22,22,30,.32);
     --r-xl:26px; --r-lg:20px; --r-md:14px; --r-sm:10px;
     --ease:cubic-bezier(.2,.8,.2,1);
     --z-bar:30; --z-nav:35; --z-header:40; --z-modal:50; --z-toast:60;
   }
   [data-theme="dark"]{
-    --bg:#0f1210; --surface:#181c19; --surface-2:#222723; --text:#eef0ec; --muted:#8f968e;
+    --bg:#111113; --surface:#1a1a1e; --surface-2:#25252a; --text:#f0f0f2; --muted:#94949c;
     --line:rgba(255,255,255,.07);
-    --accent:#3aa86d; --accent-press:#32955f; --accent-soft:#1b2d22;
-    --ink:#eef0ec; --ink-text:#0f1210;
-    --danger:#e36a60; --danger-soft:#3a201d;
+    --accent:#ec3a40; --accent-press:#d52d33; --accent-soft:#2a1315;
+    --ink:#f0f0f2; --ink-text:#111113;
+    --danger:#ef5350; --danger-soft:#3a1d1d;
     --shadow-sm:0 1px 2px rgba(0,0,0,.4);
     --shadow-md:0 14px 34px -14px rgba(0,0,0,.7);
   }
@@ -61,10 +66,35 @@
   .header-in{max-width:560px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:8px}
   .logo{display:flex;align-items:center;gap:9px;flex:1;cursor:pointer;user-select:none;
     font-size:18px;font-weight:800;letter-spacing:-.03em}
-  .logo-mark{width:34px;height:34px;border-radius:11px;background:var(--accent);color:#fff;
-    display:grid;place-items:center;box-shadow:0 6px 14px -6px var(--accent)}
-  .logo-mark svg.i{width:19px;height:19px;stroke-width:2.2}
-  .logo b{color:var(--accent);font-weight:800}
+  .brand-mark{display:flex;align-items:flex-end;height:30px;flex-shrink:0}
+  .brand-mark img{height:100%;display:block}
+  .bm-lines{transform-origin:100% 50%;animation:linesIdle 6s var(--ease) infinite}
+  .bm-cart{transform-origin:35% 90%;animation:cartIdle 6s var(--ease) infinite}
+  @keyframes cartIdle{0%,78%,100%{transform:none}82%{transform:translateX(3px) rotate(-6deg)}86%{transform:translateX(-1px) rotate(2deg)}90%{transform:none}}
+  @keyframes linesIdle{0%,78%,100%{transform:none;opacity:1}82%{transform:scaleX(1.6);opacity:.55}90%{transform:none;opacity:1}}
+  .logo.bump .bm-cart{animation:cartBump .55s var(--ease)}
+  .logo.bump .bm-lines{animation:linesBump .55s var(--ease)}
+  @keyframes cartBump{0%{transform:none}30%{transform:translateX(4px) rotate(-9deg)}60%{transform:translateX(-1px) rotate(3deg)}100%{transform:none}}
+  @keyframes linesBump{0%{transform:none}30%{transform:scaleX(1.9);opacity:.5}100%{transform:none;opacity:1}}
+  .brand-word{font-size:21px;font-weight:800;font-style:italic;letter-spacing:-.04em;color:var(--text)}
+  .brand-word i{color:var(--accent)}
+
+  /* Splash */
+  .splash{position:fixed;inset:0;z-index:100;background:#fff;display:grid;place-items:center;transition:opacity .4s ease,transform .4s ease}
+  .splash.hide{opacity:0;transform:scale(1.04);pointer-events:none}
+  .splash-in{width:min(72vw,300px);display:flex;flex-direction:column;align-items:center}
+  .sp-mark{display:flex;align-items:flex-end;width:78%;margin-bottom:6%}
+  .sp-lines{width:29.6%;opacity:0;transform-origin:100% 50%}
+  .sp-cart{width:70.4%;opacity:0}
+  .sp-word{width:100%;opacity:0}
+  .sp-slogan{width:100%;opacity:0;margin-top:3%}
+  .splash.play .sp-cart{animation:spCart .8s cubic-bezier(.3,1.35,.5,1) forwards}
+  .splash.play .sp-lines{animation:spLines .7s .3s var(--ease) forwards}
+  .splash.play .sp-word{animation:spUp .5s .75s var(--ease) forwards}
+  .splash.play .sp-slogan{animation:spUp .5s .95s var(--ease) forwards}
+  @keyframes spCart{0%{opacity:0;transform:translateX(-120%) rotate(-8deg)}55%{opacity:1;transform:translateX(6%) rotate(4deg)}80%{transform:translateX(-2%) rotate(-1deg)}100%{opacity:1;transform:none}}
+  @keyframes spLines{0%{opacity:0;transform:scaleX(0)}50%{opacity:1;transform:scaleX(1.5)}100%{opacity:1;transform:none}}
+  @keyframes spUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   .icon-btn{width:38px;height:38px;border-radius:12px;background:var(--surface);box-shadow:var(--shadow-sm);
     display:grid;place-items:center;transition:transform .15s var(--ease)}
   .icon-btn:active{transform:scale(.92)}
@@ -85,24 +115,24 @@
   .link-btn:active{opacity:.6}
 
   /* Hero */
-  .hero{position:relative;overflow:hidden;border-radius:var(--r-xl);padding:20px 18px 18px;margin:4px 0 16px;color:#eef5ee;
+  .hero{position:relative;overflow:hidden;border-radius:var(--r-xl);padding:20px 18px 18px;margin:4px 0 16px;color:#f3f3f5;
     background:
-      radial-gradient(110% 80% at 105% -10%,#3a9e6c 0%,transparent 55%),
-      radial-gradient(70% 60% at -10% 110%,#0b2a1b 0%,transparent 60%),
-      linear-gradient(165deg,#1b5638 0%,#113a26 100%);
-    box-shadow:0 18px 40px -22px rgba(17,58,38,.8)}
+      radial-gradient(110% 80% at 108% -12%,rgba(216,35,42,.62) 0%,transparent 55%),
+      radial-gradient(70% 60% at -10% 110%,#0a0a0c 0%,transparent 60%),
+      linear-gradient(165deg,#2b2b30 0%,#18181b 100%);
+    box-shadow:0 18px 40px -22px rgba(10,10,14,.75)}
   .hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
     background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.2px);background-size:14px 14px;
     mask-image:linear-gradient(200deg,#000 10%,transparent 70%);-webkit-mask-image:linear-gradient(200deg,#000 10%,transparent 70%)}
   .hero > *{position:relative;z-index:1}
   .hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.12em;
-    text-transform:uppercase;color:#bfe3cc;margin-bottom:8px}
-  .hero-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:#7fd6a3;box-shadow:0 0 0 3px rgba(127,214,163,.2)}
+    text-transform:uppercase;color:#f4b3b5;margin-bottom:8px}
+  .hero-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:#ff5a60;box-shadow:0 0 0 3px rgba(255,90,96,.22)}
   .hero-title{font-size:23px;line-height:1.15;font-weight:800;letter-spacing:-.035em;max-width:17ch;text-wrap:balance;margin-bottom:14px}
-  .hero-list{display:grid;gap:7px;font-size:13.5px;font-weight:600;color:#d8ebdd}
+  .hero-list{display:grid;gap:7px;font-size:13.5px;font-weight:600;color:#e4e4e9}
   .hero-list div{display:flex;align-items:center;gap:9px}
   .hero-list .tick{width:20px;height:20px;border-radius:7px;background:rgba(255,255,255,.12);display:grid;place-items:center;flex-shrink:0}
-  .hero-list .tick svg.i{width:13px;height:13px;stroke-width:2.6;color:#9be2b8}
+  .hero-list .tick svg.i{width:13px;height:13px;stroke-width:2.6;color:#ff8a8e}
   .hero-contacts{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
   .hero-contacts a{display:inline-flex;align-items:center;gap:6px;padding:8px 12px 8px 10px;border-radius:12px;
     font-size:12.5px;font-weight:700;color:#fff;text-decoration:none;
@@ -208,7 +238,7 @@
   .bottom-nav button.active{color:var(--accent);background:var(--accent-soft)}
   .bottom-nav button.active svg.i{stroke-width:2.2}
   .nav-badge{position:absolute;top:3px;left:calc(50% + 6px);min-width:18px;height:18px;padding:0 5px;border-radius:9px;
-    background:var(--danger);color:#fff;font-size:10.5px;font-weight:800;display:none;align-items:center;justify-content:center;
+    background:var(--ink);color:var(--ink-text);font-size:10.5px;font-weight:800;display:none;align-items:center;justify-content:center;
     box-shadow:0 0 0 2px var(--surface);font-variant-numeric:tabular-nums}
   .nav-badge.show{display:flex}
 
@@ -340,9 +370,18 @@
 </head>
 <body>
 
+<!-- Заставка с анимированным логотипом (один раз за сеанс) -->
+<div class="splash" id="splash" aria-hidden="true">
+  <div class="splash-in">
+    <div class="sp-mark"><img class="sp-lines" src="assets/logo-lines.png" alt=""><img class="sp-cart" src="assets/logo-cart.png" alt=""></div>
+    <img class="sp-word" src="assets/logo-word.png" alt="e-bazar">
+    <img class="sp-slogan" src="assets/logo-slogan.png" alt="Doim siz uchun xizmatda. Sifatli va tezkor albatta">
+  </div>
+</div>
+
 <header class="header">
   <div class="header-in">
-    <div class="logo" id="logoBtn"><span class="logo-mark" id="logoMark"></span><span>E-<b>Bazar</b></span></div>
+    <div class="logo" id="logoBtn" aria-label="e-bazar"><span class="brand-mark"><img class="bm-lines" src="assets/logo-lines.png" alt=""><img class="bm-cart" src="assets/logo-cart.png" alt=""></span><span class="brand-word"><i>e-</i>bazar</span></div>
     <div class="lang-switch" id="langSwitch"></div>
     <button class="icon-btn" id="themeBtn" aria-label="Theme"></button>
   </div>
@@ -353,7 +392,7 @@
   <!-- ГЛАВНАЯ -->
   <section class="page" id="page-home">
     <div class="hero">
-      <div class="hero-eyebrow">E-Bazar · Halal</div>
+      <div class="hero-eyebrow">Doim siz uchun xizmatda</div>
       <div class="hero-title" data-i18n="promoTitle"></div>
       <div class="hero-list">
         <div><span class="tick" data-ic="check"></span><span data-i18n="promo1"></span></div>
@@ -899,7 +938,7 @@ function renderFavs(){
 }
 
 /* Корзина */
-function addToCart(id){ cart[id]=(cart[id]||0)+1; haptic("light"); saveCart(id); toast(t("added")); }
+function addToCart(id){ cart[id]=(cart[id]||0)+1; haptic("light"); bumpLogo(); saveCart(id); toast(t("added")); }
 function changeQty(id,d){
   cart[id]=(cart[id]||0)+d;
   if(cart[id]<=0) delete cart[id];
@@ -1400,7 +1439,18 @@ async function loadProducts(){
   if (currentCat!=="all" && !CATS.some(c=>c.id===currentCat)) currentCat="all";
   renderAll();
 }
-$("logoMark").innerHTML = ic("bag");
+/* Заставка: один раз за сеанс; не показываем, если включено «уменьшить движение» */
+(function(){
+  const sp = $("splash");
+  let seen = false; try { seen = sessionStorage.getItem("splash") === "1"; sessionStorage.setItem("splash","1"); } catch(e){}
+  if (seen || matchMedia("(prefers-reduced-motion: reduce)").matches) { sp.remove(); return; }
+  const imgs = [...sp.querySelectorAll("img")].map(i => i.decode ? i.decode().catch(()=>{}) : null);
+  Promise.race([Promise.all(imgs), new Promise(r => setTimeout(r, 900))]).then(() => {
+    sp.classList.add("play");
+    setTimeout(() => { sp.classList.add("hide"); setTimeout(() => sp.remove(), 450); }, 2000);
+  });
+})();
+function bumpLogo(){ const l = $("logoBtn"); l.classList.remove("bump"); void l.offsetWidth; l.classList.add("bump"); }
 document.documentElement.lang = lang;
 window.addEventListener("hashchange", () => { if (location.hash==="#admin") go("admin"); });
 paintIcons(); applyTheme(); renderAll(); go(location.hash==="#admin" ? "admin" : "home"); loadProducts();
