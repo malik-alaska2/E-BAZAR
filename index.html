@@ -351,18 +351,83 @@
   .toast.show{transform:translateX(-50%) translateY(0)}
 
   /* Admin */
-  .admin-h{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;letter-spacing:-.02em;margin:18px 2px 10px}
-  .admin-h svg.i{color:var(--accent)}
+  #page-admin{padding-bottom:84px}
   .admin-item{background:var(--surface);border-radius:var(--r-lg);padding:12px;margin-bottom:10px;box-shadow:var(--shadow-sm)}
-  .admin-item input,.admin-item select{padding:10px 11px;font-size:14px;margin-top:6px;border-radius:11px}
+  .admin-item input{padding:10px 11px;font-size:15px;border-radius:11px}
+  .admin-item .admin-top{margin-bottom:10px}
   .admin-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
   .admin-top b{font-size:14px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .admin-grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}
+  .admin-top .muted{margin-left:6px}
   .admin-tools{display:flex;gap:4px;flex-shrink:0}
   .admin-tools .btn{width:34px;height:34px;padding:0;border-radius:10px}
   .admin-tools .btn svg.i{width:16px;height:16px}
-  .admin-photo{display:flex;align-items:center;gap:10px;margin:6px 0}
+  .admin-grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}
+  .admin-photo{display:flex;align-items:center;gap:12px;margin:2px 0 12px}
+  .admin-photo .thumb{width:76px;height:76px}
   .admin-photo .stack{flex:1}
+
+  .adm-bar{position:sticky;top:62px;z-index:20;margin:0 -16px;padding:6px 16px 10px;
+    background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  .adm-tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--surface-2);padding:4px;border-radius:14px;margin-bottom:8px}
+  .adm-tabs button{display:flex;align-items:center;justify-content:center;gap:7px;padding:9px;border-radius:11px;
+    font-size:13.5px;font-weight:800;color:var(--muted);transition:background .2s,color .2s}
+  .adm-tabs button.active{background:var(--surface);color:var(--text);box-shadow:var(--shadow-sm)}
+  .cnt{font-size:11.5px;font-weight:800;padding:2px 7px;border-radius:8px;background:var(--surface-2);color:var(--muted);font-variant-numeric:tabular-nums}
+  .adm-tabs button.active .cnt{background:var(--accent-soft);color:var(--accent)}
+  .adm-search{margin:0}
+  .adm-links{display:flex;justify-content:flex-end;gap:14px;margin:2px 2px 8px}
+
+  .adm-group{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);margin-bottom:10px;overflow:hidden}
+  .adm-ghead{width:100%;display:flex;align-items:center;gap:10px;padding:15px 14px;text-align:left;font-size:15.5px;font-weight:800;letter-spacing:-.01em}
+  .adm-ghead .chev{width:18px;height:18px;color:var(--muted);transition:transform .2s var(--ease)}
+  .adm-group.open .adm-ghead .chev{transform:rotate(90deg);color:var(--accent)}
+  .adm-ghead .grow{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .adm-out{font-size:11.5px;font-weight:700;color:var(--danger);white-space:nowrap}
+  .adm-gbody{display:none;border-top:1px solid var(--line);padding:6px}
+  .adm-group.open .adm-gbody{display:block}
+
+  .adm-row{border-radius:14px;scroll-margin-top:190px;transition:background .2s}
+  .adm-row + .adm-row{margin-top:2px}
+  .adm-row.editing{background:var(--surface-2)}
+  .adm-rline{display:flex;align-items:center;gap:10px;padding:7px 8px}
+  .adm-rhead{flex:1;min-width:0;display:flex;align-items:center;gap:11px;text-align:left}
+  .adm-rhead .thumb{width:46px;height:46px;border-radius:11px;font-size:22px}
+  .adm-rhead .grow{display:flex;flex-direction:column;gap:2px}
+  .adm-title{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .adm-meta{font-size:12px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+  .adm-meta .out{color:var(--danger)}
+  .adm-row.is-out .thumb img{filter:grayscale(1);opacity:.6}
+  .adm-rhead .edit{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:var(--muted);flex-shrink:0}
+  .adm-rhead .edit svg.i{width:16px;height:16px}
+  .adm-row.editing .adm-rhead .edit{background:var(--accent);color:#fff}
+  .sw{position:relative;width:44px;height:26px;border-radius:13px;flex-shrink:0;transition:background .2s;
+    background:color-mix(in srgb,var(--muted) 38%,transparent)}
+  .sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;
+    box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s var(--ease)}
+  .sw.on{background:var(--accent)}
+  .sw.on::after{transform:translateX(18px)}
+
+  .adm-form{padding:4px 10px 12px}
+  .adm-l{font-size:12px;font-weight:700;color:var(--muted);margin:12px 2px 6px}
+  .adm-form input,.adm-form select{padding:10px 11px;font-size:15px;border-radius:11px;background:var(--surface)}
+  .lang-in{position:relative;margin-bottom:6px}
+  .lang-in span{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:10.5px;font-weight:800;letter-spacing:.04em;
+    color:var(--muted);background:var(--surface-2);padding:3px 6px;border-radius:6px;pointer-events:none}
+  .lang-in input{padding-left:48px}
+  .adm-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}
+  .adm-actions{display:flex;gap:8px;margin-top:14px}
+  .adm-actions .btn{flex:1}
+  .btn-dashed{background:transparent;color:var(--muted);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--muted) 35%,transparent)}
+  .adm-gbody > .btn-dashed{width:calc(100% - 4px);margin:6px 2px 2px}
+  .adm-save{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:var(--z-nav);max-width:536px;margin:0 auto;
+    display:flex;align-items:center;gap:10px;padding:8px 8px 8px 16px;border-radius:18px;background:var(--surface);color:var(--text);
+    box-shadow:var(--shadow-md),inset 0 0 0 1px var(--line);transition:background .25s,color .25s}
+  .adm-save .st{flex:1;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);min-width:0}
+  .adm-save .st svg.i{width:17px;height:17px;color:var(--accent)}
+  .adm-save .dot{width:8px;height:8px;border-radius:50%;background:#f0a020;box-shadow:0 0 0 3px rgba(240,160,32,.25);flex-shrink:0}
+  .adm-save .btn{width:auto;padding:12px 18px}
+  .adm-save.dirty{background:var(--ink);color:var(--ink-text)}
+  .adm-save.dirty .st{color:var(--ink-text)}
 
   @media (min-width:520px){ .grid{gap:12px} .hero{padding:24px 22px 22px} .hero-title{font-size:26px} }
   @media (prefers-reduced-motion:reduce){ *,*::before,*::after{animation:none!important;transition:none!important} }
@@ -517,17 +582,31 @@
       <p class="muted" style="margin-top:12px;line-height:1.5" data-i18n="adminGhHint"></p>
     </div>
     <div id="adminPanel" style="display:none">
-      <div class="admin-h"><span data-ic="folder"></span><span data-i18n="sections"></span></div>
-      <div id="adminCats"></div>
-      <button class="btn btn-soft" onclick="adminCatAdd()"><span data-ic="plus"></span><span data-i18n="addSection"></span></button>
-      <div class="admin-h"><span data-ic="bag"></span><span data-i18n="productsTitle"></span></div>
-      <div id="adminList"></div>
-      <button class="btn btn-soft" onclick="adminAdd()" style="margin-bottom:10px"><span data-ic="plus"></span><span data-i18n="addProduct"></span></button>
-      <div class="sticky-cta" style="margin-top:0">
-        <button class="btn btn-primary" id="adminSaveBtn" onclick="adminSave()"><span data-ic="check"></span><span data-i18n="saveAll"></span></button>
+      <div class="adm-bar">
+        <div class="adm-tabs">
+          <button data-tab="products" onclick="admSetTab('products')"><span data-i18n="productsTitle"></span><span class="cnt" id="admCount"></span></button>
+          <button data-tab="cats" onclick="admSetTab('cats')"><span data-i18n="tabSections"></span><span class="cnt" id="admCatCount"></span></button>
+        </div>
+        <div class="search-box adm-search" id="admSearchBox">
+          <span class="s-ic" data-ic="search"></span>
+          <input id="admSearch" type="search" autocomplete="off" enterkeyhint="search">
+          <button class="search-clear" id="admSearchClear" aria-label="Clear" data-ic="x"></button>
+        </div>
       </div>
-      <button class="btn btn-danger-soft" style="margin-top:10px" onclick="adminLogout()"><span data-ic="key"></span><span data-i18n="changeKey"></span></button>
-      <p class="muted" style="margin-top:10px" data-i18n="adminNote"></p>
+      <div id="admPaneProducts">
+        <div class="adm-links" id="admLinks"><button class="link-btn" onclick="admAll(true)" data-i18n="expandAll"></button><button class="link-btn" onclick="admAll(false)" data-i18n="collapseAll"></button></div>
+        <div id="adminList"></div>
+      </div>
+      <div id="admPaneCats" style="display:none">
+        <div id="adminCats"></div>
+        <button class="btn btn-dashed" onclick="adminCatAdd()"><span data-ic="plus"></span><span data-i18n="addSection"></span></button>
+        <button class="btn btn-danger-soft" style="margin-top:24px" onclick="adminLogout()"><span data-ic="key"></span><span data-i18n="changeKey"></span></button>
+        <p class="muted" style="margin-top:10px" data-i18n="adminNote"></p>
+      </div>
+      <div class="adm-save" id="admSaveBar">
+        <span class="st" id="admSaveState"></span>
+        <button class="btn btn-primary" id="adminSaveBtn" onclick="adminSave()"><span data-ic="check"></span><span data-i18n="save"></span></button>
+      </div>
     </div>
   </section>
 
@@ -671,6 +750,8 @@ const ICONS = {
   folder:'<path d="M3.5 6.5a1.5 1.5 0 0 1 1.5-1.5h4.3l2 2.2H19a1.5 1.5 0 0 1 1.5 1.5v9.8A1.5 1.5 0 0 1 19 20H5a1.5 1.5 0 0 1-1.5-1.5z"/>',
   repeat:'<path d="M4.5 11a7.5 7.5 0 0 1 13.2-4.3L20 9M20 4.5V9h-4.5M19.5 13a7.5 7.5 0 0 1-13.2 4.3L4 15M4 19.5V15h4.5"/>',
   info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.8v.01"/>',
+  chev:'<path d="m9.5 6 6 6-6 6"/>',
+  edit:'<path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="m13.5 6.5 4 4"/>',
   photo:'<rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="9" cy="10" r="1.8"/><path d="m20.5 15.5-4.5-4.5-8.5 8.5"/>',
 };
 const ic = (n, cls="") => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n]||""}</svg>`;
@@ -678,7 +759,8 @@ function paintIcons(root=document){ root.querySelectorAll("[data-ic]").forEach(e
 
 /* ============================================================ ПЕРЕВОДЫ ============================================================ */
 const I18N = {
-  ru:{search:"Найти продукты",all:"Все",
+  ru:{admSearch:"Найти товар",tabSections:"Разделы",expandAll:"Развернуть все",collapseAll:"Свернуть все",unsaved:"Есть изменения",allSaved:"Всё сохранено",noCat:"Без раздела",addHere:"Добавить товар сюда",done:"Готово",del:"Удалить",delProduct:"Удалить этот товар?",save:"Сохранить",fName:"Название",fDesc:"Описание",fPrice:"Цена",fUnit:"Единица",fCat:"Раздел",productsWord:"товаров",
+    search:"Найти продукты",all:"Все",
     navHome:"Главная",navFav:"Избранное",navCart:"Корзина",navOrders:"Заказы",
     add:"В корзину",favorites:"Избранное",emptyFav:"Здесь пока пусто",emptyFavHint:"Нажмите на сердечко у товара, чтобы сохранить его сюда.",
     cart:"Корзина",emptyCart:"Корзина пуста",emptyCartHint:"Добавьте продукты из каталога — они появятся здесь.",
@@ -709,7 +791,8 @@ const I18N = {
     newSection:"Новый раздел",notFound:"Ничего не нашлось",notFoundHint:"Попробуйте другое слово или раздел.",
     changeKey:"Сменить ключ доступа",keyCleared:"Ключ удалён — введите новый",askNewKey:"Ввести другой ключ?",
     kg:"кг",pcs:"шт",l:"л"},
-  uz:{search:"Mahsulot qidirish",all:"Hammasi",
+  uz:{admSearch:"Mahsulot qidirish",tabSections:"Bo'limlar",expandAll:"Hammasini ochish",collapseAll:"Hammasini yopish",unsaved:"O'zgarishlar bor",allSaved:"Hammasi saqlangan",noCat:"Bo'limsiz",addHere:"Shu yerga mahsulot qo'shish",done:"Tayyor",del:"O'chirish",delProduct:"Bu mahsulot o'chirilsinmi?",save:"Saqlash",fName:"Nomi",fDesc:"Tavsif",fPrice:"Narx",fUnit:"O'lchov",fCat:"Bo'lim",productsWord:"mahsulot",
+    search:"Mahsulot qidirish",all:"Hammasi",
     navHome:"Asosiy",navFav:"Sevimli",navCart:"Savat",navOrders:"Buyurtmalar",
     add:"Savatga",favorites:"Sevimlilar",emptyFav:"Hozircha bo'sh",emptyFavHint:"Mahsulotni saqlash uchun yurakchani bosing.",
     cart:"Savat",emptyCart:"Savat bo'sh",emptyCartHint:"Katalogdan mahsulot qo'shing — ular shu yerda chiqadi.",
@@ -740,7 +823,8 @@ const I18N = {
     newSection:"Yangi bo'lim",notFound:"Hech narsa topilmadi",notFoundHint:"Boshqa so'z yoki bo'limni sinab ko'ring.",
     changeKey:"Kalitni almashtirish",keyCleared:"Kalit o'chirildi — yangisini kiriting",askNewKey:"Boshqa kalit kiritilsinmi?",
     kg:"kg",pcs:"dona",l:"l"},
-  tr:{search:"Ürün ara",all:"Hepsi",
+  tr:{admSearch:"Ürün ara",tabSections:"Bölümler",expandAll:"Tümünü aç",collapseAll:"Tümünü kapat",unsaved:"Değişiklikler var",allSaved:"Her şey kaydedildi",noCat:"Bölümsüz",addHere:"Buraya ürün ekle",done:"Tamam",del:"Sil",delProduct:"Bu ürün silinsin mi?",save:"Kaydet",fName:"Ad",fDesc:"Açıklama",fPrice:"Fiyat",fUnit:"Birim",fCat:"Bölüm",productsWord:"ürün",
+    search:"Ürün ara",all:"Hepsi",
     navHome:"Ana sayfa",navFav:"Favoriler",navCart:"Sepet",navOrders:"Siparişler",
     add:"Sepete",favorites:"Favoriler",emptyFav:"Henüz boş",emptyFavHint:"Ürünü kaydetmek için kalbe dokunun.",
     cart:"Sepet",emptyCart:"Sepetiniz boş",emptyCartHint:"Katalogdan ürün ekleyin — burada görünecek.",
@@ -827,6 +911,7 @@ function setLang(l){ lang=l; localStorage.setItem("lang",l); document.documentEl
 function applyI18n(){
   document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
   $("searchInput").placeholder = t("search");
+  $("admSearch").placeholder = t("admSearch");
 }
 
 /* Навигация */
@@ -1162,7 +1247,7 @@ async function adminLogin(){
 function adminLogout(){
   adminToken = "";
   localStorage.removeItem("ghKey");
-  adminDraft = null; adminCatDraft = null;
+  adminDraft = null; adminCatDraft = null; admDirty = false; admEditId = null;
   $("adminPassInput").value = "";
   renderAdmin();
   toast(t("keyCleared"), "key");
@@ -1176,35 +1261,55 @@ function ensureDrafts(){
   if (!adminCatDraft) adminCatDraft = JSON.parse(JSON.stringify(CATS));
 }
 
+/* --- состояние редактора --- */
+let admTab = "products", admQuery = "", admEditId = null, admDirty = false;
+let admOpen = new Set(); try { admOpen = new Set(JSON.parse(localStorage.getItem("admOpen") || "[]")); } catch(e){}
+const admP = id => adminDraft.find(p => p.id===id);
+const admTitle = p => p.name?.ru || p.name?.tr || p.name?.uz || t("newProduct");
+function admSaveOpen(){ try { localStorage.setItem("admOpen", JSON.stringify([...admOpen])); } catch(e){} }
+function admMark(){ admDirty = true; renderAdmSave(); }
+function renderAdmSave(){
+  $("admSaveState").innerHTML = admDirty ? `<span class="dot"></span><span>${t("unsaved")}</span>` : `${ic("check")}<span>${t("allSaved")}</span>`;
+  $("admSaveBar").classList.toggle("dirty", admDirty);
+}
+window.addEventListener("beforeunload", e => { if (admDirty) { e.preventDefault(); e.returnValue = ""; } });
+$("admSearch").oninput = e => {
+  admQuery = e.target.value.trim().toLowerCase();
+  $("admSearchClear").classList.toggle("show", !!admQuery);
+  if (admTab!=="products") { admTab = "products"; renderAdmin(); } else renderAdminList();
+};
+$("admSearchClear").onclick = () => { $("admSearch").value = ""; admQuery = ""; $("admSearchClear").classList.remove("show"); renderAdminList(); };
+
+function admSetTab(tab){ admTab = tab; renderAdmin(); window.scrollTo({top:0}); }
+function admToggle(cid){ admOpen.has(cid) ? admOpen.delete(cid) : admOpen.add(cid); admSaveOpen(); renderAdminList(); }
+function admAll(open){ admOpen = open ? new Set(admGroups().map(g=>g.id)) : new Set(); admSaveOpen(); renderAdminList(); }
+function admScrollTo(id){ requestAnimationFrame(() => { const r = $("admrow-"+id); if (r) r.scrollIntoView({block:"start", behavior:"smooth"}); }); }
+
 /* --- РАЗДЕЛЫ --- */
 function renderAdminCats(){
   $("adminCats").innerHTML = adminCatDraft.map((c,i) => `
     <div class="admin-item">
       <div class="admin-top">
-        <b>${esc(catName(c))}</b>
+        <b>${esc(catName(c))}<span class="muted">${adminDraft.filter(p=>p.cat===c.id).length}</span></b>
         <div class="admin-tools">
           <button class="btn btn-soft" aria-label="up" onclick="adminCatMove(${i},-1)">${ic("up")}</button>
           <button class="btn btn-soft" aria-label="down" onclick="adminCatMove(${i},1)">${ic("down")}</button>
           <button class="btn btn-danger-soft" aria-label="delete" onclick="adminCatDel(${i})">${ic("trash")}</button>
         </div>
       </div>
-      <div class="admin-grid2">
-        <input value="${esc(c.name.ru)}" placeholder="Раздел RU" oninput="adminCatDraft[${i}].name.ru=this.value">
-        <input value="${esc(c.name.uz)}" placeholder="Bo'lim UZ" oninput="adminCatDraft[${i}].name.uz=this.value">
-        <input value="${esc(c.name.tr ?? c.name.en ?? '')}" placeholder="Bölüm TR (турецкий)" oninput="adminCatDraft[${i}].name.tr=this.value">
-      </div>
+      ${["ru","uz","tr"].map(l => `<div class="lang-in"><span>${l.toUpperCase()}</span><input value="${esc(l==="tr" ? (c.name.tr ?? c.name.en ?? "") : c.name[l])}" oninput="adminCatDraft[${i}].name.${l}=this.value;admMark()"></div>`).join("")}
     </div>`).join("");
 }
 function adminCatAdd(){
   ensureDrafts();
   adminCatDraft.push({id:"cat"+Date.now(), name:{ru:t("newSection"),uz:t("newSection"),tr:t("newSection")}});
-  renderAdmin();
+  admMark(); renderAdmin();
 }
 function adminCatMove(i,d){
   ensureDrafts();
   const j=i+d; if(j<0||j>=adminCatDraft.length) return;
   [adminCatDraft[i],adminCatDraft[j]]=[adminCatDraft[j],adminCatDraft[i]];
-  renderAdmin();
+  admMark(); renderAdmin();
 }
 function adminCatDel(i){
   ensureDrafts();
@@ -1213,11 +1318,11 @@ function adminCatDel(i){
   if (used && !confirm(t("catDelWarn").replace("{n}",used))) return;
   adminCatDraft.splice(i,1);
   adminDraft.forEach(p=>{ if(p.cat===c.id) p.cat = adminCatDraft[0]?.id || ""; });
-  renderAdmin();
+  admMark(); renderAdmin();
 }
 
 /* --- ФОТО: загрузка с телефона, сжатие в компактный формат --- */
-function adminPickPhoto(i){
+function adminPickPhoto(id){
   ensureDrafts();
   const inp = document.createElement("input");
   inp.type = "file"; inp.accept = "image/*";
@@ -1232,8 +1337,9 @@ function adminPickPhoto(i){
         const cv = document.createElement("canvas");
         cv.width = Math.round(img.width*scale); cv.height = Math.round(img.height*scale);
         cv.getContext("2d").drawImage(img,0,0,cv.width,cv.height);
-        adminDraft[i].img = cv.toDataURL("image/jpeg", 0.78);
-        renderAdmin(); toast(t("photoAdded"));
+        const p = admP(id); if (!p) return;
+        p.img = cv.toDataURL("image/jpeg", 0.78);
+        admMark(); renderAdminList(); toast(t("photoAdded"));
       };
       img.src = e.target.result;
     };
@@ -1241,60 +1347,138 @@ function adminPickPhoto(i){
   };
   inp.click();
 }
+function admNoPhoto(id){ const p = admP(id); if (!p) return; p.img = ""; admMark(); renderAdminList(); }
 
-/* --- ТОВАРЫ --- */
+/* --- ТОВАРЫ, сгруппированные по разделам --- */
+function admGroups(){
+  const ids = new Set(adminCatDraft.map(c=>c.id));
+  const gs = adminCatDraft.map(c => ({id:c.id, name:catName(c), items:adminDraft.filter(p=>p.cat===c.id)}));
+  const orphan = adminDraft.filter(p => !ids.has(p.cat));
+  if (orphan.length) gs.push({id:"__none", name:t("noCat"), items:orphan});
+  return gs;
+}
+function admMatch(p){
+  if (!admQuery) return true;
+  return [...Object.values(p.name||{}), String(p.id)].join(" ").toLowerCase().includes(admQuery);
+}
+function admMeta(p){ return `${fmt(p.price||0)} / ${t(p.unit||"pcs")}` + (p.stock===false ? ` · <span class="out">${t("outStock")}</span>` : ""); }
+function admThumb(p){ return p.img ? `<img src="${esc(p.img)}" alt="">` : (p.emoji ? esc(p.emoji) : ic("photo")); }
+function admLangInputs(p, field){
+  return ["ru","uz","tr"].map(l => {
+    const v = l==="tr" ? (p[field]?.tr ?? p[field]?.en ?? "") : (p[field]?.[l] ?? "");
+    return `<div class="lang-in"><span>${l.toUpperCase()}</span><input value="${esc(v)}" oninput="admSet(${p.id},'${field}','${l}',this.value)"></div>`;
+  }).join("");
+}
+function admForm(p){
+  const id = p.id;
+  return `<div class="adm-form">
+    <div class="admin-photo">
+      <div class="thumb">${admThumb(p)}</div>
+      <div class="stack">
+        <button class="btn btn-soft btn-sm" style="width:100%" onclick="adminPickPhoto(${id})">${ic("camera")}${t("uploadPhoto")}</button>
+        ${p.img ? `<button class="btn btn-danger-soft btn-sm" style="width:100%" onclick="admNoPhoto(${id})">${ic("trash")}${t("removePhoto")}</button>` : ""}
+      </div>
+    </div>
+    <div class="adm-l">${t("fName")}</div>
+    ${admLangInputs(p,"name")}
+    <div class="adm-grid">
+      <div><div class="adm-l">${t("fPrice")}, ${CONFIG.currency}</div>
+        <input type="number" inputmode="decimal" step="0.01" value="${p.price}" oninput="admSet(${id},'price',null,parseFloat(this.value)||0)"></div>
+      <div><div class="adm-l">${t("fUnit")}</div>
+        <select onchange="admSet(${id},'unit',null,this.value)">${["kg","pcs","l"].map(u=>`<option value="${u}" ${p.unit===u?"selected":""}>${t(u)}</option>`).join("")}</select></div>
+      <div><div class="adm-l">${t("fCat")}</div>
+        <select onchange="admMove(${id},this.value)">${adminCatDraft.map(c=>`<option value="${esc(c.id)}" ${p.cat===c.id?"selected":""}>${esc(catName(c))}</option>`).join("")}</select></div>
+      <div><div class="adm-l">Emoji</div>
+        <input value="${esc(p.emoji||"")}" oninput="admSet(${id},'emoji',null,this.value)"></div>
+    </div>
+    <div class="adm-l">${t("fDesc")}</div>
+    ${admLangInputs(p,"desc")}
+    <div class="adm-actions">
+      <button class="btn btn-danger-soft btn-sm" onclick="adminDel(${id})">${ic("trash")}${t("del")}</button>
+      <button class="btn btn-ink btn-sm" onclick="admEdit(${id})">${ic("check")}${t("done")}</button>
+    </div>
+  </div>`;
+}
+function admRow(p){
+  const ed = admEditId===p.id, on = p.stock!==false;
+  return `<div class="adm-row${ed?" editing":""}${on?"":" is-out"}" id="admrow-${p.id}">
+    <div class="adm-rline">
+      <button class="adm-rhead" onclick="admEdit(${p.id})">
+        <span class="thumb">${admThumb(p)}</span>
+        <span class="grow"><span class="adm-title">${esc(admTitle(p))}</span><span class="adm-meta">${admMeta(p)}</span></span>
+        <span class="edit">${ic(ed ? "x" : "edit")}</span>
+      </button>
+      <button class="sw${on?" on":""}" role="switch" aria-checked="${on}" aria-label="${t("inStock")}" title="${t(on?"inStock":"outStock")}" onclick="admStock(${p.id})"></button>
+    </div>
+    ${ed ? admForm(p) : ""}
+  </div>`;
+}
+function renderAdminList(){
+  let html = "";
+  admGroups().forEach(g => {
+    const items = g.items.filter(admMatch);
+    if (admQuery && !items.length) return;
+    const open = admQuery ? true : admOpen.has(g.id);
+    const out = g.items.filter(p => p.stock===false).length;
+    html += `<section class="adm-group${open?" open":""}">
+      <button class="adm-ghead" data-cid="${esc(g.id)}" onclick="admToggle(this.dataset.cid)">
+        ${ic("chev","chev")}<span class="grow">${esc(g.name)}</span>
+        ${out ? `<span class="adm-out">${t("outStock")}: ${out}</span>` : ""}
+        <span class="cnt">${g.items.length}</span>
+      </button>
+      <div class="adm-gbody">
+        ${items.map(admRow).join("")}
+        ${admQuery ? "" : `<button class="btn btn-dashed btn-sm" data-cid="${esc(g.id)}" onclick="adminAdd(this.dataset.cid)">${ic("plus")}${t("addHere")}</button>`}
+      </div>
+    </section>`;
+  });
+  $("admLinks").style.display = admQuery ? "none" : "";
+  $("adminList").innerHTML = html || `<div class="empty"><div class="empty-ic">${ic("search")}</div><h3>${t("notFound")}</h3></div>`;
+  $("admCount").textContent = adminDraft.length;
+  $("admCatCount").textContent = adminCatDraft.length;
+}
+function admSet(id, key, sub, val){
+  const p = admP(id); if (!p) return;
+  if (sub) { p[key] = p[key] || {}; p[key][sub] = val; } else p[key] = val;
+  admMark();
+  const row = $("admrow-"+id);
+  if (row) { row.querySelector(".adm-title").textContent = admTitle(p); row.querySelector(".adm-meta").innerHTML = admMeta(p); }
+}
+function admStock(id){ const p = admP(id); if (!p) return; p.stock = p.stock===false; admMark(); renderAdminList(); }
+function admMove(id, cid){ const p = admP(id); if (!p) return; p.cat = cid; admOpen.add(cid); admSaveOpen(); admMark(); renderAdminList(); admScrollTo(id); }
+function admEdit(id){ admEditId = admEditId===id ? null : id; renderAdminList(); if (admEditId!==null) admScrollTo(id); }
+
 function renderAdmin(){
   const logged = !!adminToken;
   $("adminLogin").style.display = logged ? "none" : "block";
   $("adminPanel").style.display = logged ? "block" : "none";
   if (!logged) return;
   ensureDrafts();
+  document.querySelectorAll(".adm-tabs button").forEach(b => b.classList.toggle("active", b.dataset.tab===admTab));
+  $("admPaneProducts").style.display = admTab==="products" ? "block" : "none";
+  $("admPaneCats").style.display = admTab==="cats" ? "block" : "none";
+  $("admSearchBox").style.display = admTab==="products" ? "" : "none";
   renderAdminCats();
-  $("adminList").innerHTML = adminDraft.map((p,i) => `
-    <div class="admin-item">
-      <div class="admin-top">
-        <b>${esc(p.name.ru || p.name.tr || p.name.uz || t("newProduct"))}</b>
-        <div class="admin-tools"><button class="btn btn-danger-soft" aria-label="delete" onclick="adminDel(${i})">${ic("trash")}</button></div>
-      </div>
-      <div class="admin-photo">
-        <div class="thumb">${p.img?`<img src="${esc(p.img)}" alt="">`:(p.emoji?esc(p.emoji):ic("photo"))}</div>
-        <div class="stack">
-          <button class="btn btn-soft btn-sm" style="width:100%" onclick="adminPickPhoto(${i})">${ic("camera")}${t("uploadPhoto")}</button>
-          ${p.img?`<button class="btn btn-danger-soft btn-sm" style="width:100%" onclick="adminDraft[${i}].img='';renderAdmin()">${ic("trash")}${t("removePhoto")}</button>`:""}
-        </div>
-      </div>
-      <div class="admin-grid2">
-        <input value="${esc(p.name.ru)}" placeholder="Название RU" oninput="adminDraft[${i}].name.ru=this.value">
-        <input value="${esc(p.name.uz)}" placeholder="Nomi UZ" oninput="adminDraft[${i}].name.uz=this.value">
-        <input value="${esc(p.name.tr ?? p.name.en ?? '')}" placeholder="Ad TR (турецкий)" oninput="adminDraft[${i}].name.tr=this.value">
-        <input value="${esc(p.emoji||'')}" placeholder="Emoji" oninput="adminDraft[${i}].emoji=this.value">
-        <input type="number" inputmode="decimal" step="0.01" value="${p.price}" placeholder="Цена ₺" oninput="adminDraft[${i}].price=parseFloat(this.value)||0">
-        <select onchange="adminDraft[${i}].unit=this.value">
-          ${["kg","pcs","l"].map(u=>`<option value="${u}" ${p.unit===u?"selected":""}>${t(u)}</option>`).join("")}
-        </select>
-        <select onchange="adminDraft[${i}].cat=this.value">
-          ${adminCatDraft.map(c=>`<option value="${esc(c.id)}" ${p.cat===c.id?"selected":""}>${esc(catName(c))}</option>`).join("")}
-        </select>
-        <select onchange="adminDraft[${i}].stock=this.value==='1'">
-          <option value="1" ${p.stock!==false?"selected":""}>${t("inStock")}</option>
-          <option value="0" ${p.stock===false?"selected":""}>${t("outStock")}</option>
-        </select>
-      </div>
-      <input value="${esc(p.desc.ru)}" placeholder="Описание RU" oninput="adminDraft[${i}].desc.ru=this.value">
-      <input value="${esc(p.desc.uz)}" placeholder="Tavsif UZ" oninput="adminDraft[${i}].desc.uz=this.value">
-      <input value="${esc(p.desc.tr ?? p.desc.en ?? '')}" placeholder="Açıklama TR (турецкий)" oninput="adminDraft[${i}].desc.tr=this.value">
-    </div>`).join("");
+  renderAdminList();
+  renderAdmSave();
 }
-function adminAdd(){
+function adminAdd(cid){
   ensureDrafts();
-  const maxId = Math.max(0, ...adminDraft.map(p=>p.id));
-  adminDraft.push({id:maxId+1, emoji:"", cat:adminCatDraft[0]?.id||"", price:0, unit:"pcs", stock:true,
-    name:{ru:"",uz:"",tr:""}, desc:{ru:"",uz:"",tr:""}});
-  renderAdmin();
-  window.scrollTo(0, document.body.scrollHeight);
+  const cat = (cid && cid!=="__none") ? cid : (adminCatDraft[0]?.id || "");
+  const id = Math.max(0, ...adminDraft.map(p=>p.id)) + 1;
+  adminDraft.push({id, emoji:"", cat, price:0, unit:"pcs", stock:true, name:{ru:"",uz:"",tr:""}, desc:{ru:"",uz:"",tr:""}});
+  admOpen.add(cat); admSaveOpen();
+  admEditId = id; admQuery = ""; $("admSearch").value = ""; $("admSearchClear").classList.remove("show");
+  admTab = "products"; admMark(); renderAdmin(); admScrollTo(id);
+  setTimeout(() => { const f = document.querySelector(`#admrow-${id} .lang-in input`); if (f) f.focus({preventScroll:true}); }, 350);
 }
-function adminDel(i){
-  ensureDrafts(); adminDraft.splice(i,1); renderAdmin(); }
+function adminDel(id){
+  ensureDrafts();
+  if (!confirm(t("delProduct"))) return;
+  adminDraft = adminDraft.filter(p => p.id!==id);
+  if (admEditId===id) admEditId = null;
+  admMark(); renderAdminList();
+}
 /* --- сохранение в GitHub --- */
 const gh = (path) =>
   `https://api.github.com/repos/${CONFIG.github.owner}/${CONFIG.github.repo}/contents/${path}`;
@@ -1373,7 +1557,7 @@ function toBase64(str){
 async function adminSave(){
   ensureDrafts();
   const btn = $("adminSaveBtn");
-  const setBtn = (busy) => { if (btn) { btn.disabled = busy; btn.innerHTML = busy ? t("saving") : ic("check") + `<span>${t("saveAll")}</span>`; } };
+  const setBtn = (busy) => { if (btn) { btn.disabled = busy; btn.innerHTML = busy ? t("saving") : ic("check") + `<span>${t("save")}</span>`; } };
   setBtn(true);
   try {
     if (!adminToken) throw new Error("Ключ доступа не введён");
@@ -1393,6 +1577,7 @@ async function adminSave(){
     PRODUCTS = JSON.parse(JSON.stringify(adminDraft));
     CATS = JSON.parse(JSON.stringify(adminCatDraft));
     if (currentCat!=="all" && !CATS.some(c=>c.id===currentCat)) currentCat="all";
+    admDirty = false;
     toast(t("savedGh")); renderAll();
   } catch(e){
     console.error(e);
