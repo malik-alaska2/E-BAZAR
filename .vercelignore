@@ -1,0 +1,7 @@
+# Магазин — статический сайт; старые серверные файлы Vercel не нужны
+server.js
+package.json
+install.sh
+fix.sh
+README.md
+.impeccable
