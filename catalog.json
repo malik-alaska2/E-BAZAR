@@ -892,6 +892,24 @@
         "uz": "Uksus essensiyasi 70%, 150 ml.",
         "tr": "Sirke esansı %70, 150 ml."
       }
+    },
+    {
+      "id": 48,
+      "emoji": "",
+      "cat": "vegetables",
+      "price": 12,
+      "unit": "pcs",
+      "stock": true,
+      "name": {
+        "ru": "фыв",
+        "uz": "фыв",
+        "tr": ""
+      },
+      "desc": {
+        "ru": "",
+        "uz": "",
+        "tr": ""
+      }
     }
   ],
   "categories": [
