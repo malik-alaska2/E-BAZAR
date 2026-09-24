@@ -56,8 +56,8 @@ function send(res, status, body) {
 
 /* ---------- GitHub ---------- */
 const encodePath = p => p.split("/").map(encodeURIComponent).join("/");
-function gh(path, opts = {}) {
-  return fetch(`https://api.github.com/repos/${REPO()}/contents/${encodePath(path)}`, {
+function gh(path, opts = {}, query = "") {
+  return fetch(`https://api.github.com/repos/${REPO()}/contents/${encodePath(path)}${query}`, {
     ...opts,
     headers: {
       Authorization: "Bearer " + env("GITHUB_TOKEN"),
@@ -68,7 +68,7 @@ function gh(path, opts = {}) {
   });
 }
 async function ghSha(path) {
-  const res = await gh(path + "?ref=" + encodeURIComponent(BRANCH()) + "&_=" + Date.now());
+  const res = await gh(path, {}, "?ref=" + encodeURIComponent(BRANCH()) + "&_=" + Date.now());
   if (res.ok) { const j = await res.json(); return j && j.sha; }
   return undefined;
 }

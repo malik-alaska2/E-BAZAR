@@ -15,6 +15,7 @@ module.exports = async (req, res) => {
     await ghPut(path, content, String(message || "admin: " + path).slice(0, 200));
     send(res, 200, { ok: true });
   } catch (e) {
+    console.error("github put failed:", path, String(e.message || e));
     send(res, 502, { error: "github", detail: String(e.message || e).slice(0, 200) });
   }
 };
