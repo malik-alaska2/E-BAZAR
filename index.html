@@ -418,6 +418,9 @@
   .adm-out{font-size:11.5px;font-weight:700;color:var(--danger);white-space:nowrap}
   .adm-gbody{display:none;border-top:1px solid var(--line);padding:6px}
   .adm-group.open .adm-gbody{display:block}
+  .adm-chead{display:flex;align-items:center;padding-right:10px}
+  .adm-chead .adm-ghead{flex:1;min-width:0}
+  .adm-cbody{padding:12px 14px 14px}
 
   .adm-row{border-radius:14px;scroll-margin-top:190px;transition:background .2s}
   .adm-row + .adm-row{margin-top:2px}
@@ -641,6 +644,7 @@
         <div id="adminList"></div>
       </div>
       <div id="admPaneCats" style="display:none">
+        <div class="adm-links"><button class="link-btn" onclick="admCatAll(true)" data-i18n="expandAll"></button><button class="link-btn" onclick="admCatAll(false)" data-i18n="collapseAll"></button></div>
         <div id="adminCats"></div>
         <button class="btn btn-dashed" onclick="adminCatAdd()"><span data-ic="plus"></span><span data-i18n="addSection"></span></button>
         <p class="muted" style="margin-top:24px" data-i18n="adminNote"></p>
@@ -1502,24 +1506,43 @@ function admAll(open){ admOpen = open ? new Set(admGroups().map(g=>g.id)) : new 
 function admScrollTo(id){ requestAnimationFrame(() => { const r = $("admrow-"+id); if (r) r.scrollIntoView({block:"start", behavior:"smooth"}); }); }
 
 /* --- РАЗДЕЛЫ --- */
+let admCatOpen = new Set();   // какие разделы раскрыты во вкладке «Разделы»
 function renderAdminCats(){
-  $("adminCats").innerHTML = adminCatDraft.map((c,i) => `
-    <div class="admin-item">
-      <div class="admin-top">
-        <b>${esc(catName(c))}<span class="muted">${adminDraft.filter(p=>p.cat===c.id).length}</span></b>
+  $("adminCats").innerHTML = adminCatDraft.map((c,i) => {
+    const open = admCatOpen.has(c.id);
+    return `<section class="adm-group${open?" open":""}" id="admcat-${esc(c.id)}">
+      <div class="adm-chead">
+        <button class="adm-ghead" aria-expanded="${open}" data-cid="${esc(c.id)}" onclick="admCatToggle(this.dataset.cid)">
+          ${ic("chev","chev")}<span class="grow">${esc(catName(c))}</span>
+          <span class="cnt">${adminDraft.filter(p=>p.cat===c.id).length}</span>
+        </button>
         <div class="admin-tools">
           <button class="btn btn-soft" aria-label="up" onclick="adminCatMove(${i},-1)">${ic("up")}</button>
           <button class="btn btn-soft" aria-label="down" onclick="adminCatMove(${i},1)">${ic("down")}</button>
           <button class="btn btn-danger-soft" aria-label="delete" onclick="adminCatDel(${i})">${ic("trash")}</button>
         </div>
       </div>
-      ${["ru","uz","tr"].map(l => `<div class="lang-in"><span>${l.toUpperCase()}</span><input value="${esc(l==="tr" ? (c.name.tr ?? c.name.en ?? "") : c.name[l])}" oninput="adminCatDraft[${i}].name.${l}=this.value;admMark()"></div>`).join("")}
-    </div>`).join("");
+      <div class="adm-gbody adm-cbody">
+        ${["ru","uz","tr"].map(l => `<div class="lang-in"><span>${l.toUpperCase()}</span><input value="${esc(l==="tr" ? (c.name.tr ?? c.name.en ?? "") : c.name[l])}" oninput="admCatName(${i},'${l}',this.value)"></div>`).join("")}
+      </div>
+    </section>`;
+  }).join("");
+}
+function admCatToggle(cid){ admCatOpen.has(cid) ? admCatOpen.delete(cid) : admCatOpen.add(cid); renderAdminCats(); }
+function admCatAll(open){ admCatOpen = open ? new Set(adminCatDraft.map(c=>c.id)) : new Set(); renderAdminCats(); }
+/* название меняется на ходу — обновляем только заголовок, чтобы поле ввода не теряло фокус */
+function admCatName(i, l, val){
+  const c = adminCatDraft[i]; c.name[l] = val; admMark();
+  const head = document.querySelector(`#admcat-${CSS.escape(c.id)} .adm-ghead .grow`);
+  if (head) head.textContent = catName(c);
 }
 function adminCatAdd(){
   ensureDrafts();
-  adminCatDraft.push({id:"cat"+Date.now(), name:{ru:t("newSection"),uz:t("newSection"),tr:t("newSection")}});
+  const id = "cat"+Date.now();
+  adminCatDraft.push({id, name:{ru:t("newSection"),uz:t("newSection"),tr:t("newSection")}});
+  admCatOpen.add(id);
   admMark(); renderAdmin();
+  requestAnimationFrame(() => { const el = $("admcat-"+id); if (el) { el.scrollIntoView({block:"center", behavior:"smooth"}); el.querySelector("input")?.select(); } });
 }
 function adminCatMove(i,d){
   ensureDrafts();
