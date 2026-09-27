@@ -931,7 +931,7 @@ if (!I18N[lang]) lang = "ru";
 let cart = {}; try { cart = JSON.parse(localStorage.getItem("cart") || "{}"); } catch(e){}
 let favs = []; try { favs = JSON.parse(localStorage.getItem("favs") || "[]"); } catch(e){}
 let currentCat = "all", search = "", curPage = "home", modalProductId = null;
-let deliveryMode = "delivery", managerIdx = 0, lastOrderLink = "";
+let deliveryMode = "delivery", managerIdx = 0, lastOrderLink = "", lastChatLink = "", orderChatOpened = false;
 const payMode = "cash"; // оплата только наличными
 let adminToken = localStorage.getItem("ghKey") || "";        // вход через ключ GitHub (запасной способ)
 let adminSession = localStorage.getItem("adminSession") || ""; // вход по логину и паролю (сервер Vercel)
@@ -1182,9 +1182,10 @@ function orderText(order, invoice){
 function setErr(inputId, on){ $(inputId).closest(".field").classList.toggle("invalid", on); }
 ["fName","fPhone","fAddress"].forEach(id => $(id).addEventListener("input", () => setErr(id,false)));
 
+/* true — ссылка открылась (браузер может заблокировать новое окно) */
 function openLink(link){
-  if (inTg && tg.openTelegramLink) { try { tg.openTelegramLink(link); return; } catch(e){} }
-  window.open(link, "_blank");
+  if (inTg && tg.openTelegramLink) { try { tg.openTelegramLink(link); return true; } catch(e){} }
+  return !!window.open(link, "_blank");
 }
 function placeOrder(){
   const name = $("fName").value.trim(), phone = $("fPhone").value.trim();
@@ -1206,14 +1207,21 @@ function placeOrder(){
   };
   const invoice = new Date().toISOString().slice(2,10).replace(/-/g,"") + "-" + Math.floor(1000 + Math.random()*9000);
   const manager = CONFIG.managers[managerIdx] || CONFIG.managers[0];
-  lastOrderLink = `https://t.me/${manager.username}?text=${encodeURIComponent(orderText(order, invoice))}`;
+  lastChatLink = `https://t.me/${manager.username}`;
+  lastOrderLink = `${lastChatLink}?text=${encodeURIComponent(orderText(order, invoice))}`;
   localStorage.setItem("profile", JSON.stringify({name, phone, address: address==="-" ? "" : address}));
 
   finishOrder(order, invoice);
   // открываем чат с менеджером — покупателю остаётся нажать «Отправить»
-  openLink(lastOrderLink);
+  orderChatOpened = openLink(lastOrderLink);
 }
-function reopenChat(){ if (lastOrderLink) openLink(lastOrderLink); else go("orders"); }
+/* кнопка на экране «Заказ сформирован»: текст заказа уже подставлен в чат — открываем просто переписку.
+   Если чат с заказом не открылся (окно заблокировано), открываем его с текстом, иначе заказ потеряется. */
+function reopenChat(){
+  if (!lastOrderLink) return go("orders");
+  if (orderChatOpened) return openLink(lastChatLink);
+  orderChatOpened = openLink(lastOrderLink);
+}
 function finishOrder(order, invoice){
   let history = []; try { history = JSON.parse(localStorage.getItem("orders") || "[]"); } catch(e){}
   history.unshift({...order, invoice, date: new Date().toISOString(), link: lastOrderLink});
