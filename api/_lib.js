@@ -140,4 +140,33 @@ async function ghPut(path, contentBase64, message) {
   throw new Error(last);
 }
 
-module.exports = { configured, safeEq, makeSession, checkSession, bearer, send, cors, ghPut, env };
+/* JSON-файл в ветке: прочитать ({ data, sha }), data = null, если файла нет */
+async function ghReadJson(path, branch) {
+  const res = await gh(path, {}, "?ref=" + encodeURIComponent(branch) + "&_=" + Date.now());
+  if (res.status === 404) return { data: null, sha: undefined };
+  if (!res.ok) throw new Error(`${res.status} read ${path}`);
+  const j = await res.json();
+  return { data: JSON.parse(Buffer.from(j.content || "", "base64").toString("utf8") || "null"), sha: j.sha };
+}
+/* прочитать → изменить → записать; если файл успели поменять (409/422), начинаем заново со свежей версии */
+async function ghUpdateJson(path, branch, change, message) {
+  let last = "";
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    const { data, sha } = await ghReadJson(path, branch);
+    const next = change(data);
+    const content = Buffer.from(JSON.stringify(next, null, 1)).toString("base64");
+    const res = await gh(path, {
+      method: "PUT",
+      body: JSON.stringify({ message, content, branch, ...(sha ? { sha } : {}) }),
+    });
+    if (res.ok) return next;
+    let detail = "";
+    try { detail = (await res.json()).message || ""; } catch (e) {}
+    last = `${res.status} ${detail}`;
+    if (res.status === 409 || res.status === 422) { await new Promise(r => setTimeout(r, 300 * attempt)); continue; }
+    break;
+  }
+  throw new Error(last);
+}
+
+module.exports = { configured, safeEq, makeSession, checkSession, bearer, send, cors, ghPut, ghReadJson, ghUpdateJson, env };

@@ -342,6 +342,39 @@
   .modal-buy .grow .stepper{padding:5px}
   .modal-buy .grow .stepper button{width:44px;height:40px}
 
+  /* Отзывы */
+  :root{--star:#c98200}
+  [data-theme="dark"]{--star:#f2b33d}
+  .stars{display:inline-flex;gap:1px;color:var(--star);vertical-align:middle}
+  .stars svg.i{width:15px;height:15px;fill:currentColor;stroke:none}
+  .stars svg.off{color:color-mix(in srgb,var(--muted) 32%,transparent)}
+  .card-rate{display:flex;align-items:center;gap:3px;font-size:12px;font-weight:800;color:var(--text)}
+  .card-rate svg.i{width:13px;height:13px;fill:var(--star);stroke:none}
+  .card-rate span{color:var(--muted);font-weight:600}
+  .rv{margin-top:28px}
+  .rv-head{display:flex;align-items:center;gap:10px;margin:0 2px 12px}
+  .rv-head h4{font-size:18px;font-weight:800;letter-spacing:-.02em}
+  .rv-avg{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:14px;font-weight:800;font-variant-numeric:tabular-nums}
+  .rv-avg .muted{font-size:12.5px}
+  .rv-form .panel-title{margin-bottom:6px}
+  .rate{display:flex;gap:2px;margin:0 -6px}
+  .rate button{width:46px;height:46px;display:grid;place-items:center;border-radius:12px;color:color-mix(in srgb,var(--muted) 38%,transparent);transition:transform .15s var(--ease),color .15s}
+  .rate button svg.i{width:32px;height:32px;fill:currentColor;stroke:none}
+  .rate button.on{color:var(--star)}
+  .rate button:active{transform:scale(.88)}
+  .rv-fields{margin-top:14px}
+  .rv-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .rv-done{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px}
+  .rv-done svg.i{color:var(--accent)}
+  .rv-item{background:var(--surface);border-radius:var(--r-lg);padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow-sm)}
+  .rv-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .rv-name{font-weight:800;font-size:14px;overflow-wrap:anywhere}
+  .rv-date{margin-left:auto}
+  .rv-del{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;color:var(--danger);background:var(--danger-soft)}
+  .rv-del svg.i{width:16px;height:16px}
+  .rv-text{font-size:14px;line-height:1.5;margin-top:6px;white-space:pre-line;overflow-wrap:anywhere}
+  .rv-empty{color:var(--muted);font-size:14px;font-weight:600;margin:0 2px 12px}
+
   /* Toast */
   .toast{position:fixed;top:calc(12px + env(safe-area-inset-top));left:50%;z-index:var(--z-toast);
     transform:translateX(-50%) translateY(-120px);display:flex;align-items:center;gap:8px;max-width:calc(100% - 32px);
@@ -736,6 +769,7 @@ const DEFAULT_CATEGORIES = [
 
 /* ============================================================ ИКОНКИ ============================================================ */
 const ICONS = {
+  star:'<path d="M12 3.3l2.7 5.5 6 .9-4.35 4.25 1.03 6L12 17.1l-5.38 2.85 1.03-6L3.3 9.7l6-.9z"/>',
   home:'<path d="M3.5 10.2 12 3.5l8.5 6.7V19a1.5 1.5 0 0 1-1.5 1.5h-4v-6h-6v6H5A1.5 1.5 0 0 1 3.5 19z"/>',
   heart:'<path d="M12 20s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.1a4.2 4.2 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z"/>',
   bag:'<path d="M5 8.5h14l-1.1 11a1.5 1.5 0 0 1-1.5 1.4H7.6a1.5 1.5 0 0 1-1.5-1.4z"/><path d="M8.8 8.5V7a3.2 3.2 0 0 1 6.4 0v1.5"/>',
@@ -772,7 +806,7 @@ function paintIcons(root=document){ root.querySelectorAll("[data-ic]").forEach(e
 
 /* ============================================================ ПЕРЕВОДЫ ============================================================ */
 const I18N = {
-  ru:{loginLbl:"Логин",passLbl:"Пароль",useGhKey:"Войти через ключ GitHub",usePassword:"Войти по логину и паролю",wrongLogin:"Неверный логин или пароль",notConfigured:"Вход по паролю ещё не настроен на сервере — пока войдите через ключ GitHub",sessionExpired:"Вход истёк — войдите снова, изменения не потеряются",logout:"Выйти из админки",loggedOut:"Вы вышли из админки",pwOnVercel:"Вход по логину и паролю работает на",fillLogin:"Введите логин и пароль",
+  ru:{rvTitle:"Отзывы",rvNone:"Отзывов пока нет — оцените первым",rvRate:"Оцените товар",rvName:"Ваше имя",rvText:"Отзыв (необязательно)",rvTextPh:"Что понравилось, что нет",rvSend:"Отправить отзыв",rvThanks:"Спасибо за отзыв!",rvMine:"Спасибо! Ваш отзыв опубликован",rvFail:"Не удалось отправить отзыв, попробуйте позже",rvTooMany:"Слишком много отзывов подряд, попробуйте позже",rvNeedName:"Введите имя",rvPick:"Поставьте оценку",rvDelAsk:"Удалить этот отзыв?",rvDeleted:"Отзыв удалён",rvMore:"Показать все",loginLbl:"Логин",passLbl:"Пароль",useGhKey:"Войти через ключ GitHub",usePassword:"Войти по логину и паролю",wrongLogin:"Неверный логин или пароль",notConfigured:"Вход по паролю ещё не настроен на сервере — пока войдите через ключ GitHub",sessionExpired:"Вход истёк — войдите снова, изменения не потеряются",logout:"Выйти из админки",loggedOut:"Вы вышли из админки",pwOnVercel:"Вход по логину и паролю работает на",fillLogin:"Введите логин и пароль",
     admSearch:"Найти товар",tabSections:"Разделы",expandAll:"Развернуть все",collapseAll:"Свернуть все",unsaved:"Есть изменения",allSaved:"Всё сохранено",noCat:"Без раздела",addHere:"Добавить товар сюда",done:"Готово",del:"Удалить",delProduct:"Удалить этот товар?",save:"Сохранить",fName:"Название",fDesc:"Описание",fPrice:"Цена",fUnit:"Единица",fCat:"Раздел",productsWord:"товаров",
     search:"Найти продукты",all:"Все",
     navHome:"Главная",navFav:"Избранное",navCart:"Корзина",navOrders:"Заказы",
@@ -805,7 +839,7 @@ const I18N = {
     newSection:"Новый раздел",notFound:"Ничего не нашлось",notFoundHint:"Попробуйте другое слово или раздел.",
     changeKey:"Сменить ключ доступа",keyCleared:"Ключ удалён — введите новый",askNewKey:"Ввести другой ключ?",
     kg:"кг",pcs:"шт",l:"л"},
-  uz:{loginLbl:"Login",passLbl:"Parol",useGhKey:"GitHub kaliti orqali kirish",usePassword:"Login va parol bilan kirish",wrongLogin:"Login yoki parol noto'g'ri",notConfigured:"Parol bilan kirish serverda hali sozlanmagan — hozircha GitHub kaliti bilan kiring",sessionExpired:"Kirish muddati tugadi — qayta kiring, o'zgarishlar yo'qolmaydi",logout:"Admindan chiqish",loggedOut:"Admindan chiqdingiz",pwOnVercel:"Login va parol bilan kirish bu yerda ishlaydi:",fillLogin:"Login va parolni kiriting",
+  uz:{rvTitle:"Sharhlar",rvNone:"Hozircha sharhlar yo'q — birinchi bo'lib baholang",rvRate:"Mahsulotni baholang",rvName:"Ismingiz",rvText:"Sharh (ixtiyoriy)",rvTextPh:"Nima yoqdi, nima yoqmadi",rvSend:"Sharh yuborish",rvThanks:"Sharhingiz uchun rahmat!",rvMine:"Rahmat! Sharhingiz e'lon qilindi",rvFail:"Sharhni yuborib bo'lmadi, keyinroq urinib ko'ring",rvTooMany:"Juda ko'p sharh, keyinroq urinib ko'ring",rvNeedName:"Ismingizni kiriting",rvPick:"Baho qo'ying",rvDelAsk:"Bu sharh o'chirilsinmi?",rvDeleted:"Sharh o'chirildi",rvMore:"Hammasini ko'rsatish",loginLbl:"Login",passLbl:"Parol",useGhKey:"GitHub kaliti orqali kirish",usePassword:"Login va parol bilan kirish",wrongLogin:"Login yoki parol noto'g'ri",notConfigured:"Parol bilan kirish serverda hali sozlanmagan — hozircha GitHub kaliti bilan kiring",sessionExpired:"Kirish muddati tugadi — qayta kiring, o'zgarishlar yo'qolmaydi",logout:"Admindan chiqish",loggedOut:"Admindan chiqdingiz",pwOnVercel:"Login va parol bilan kirish bu yerda ishlaydi:",fillLogin:"Login va parolni kiriting",
     admSearch:"Mahsulot qidirish",tabSections:"Bo'limlar",expandAll:"Hammasini ochish",collapseAll:"Hammasini yopish",unsaved:"O'zgarishlar bor",allSaved:"Hammasi saqlangan",noCat:"Bo'limsiz",addHere:"Shu yerga mahsulot qo'shish",done:"Tayyor",del:"O'chirish",delProduct:"Bu mahsulot o'chirilsinmi?",save:"Saqlash",fName:"Nomi",fDesc:"Tavsif",fPrice:"Narx",fUnit:"O'lchov",fCat:"Bo'lim",productsWord:"mahsulot",
     search:"Mahsulot qidirish",all:"Hammasi",
     navHome:"Asosiy",navFav:"Sevimli",navCart:"Savat",navOrders:"Buyurtmalar",
@@ -838,7 +872,7 @@ const I18N = {
     newSection:"Yangi bo'lim",notFound:"Hech narsa topilmadi",notFoundHint:"Boshqa so'z yoki bo'limni sinab ko'ring.",
     changeKey:"Kalitni almashtirish",keyCleared:"Kalit o'chirildi — yangisini kiriting",askNewKey:"Boshqa kalit kiritilsinmi?",
     kg:"kg",pcs:"dona",l:"l"},
-  tr:{loginLbl:"Kullanıcı adı",passLbl:"Şifre",useGhKey:"GitHub anahtarıyla giriş",usePassword:"Kullanıcı adı ve şifreyle giriş",wrongLogin:"Kullanıcı adı veya şifre yanlış",notConfigured:"Şifreyle giriş sunucuda henüz ayarlanmadı — şimdilik GitHub anahtarıyla girin",sessionExpired:"Oturum süresi doldu — tekrar girin, değişiklikler kaybolmaz",logout:"Yönetimden çık",loggedOut:"Yönetimden çıktınız",pwOnVercel:"Kullanıcı adı ve şifreyle giriş burada çalışır:",fillLogin:"Kullanıcı adı ve şifreyi girin",
+  tr:{rvTitle:"Yorumlar",rvNone:"Henüz yorum yok — ilk değerlendiren siz olun",rvRate:"Ürünü değerlendirin",rvName:"Adınız",rvText:"Yorum (isteğe bağlı)",rvTextPh:"Neyi beğendiniz, neyi beğenmediniz",rvSend:"Yorum gönder",rvThanks:"Yorumunuz için teşekkürler!",rvMine:"Teşekkürler! Yorumunuz yayınlandı",rvFail:"Yorum gönderilemedi, daha sonra tekrar deneyin",rvTooMany:"Çok fazla yorum, daha sonra tekrar deneyin",rvNeedName:"Adınızı girin",rvPick:"Puan verin",rvDelAsk:"Bu yorum silinsin mi?",rvDeleted:"Yorum silindi",rvMore:"Tümünü göster",loginLbl:"Kullanıcı adı",passLbl:"Şifre",useGhKey:"GitHub anahtarıyla giriş",usePassword:"Kullanıcı adı ve şifreyle giriş",wrongLogin:"Kullanıcı adı veya şifre yanlış",notConfigured:"Şifreyle giriş sunucuda henüz ayarlanmadı — şimdilik GitHub anahtarıyla girin",sessionExpired:"Oturum süresi doldu — tekrar girin, değişiklikler kaybolmaz",logout:"Yönetimden çık",loggedOut:"Yönetimden çıktınız",pwOnVercel:"Kullanıcı adı ve şifreyle giriş burada çalışır:",fillLogin:"Kullanıcı adı ve şifreyi girin",
     admSearch:"Ürün ara",tabSections:"Bölümler",expandAll:"Tümünü aç",collapseAll:"Tümünü kapat",unsaved:"Değişiklikler var",allSaved:"Her şey kaydedildi",noCat:"Bölümsüz",addHere:"Buraya ürün ekle",done:"Tamam",del:"Sil",delProduct:"Bu ürün silinsin mi?",save:"Kaydet",fName:"Ad",fDesc:"Açıklama",fPrice:"Fiyat",fUnit:"Birim",fCat:"Bölüm",productsWord:"ürün",
     search:"Ürün ara",all:"Hepsi",
     navHome:"Ana sayfa",navFav:"Favoriler",navCart:"Sepet",navOrders:"Siparişler",
@@ -996,6 +1030,7 @@ function productCard(p){
     <div class="info">
       <div class="price">${fmt(p.price)}<small> / ${punit(p)}</small></div>
       <h3 class="name">${esc(pname(p))}</h3>
+      ${cardRate(p.id)}
     </div>
   </article>`;
 }
@@ -1222,10 +1257,11 @@ function renderModal(id){
       <div class="price">${fmt(p.price)}<small> / ${punit(p)}</small></div>
       <div class="grow">${p.stock===false ? `<button class="btn btn-ghost" disabled>${t("outStock")}</button>` :
         qty ? stepperHtml(p.id,qty) : `<button class="btn btn-primary" onclick="addToCart(${p.id})">${ic("plus")}${t("add")}</button>`}</div>
-    </div>`;
+    </div>
+    ${reviewsHtml(p.id)}`;
 }
 function openModal(id){
-  modalProductId = id; renderModal(id);
+  modalProductId = id; rvDraftFor(id); renderModal(id);
   $("modalBg").classList.add("open"); document.body.style.overflow = "hidden";
   if (inTg && tg.BackButton) try { tg.BackButton.show(); } catch(e){}
 }
@@ -1242,6 +1278,125 @@ document.addEventListener("keydown", e => { if (e.key==="Escape") closeModal(); 
   sheet.addEventListener("touchmove", e => { if (y0===null) return; dy = Math.max(0, e.touches[0].clientY - y0); sheet.style.transform = `translateY(${dy}px)`; }, {passive:true});
   sheet.addEventListener("touchend", () => { if (y0===null) return; sheet.style.transform = ""; if (dy > 110) closeModal(); y0 = null; });
 })();
+
+/* ============================================================ ОТЗЫВЫ ============================================================ */
+let REVIEWS = {};              // { id товара: [{ id, n: имя, s: звёзды, t: текст, d: дата }] }, новые сверху
+let rvDraft = { pid: null, stars: 0, name: "", text: "", all: false };
+let myReviews = {};            // свои отзывы с этого телефона: { id товара: отзыв } — второй раз на тот же товар не даём
+try { myReviews = JSON.parse(localStorage.getItem("myReviews") || "{}") || {}; } catch(e){}
+
+async function loadReviews(){
+  let data = null;
+  try { const r = await fetch(API_BASE + "api/reviews"); if (r.ok) data = await r.json(); } catch(e){}
+  if (!data) try {   // сервер недоступен — читаем файл прямо из GitHub
+    const r = await fetch(`https://raw.githubusercontent.com/${CONFIG.github.owner}/${CONFIG.github.repo}/reviews/reviews.json`);
+    if (r.ok) data = await r.json();
+  } catch(e){}
+  REVIEWS = data && typeof data === "object" ? data : {};
+  /* свой свежий отзыв мог ещё не дойти до кэша сервера */
+  for (const [pid, rv] of Object.entries(myReviews)) {
+    const list = REVIEWS[pid] || (REVIEWS[pid] = []);
+    if (Date.now() - Date.parse(rv.d) < 10*60e3 && !list.some(r => r.id === rv.id)) list.unshift(rv);
+  }
+  renderGrid();
+  if (modalProductId !== null) renderReviews(modalProductId);
+}
+function ratingOf(pid){
+  const list = REVIEWS[pid] || [];
+  return { n: list.length, avg: list.length ? list.reduce((a, r) => a + r.s, 0) / list.length : 0 };
+}
+const fmtAvg = a => a.toFixed(1).replace(".", lang === "uz" ? "." : ",");
+function cardRate(pid){
+  const { n, avg } = ratingOf(pid);
+  return n ? `<div class="card-rate">${ic("star")}${fmtAvg(avg)}<span>(${n})</span></div>` : "";
+}
+function starsHtml(s){
+  return `<span class="stars" role="img" aria-label="${fmtAvg(s)} / 5">${[1,2,3,4,5].map(i =>
+    `<svg class="i${i <= Math.round(s) ? "" : " off"}" viewBox="0 0 24 24" aria-hidden="true">${ICONS.star}</svg>`).join("")}</span>`;
+}
+function rvDraftFor(pid){
+  if (rvDraft.pid === pid) return;
+  let name = "";
+  try { name = (JSON.parse(localStorage.getItem("profile") || "null") || {}).name || ""; } catch(e){}
+  if (!name) { const u = tg?.initDataUnsafe?.user; name = u ? [u.first_name, u.last_name].filter(Boolean).join(" ") : ""; }
+  rvDraft = { pid, stars: 0, name, text: "", all: false };
+}
+function reviewsHtml(pid){
+  const list = REVIEWS[pid] || [], { n, avg } = ratingOf(pid), d = rvDraft, mine = myReviews[pid];
+  const dateFmt = iso => new Date(iso).toLocaleDateString(LOCALES[lang] || "ru-RU", { day: "numeric", month: "long", year: "numeric" });
+  const shown = d.all ? list : list.slice(0, 5);
+  const form = mine
+    ? `<div class="panel rv-done">${ic("check")}${t("rvMine")}</div>`
+    : `<div class="panel rv-form">
+        <div class="panel-title" id="rvRateLbl">${t("rvRate")}</div>
+        <div class="rate" role="radiogroup" aria-labelledby="rvRateLbl">${[1,2,3,4,5].map(i =>
+          `<button type="button" role="radio" aria-checked="${d.stars === i}" aria-label="${i}" class="${i <= d.stars ? "on" : ""}" onclick="rvPick(${i})">${ic("star")}</button>`).join("")}</div>
+        ${d.stars ? `<div class="rv-fields">
+          <div class="field"><label for="rvName">${t("rvName")}</label><input id="rvName" maxlength="40" autocomplete="name" value="${esc(d.name)}" oninput="rvDraft.name=this.value;this.closest('.field').classList.remove('invalid')"><div class="err">${t("rvNeedName")}</div></div>
+          <div class="field"><label for="rvText">${t("rvText")}</label><textarea id="rvText" rows="3" maxlength="600" placeholder="${esc(t("rvTextPh"))}" oninput="rvDraft.text=this.value">${esc(d.text)}</textarea></div>
+          <input class="rv-hp" id="rvWeb" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn-primary" id="rvSendBtn" onclick="sendReview(${pid})">${ic("send")}${t("rvSend")}</button>
+        </div>` : ""}
+      </div>`;
+  return `<section class="rv" id="rvBox">
+    <div class="rv-head"><h4>${t("rvTitle")}</h4>
+      ${n ? `<div class="rv-avg">${starsHtml(avg)}${fmtAvg(avg)}<span class="muted">(${n})</span></div>` : ""}</div>
+    ${form}
+    ${n ? "" : `<p class="rv-empty">${t("rvNone")}</p>`}
+    ${shown.map(r => `<div class="rv-item">
+      <div class="rv-top">${starsHtml(r.s)}<span class="rv-name">${esc(r.n)}</span>
+        <span class="muted rv-date">${esc(dateFmt(r.d))}</span>
+        ${adminSession ? `<button class="rv-del" aria-label="${esc(t("rvDelAsk"))}" onclick="delReview(${pid},'${esc(r.id)}')">${ic("trash")}</button>` : ""}</div>
+      ${r.t ? `<div class="rv-text">${esc(r.t)}</div>` : ""}
+    </div>`).join("")}
+    ${list.length > shown.length ? `<button class="btn btn-soft" onclick="rvDraft.all=true;renderReviews(${pid})">${t("rvMore")} (${list.length})</button>` : ""}
+  </section>`;
+}
+function renderReviews(pid){
+  const box = $("rvBox");
+  if (box && modalProductId === pid) box.outerHTML = reviewsHtml(pid);
+}
+function rvPick(n){
+  const first = !rvDraft.stars;
+  rvDraft.stars = n; renderReviews(rvDraft.pid);
+  if (first) { const el = rvDraft.name ? $("rvText") : $("rvName"); if (el) el.focus({ preventScroll: true }); }
+}
+async function sendReview(pid){
+  const d = rvDraft;
+  if (!d.stars) return toast(t("rvPick"), "info");
+  if (!d.name.trim()) { $("rvName").closest(".field").classList.add("invalid"); $("rvName").focus(); return; }
+  const btn = $("rvSendBtn"); btn.disabled = true;
+  try {
+    const res = await fetch(API_BASE + "api/reviews", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pid, stars: d.stars, name: d.name, text: d.text, website: $("rvWeb").value }),
+    });
+    const j = await res.json().catch(() => ({}));
+    if (res.status === 429) { toast(t("rvTooMany"), "info"); btn.disabled = false; return; }
+    if (!res.ok || !j.review) throw new Error(res.status);
+    myReviews[pid] = j.review;
+    try { localStorage.setItem("myReviews", JSON.stringify(myReviews)); } catch(e){}
+    (REVIEWS[pid] || (REVIEWS[pid] = [])).unshift(j.review);
+    rvDraft = { ...d, stars: 0, text: "" };
+    toast(t("rvThanks")); renderReviews(pid); renderGrid();
+  } catch(e){
+    toast(t("rvFail"), "info"); btn.disabled = false;
+  }
+}
+async function delReview(pid, rid){
+  if (!confirm(t("rvDelAsk"))) return;
+  try {
+    const res = await fetch(API_BASE + "api/reviews", {
+      method: "POST", headers: { "Content-Type": "application/json", Authorization: "Bearer " + adminSession },
+      body: JSON.stringify({ action: "delete", pid, id: rid }),
+    });
+    if (res.status === 401) return adminSessionExpired();
+    if (!res.ok) throw new Error(res.status);
+    REVIEWS[pid] = (REVIEWS[pid] || []).filter(r => r.id !== rid);
+    if (myReviews[pid] && myReviews[pid].id === rid) { delete myReviews[pid]; try { localStorage.setItem("myReviews", JSON.stringify(myReviews)); } catch(e){} }
+    toast(t("rvDeleted"), "trash"); renderReviews(pid); renderGrid();
+  } catch(e){ toast(t("rvFail"), "info"); }
+}
 
 /* Toast */
 let toastTimer;
@@ -1717,7 +1872,7 @@ async function loadProducts(){
 function bumpLogo(){ const l = $("logoBtn"); l.classList.remove("bump"); void l.offsetWidth; l.classList.add("bump"); }
 document.documentElement.lang = lang;
 window.addEventListener("hashchange", () => { if (location.hash==="#admin") go("admin"); });
-paintIcons(); applyTheme(); renderAll(); go(location.hash==="#admin" ? "admin" : "home"); loadProducts();
+paintIcons(); applyTheme(); renderAll(); go(location.hash==="#admin" ? "admin" : "home"); loadProducts(); loadReviews();
 </script>
 </body>
 </html>
