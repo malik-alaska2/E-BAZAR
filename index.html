@@ -608,7 +608,7 @@
 
   <!-- АДМИН -->
   <section class="page" id="page-admin">
-    <div class="page-head"><button class="back-btn" onclick="goBack()" aria-label="Back" data-ic="arrowL"></button><h2>Admin</h2></div>
+    <div class="page-head"><button class="back-btn" onclick="goBack()" aria-label="Back" data-ic="arrowL"></button><h2>Admin</h2><button class="btn btn-danger-soft btn-sm" id="admExitBtn" style="display:none" onclick="adminExit()"><span data-ic="logout"></span><span data-i18n="exitAdmin"></span></button></div>
     <div id="adminLogin" class="panel">
       <form id="admPwForm" onsubmit="adminPwLogin(event)" autocomplete="on">
         <div class="field"><label for="admLoginIn" data-i18n="loginLbl"></label><input id="admLoginIn" name="username" autocomplete="username" autocapitalize="none" spellcheck="false"></div>
@@ -643,8 +643,7 @@
       <div id="admPaneCats" style="display:none">
         <div id="adminCats"></div>
         <button class="btn btn-dashed" onclick="adminCatAdd()"><span data-ic="plus"></span><span data-i18n="addSection"></span></button>
-        <button class="btn btn-danger-soft" style="margin-top:24px" onclick="adminLogout()"><span data-ic="key"></span><span data-i18n="logout"></span></button>
-        <p class="muted" style="margin-top:10px" data-i18n="adminNote"></p>
+        <p class="muted" style="margin-top:24px" data-i18n="adminNote"></p>
       </div>
       <div class="adm-save" id="admSaveBar">
         <span class="st" id="admSaveState"></span>
@@ -769,6 +768,7 @@ const DEFAULT_CATEGORIES = [
 
 /* ============================================================ ИКОНКИ ============================================================ */
 const ICONS = {
+  logout:'<path d="M14 4h4.5A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5H14"/><path d="M10 16l-4-4 4-4"/><path d="M6 12h10"/>',
   star:'<path d="M12 3.3l2.7 5.5 6 .9-4.35 4.25 1.03 6L12 17.1l-5.38 2.85 1.03-6L3.3 9.7l6-.9z"/>',
   home:'<path d="M3.5 10.2 12 3.5l8.5 6.7V19a1.5 1.5 0 0 1-1.5 1.5h-4v-6h-6v6H5A1.5 1.5 0 0 1 3.5 19z"/>',
   heart:'<path d="M12 20s-7.5-4.6-7.5-10.3A4.2 4.2 0 0 1 12 7.1a4.2 4.2 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z"/>',
@@ -806,7 +806,7 @@ function paintIcons(root=document){ root.querySelectorAll("[data-ic]").forEach(e
 
 /* ============================================================ ПЕРЕВОДЫ ============================================================ */
 const I18N = {
-  ru:{rvTitle:"Отзывы",rvNone:"Отзывов пока нет — оцените первым",rvRate:"Оцените товар",rvName:"Ваше имя",rvText:"Отзыв (необязательно)",rvTextPh:"Что понравилось, что нет",rvSend:"Отправить отзыв",rvThanks:"Спасибо за отзыв!",rvMine:"Спасибо! Ваш отзыв опубликован",rvFail:"Не удалось отправить отзыв, попробуйте позже",rvTooMany:"Слишком много отзывов подряд, попробуйте позже",rvNeedName:"Введите имя",rvPick:"Поставьте оценку",rvDelAsk:"Удалить этот отзыв?",rvDeleted:"Отзыв удалён",rvMore:"Показать все",loginLbl:"Логин",passLbl:"Пароль",useGhKey:"Войти через ключ GitHub",usePassword:"Войти по логину и паролю",wrongLogin:"Неверный логин или пароль",notConfigured:"Вход по паролю ещё не настроен на сервере — пока войдите через ключ GitHub",sessionExpired:"Вход истёк — войдите снова, изменения не потеряются",logout:"Выйти из админки",loggedOut:"Вы вышли из админки",pwOnVercel:"Вход по логину и паролю работает на",fillLogin:"Введите логин и пароль",
+  ru:{exitAdmin:"Выйти",exitUnsaved:"Есть несохранённые изменения. Выйти без сохранения?",rvTitle:"Отзывы",rvNone:"Отзывов пока нет — оцените первым",rvRate:"Оцените товар",rvName:"Ваше имя",rvText:"Отзыв (необязательно)",rvTextPh:"Что понравилось, что нет",rvSend:"Отправить отзыв",rvThanks:"Спасибо за отзыв!",rvMine:"Спасибо! Ваш отзыв опубликован",rvFail:"Не удалось отправить отзыв, попробуйте позже",rvTooMany:"Слишком много отзывов подряд, попробуйте позже",rvNeedName:"Введите имя",rvPick:"Поставьте оценку",rvDelAsk:"Удалить этот отзыв?",rvDeleted:"Отзыв удалён",rvMore:"Показать все",loginLbl:"Логин",passLbl:"Пароль",useGhKey:"Войти через ключ GitHub",usePassword:"Войти по логину и паролю",wrongLogin:"Неверный логин или пароль",notConfigured:"Вход по паролю ещё не настроен на сервере — пока войдите через ключ GitHub",sessionExpired:"Вход истёк — войдите снова, изменения не потеряются",logout:"Выйти из админки",loggedOut:"Вы вышли из админки",pwOnVercel:"Вход по логину и паролю работает на",fillLogin:"Введите логин и пароль",
     admSearch:"Найти товар",tabSections:"Разделы",expandAll:"Развернуть все",collapseAll:"Свернуть все",unsaved:"Есть изменения",allSaved:"Всё сохранено",noCat:"Без раздела",addHere:"Добавить товар сюда",done:"Готово",del:"Удалить",delProduct:"Удалить этот товар?",save:"Сохранить",fName:"Название",fDesc:"Описание",fPrice:"Цена",fUnit:"Единица",fCat:"Раздел",productsWord:"товаров",
     search:"Найти продукты",all:"Все",
     navHome:"Главная",navFav:"Избранное",navCart:"Корзина",navOrders:"Заказы",
@@ -839,7 +839,7 @@ const I18N = {
     newSection:"Новый раздел",notFound:"Ничего не нашлось",notFoundHint:"Попробуйте другое слово или раздел.",
     changeKey:"Сменить ключ доступа",keyCleared:"Ключ удалён — введите новый",askNewKey:"Ввести другой ключ?",
     kg:"кг",pcs:"шт",l:"л"},
-  uz:{rvTitle:"Sharhlar",rvNone:"Hozircha sharhlar yo'q — birinchi bo'lib baholang",rvRate:"Mahsulotni baholang",rvName:"Ismingiz",rvText:"Sharh (ixtiyoriy)",rvTextPh:"Nima yoqdi, nima yoqmadi",rvSend:"Sharh yuborish",rvThanks:"Sharhingiz uchun rahmat!",rvMine:"Rahmat! Sharhingiz e'lon qilindi",rvFail:"Sharhni yuborib bo'lmadi, keyinroq urinib ko'ring",rvTooMany:"Juda ko'p sharh, keyinroq urinib ko'ring",rvNeedName:"Ismingizni kiriting",rvPick:"Baho qo'ying",rvDelAsk:"Bu sharh o'chirilsinmi?",rvDeleted:"Sharh o'chirildi",rvMore:"Hammasini ko'rsatish",loginLbl:"Login",passLbl:"Parol",useGhKey:"GitHub kaliti orqali kirish",usePassword:"Login va parol bilan kirish",wrongLogin:"Login yoki parol noto'g'ri",notConfigured:"Parol bilan kirish serverda hali sozlanmagan — hozircha GitHub kaliti bilan kiring",sessionExpired:"Kirish muddati tugadi — qayta kiring, o'zgarishlar yo'qolmaydi",logout:"Admindan chiqish",loggedOut:"Admindan chiqdingiz",pwOnVercel:"Login va parol bilan kirish bu yerda ishlaydi:",fillLogin:"Login va parolni kiriting",
+  uz:{exitAdmin:"Chiqish",exitUnsaved:"Saqlanmagan o'zgarishlar bor. Saqlamasdan chiqilsinmi?",rvTitle:"Sharhlar",rvNone:"Hozircha sharhlar yo'q — birinchi bo'lib baholang",rvRate:"Mahsulotni baholang",rvName:"Ismingiz",rvText:"Sharh (ixtiyoriy)",rvTextPh:"Nima yoqdi, nima yoqmadi",rvSend:"Sharh yuborish",rvThanks:"Sharhingiz uchun rahmat!",rvMine:"Rahmat! Sharhingiz e'lon qilindi",rvFail:"Sharhni yuborib bo'lmadi, keyinroq urinib ko'ring",rvTooMany:"Juda ko'p sharh, keyinroq urinib ko'ring",rvNeedName:"Ismingizni kiriting",rvPick:"Baho qo'ying",rvDelAsk:"Bu sharh o'chirilsinmi?",rvDeleted:"Sharh o'chirildi",rvMore:"Hammasini ko'rsatish",loginLbl:"Login",passLbl:"Parol",useGhKey:"GitHub kaliti orqali kirish",usePassword:"Login va parol bilan kirish",wrongLogin:"Login yoki parol noto'g'ri",notConfigured:"Parol bilan kirish serverda hali sozlanmagan — hozircha GitHub kaliti bilan kiring",sessionExpired:"Kirish muddati tugadi — qayta kiring, o'zgarishlar yo'qolmaydi",logout:"Admindan chiqish",loggedOut:"Admindan chiqdingiz",pwOnVercel:"Login va parol bilan kirish bu yerda ishlaydi:",fillLogin:"Login va parolni kiriting",
     admSearch:"Mahsulot qidirish",tabSections:"Bo'limlar",expandAll:"Hammasini ochish",collapseAll:"Hammasini yopish",unsaved:"O'zgarishlar bor",allSaved:"Hammasi saqlangan",noCat:"Bo'limsiz",addHere:"Shu yerga mahsulot qo'shish",done:"Tayyor",del:"O'chirish",delProduct:"Bu mahsulot o'chirilsinmi?",save:"Saqlash",fName:"Nomi",fDesc:"Tavsif",fPrice:"Narx",fUnit:"O'lchov",fCat:"Bo'lim",productsWord:"mahsulot",
     search:"Mahsulot qidirish",all:"Hammasi",
     navHome:"Asosiy",navFav:"Sevimli",navCart:"Savat",navOrders:"Buyurtmalar",
@@ -872,7 +872,7 @@ const I18N = {
     newSection:"Yangi bo'lim",notFound:"Hech narsa topilmadi",notFoundHint:"Boshqa so'z yoki bo'limni sinab ko'ring.",
     changeKey:"Kalitni almashtirish",keyCleared:"Kalit o'chirildi — yangisini kiriting",askNewKey:"Boshqa kalit kiritilsinmi?",
     kg:"kg",pcs:"dona",l:"l"},
-  tr:{rvTitle:"Yorumlar",rvNone:"Henüz yorum yok — ilk değerlendiren siz olun",rvRate:"Ürünü değerlendirin",rvName:"Adınız",rvText:"Yorum (isteğe bağlı)",rvTextPh:"Neyi beğendiniz, neyi beğenmediniz",rvSend:"Yorum gönder",rvThanks:"Yorumunuz için teşekkürler!",rvMine:"Teşekkürler! Yorumunuz yayınlandı",rvFail:"Yorum gönderilemedi, daha sonra tekrar deneyin",rvTooMany:"Çok fazla yorum, daha sonra tekrar deneyin",rvNeedName:"Adınızı girin",rvPick:"Puan verin",rvDelAsk:"Bu yorum silinsin mi?",rvDeleted:"Yorum silindi",rvMore:"Tümünü göster",loginLbl:"Kullanıcı adı",passLbl:"Şifre",useGhKey:"GitHub anahtarıyla giriş",usePassword:"Kullanıcı adı ve şifreyle giriş",wrongLogin:"Kullanıcı adı veya şifre yanlış",notConfigured:"Şifreyle giriş sunucuda henüz ayarlanmadı — şimdilik GitHub anahtarıyla girin",sessionExpired:"Oturum süresi doldu — tekrar girin, değişiklikler kaybolmaz",logout:"Yönetimden çık",loggedOut:"Yönetimden çıktınız",pwOnVercel:"Kullanıcı adı ve şifreyle giriş burada çalışır:",fillLogin:"Kullanıcı adı ve şifreyi girin",
+  tr:{exitAdmin:"Çıkış",exitUnsaved:"Kaydedilmemiş değişiklikler var. Kaydetmeden çıkılsın mı?",rvTitle:"Yorumlar",rvNone:"Henüz yorum yok — ilk değerlendiren siz olun",rvRate:"Ürünü değerlendirin",rvName:"Adınız",rvText:"Yorum (isteğe bağlı)",rvTextPh:"Neyi beğendiniz, neyi beğenmediniz",rvSend:"Yorum gönder",rvThanks:"Yorumunuz için teşekkürler!",rvMine:"Teşekkürler! Yorumunuz yayınlandı",rvFail:"Yorum gönderilemedi, daha sonra tekrar deneyin",rvTooMany:"Çok fazla yorum, daha sonra tekrar deneyin",rvNeedName:"Adınızı girin",rvPick:"Puan verin",rvDelAsk:"Bu yorum silinsin mi?",rvDeleted:"Yorum silindi",rvMore:"Tümünü göster",loginLbl:"Kullanıcı adı",passLbl:"Şifre",useGhKey:"GitHub anahtarıyla giriş",usePassword:"Kullanıcı adı ve şifreyle giriş",wrongLogin:"Kullanıcı adı veya şifre yanlış",notConfigured:"Şifreyle giriş sunucuda henüz ayarlanmadı — şimdilik GitHub anahtarıyla girin",sessionExpired:"Oturum süresi doldu — tekrar girin, değişiklikler kaybolmaz",logout:"Yönetimden çık",loggedOut:"Yönetimden çıktınız",pwOnVercel:"Kullanıcı adı ve şifreyle giriş burada çalışır:",fillLogin:"Kullanıcı adı ve şifreyi girin",
     admSearch:"Ürün ara",tabSections:"Bölümler",expandAll:"Tümünü aç",collapseAll:"Tümünü kapat",unsaved:"Değişiklikler var",allSaved:"Her şey kaydedildi",noCat:"Bölümsüz",addHere:"Buraya ürün ekle",done:"Tamam",del:"Sil",delProduct:"Bu ürün silinsin mi?",save:"Kaydet",fName:"Ad",fDesc:"Açıklama",fPrice:"Fiyat",fUnit:"Birim",fCat:"Bölüm",productsWord:"ürün",
     search:"Ürün ara",all:"Hepsi",
     navHome:"Ana sayfa",navFav:"Favoriler",navCart:"Sepet",navOrders:"Siparişler",
@@ -1458,6 +1458,11 @@ function adminLogout(){
   renderAdmin();
   toast(t("loggedOut"), "key");
 }
+/* кнопка «Выйти» в шапке админки: выход и возврат в магазин */
+function adminExit(){
+  if (admDirty && !confirm(t("exitUnsaved"))) return;
+  adminLogout(); go("home");
+}
 /* вход истёк во время работы: просим войти снова, черновик не трогаем */
 function adminSessionExpired(){
   adminSession = ""; localStorage.removeItem("adminSession");
@@ -1663,6 +1668,7 @@ function renderAdmin(){
   const logged = !!(adminSession || adminToken);
   $("adminLogin").style.display = logged ? "none" : "block";
   $("adminPanel").style.display = logged ? "block" : "none";
+  $("admExitBtn").style.display = logged ? "" : "none";
   if (!logged) {
     const keyForm = admKeyMode || serverAuth===false;
     $("admPwForm").style.display = keyForm ? "none" : "block";
