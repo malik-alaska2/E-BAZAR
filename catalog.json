@@ -899,7 +899,7 @@
       "cat": "vegetables",
       "price": 12,
       "unit": "pcs",
-      "stock": true,
+      "stock": false,
       "name": {
         "ru": "фыв",
         "uz": "фыв",
