@@ -960,6 +960,14 @@
         "uz": "Ichimliklar",
         "tr": "İçecekler"
       }
+    },
+    {
+      "id": "cat1790502135135",
+      "name": {
+        "ru": "Электроника",
+        "uz": "Electronika",
+        "tr": "Electronik"
+      }
     }
   ]
 }
