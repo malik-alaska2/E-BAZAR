@@ -1,7 +1,8 @@
 /* POST /api/login  { login, password }  →  { token } */
-const { configured, safeEq, makeSession, send, env } = require("./_lib");
+const { configured, safeEq, makeSession, send, cors, env } = require("./_lib");
 
 module.exports = async (req, res) => {
+  if (cors(req, res)) return;
   if (req.method !== "POST") return send(res, 405, { error: "method" });
   if (!configured()) return send(res, 503, { error: "not_configured" });
   const { login = "", password = "" } = req.body || {};

@@ -37,23 +37,42 @@
 
 ### Вход по логину и паролю (основной способ)
 
-Работает на адресе Vercel: **https://e-bazar-sage.vercel.app/#admin**. Вход запоминается в телефоне на 30 дней.
+Работает и на **https://malik-alaska2.github.io/E-BAZAR/#admin**, и на **https://e-bazar-sage.vercel.app/#admin** — в обоих случаях вход проверяет сервер Vercel. Вход запоминается в телефоне на 30 дней, ключи GitHub в телефон вводить не нужно.
 
-Логин, пароль и ключ GitHub хранятся в скрытых настройках Vercel
+Логин, пароль и доступ к GitHub хранятся в скрытых настройках Vercel
 (Project `e-bazar` → Settings → Environment Variables):
 
 | Переменная | Что это |
 |---|---|
 | `ADMIN_LOGIN` | логин админки |
 | `ADMIN_PASSWORD` | пароль админки |
-| `GITHUB_TOKEN` | ключ GitHub, которым сервер сохраняет товары |
+| `GH_APP_ID` | номер GitHub App (см. ниже) |
+| `GH_APP_PRIVATE_KEY` | приватный ключ GitHub App — содержимое файла `.pem` целиком |
 | `SESSION_SECRET` | случайная строка; если поменять — все входы сбросятся |
 
 Чтобы сменить пароль: поменяйте `ADMIN_PASSWORD` в Vercel и нажмите **Redeploy**. Старые входы сразу перестанут действовать.
 
+### Доступ сервера к GitHub — GitHub App (настраивается один раз)
+
+Сервер сохраняет товары через GitHub App: его ключ **не истекает**, а сервер сам берёт временный доступ на час при каждом сохранении. Менять ничего не нужно.
+
+1. https://github.com/settings/apps/new
+   - **GitHub App name** — любое, например `e-bazar-admin`
+   - **Homepage URL** — адрес магазина
+   - **Webhook** — снять галочку «Active»
+   - **Repository permissions → Contents: Read and write** (остальное не трогать)
+   - **Where can this GitHub App be installed** — Only on this account
+2. Нажать **Create GitHub App**. На открывшейся странице запомнить **App ID**.
+3. Внизу той же страницы — **Generate a private key**, скачается файл `.pem`.
+4. Слева **Install App** → Install → **Only select repositories** → `E-BAZAR`.
+5. В Vercel (Settings → Environment Variables) добавить `GH_APP_ID` (номер) и `GH_APP_PRIVATE_KEY` (открыть `.pem` блокнотом и вставить всё целиком, вместе со строками `-----BEGIN…` и `-----END…`), нажать **Redeploy**.
+6. После этого `GITHUB_TOKEN` в Vercel можно удалить.
+
+Если GitHub App не настроен, сервер использует старую переменную `GITHUB_TOKEN` (личный ключ GitHub — он истекает, и его придётся менять).
+
 ### Вход по ключу GitHub (запасной способ)
 
-Нужен, только если сервер Vercel недоступен (например, на GitHub Pages). В окне входа нажмите «Войти через ключ GitHub».
+Нужен, только если сервер Vercel недоступен. В окне входа нажмите «Войти через ключ GitHub».
 Ключ создаётся здесь: https://github.com/settings/tokens?type=beta → доступ только к репозиторию **E-BAZAR**, права **Contents: Read and write**.
 
 Дальше можно:

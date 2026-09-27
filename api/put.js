@@ -1,10 +1,11 @@
 /* POST /api/put  { path, content (base64), message }  — сохранение каталога и фото в GitHub */
-const { checkSession, bearer, send, ghPut } = require("./_lib");
+const { checkSession, bearer, send, cors, ghPut } = require("./_lib");
 
 const ALLOWED = /^(catalog\.json|photos\/[A-Za-z0-9._-]+\.(jpg|jpeg|png|webp))$/;
 const MAX_B64 = 3.5 * 1024 * 1024;
 
 module.exports = async (req, res) => {
+  if (cors(req, res)) return;
   if (req.method !== "POST") return send(res, 405, { error: "method" });
   if (!checkSession(bearer(req))) return send(res, 401, { error: "session" });
   const { path = "", content = "", message = "" } = req.body || {};

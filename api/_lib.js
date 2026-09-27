@@ -4,8 +4,14 @@
  * Настройки (Vercel → Project → Settings → Environment Variables):
  *   ADMIN_LOGIN     — логин админа
  *   ADMIN_PASSWORD  — пароль админа
- *   GITHUB_TOKEN    — ключ GitHub с правом Contents: Read and write на репозиторий
  *   SESSION_SECRET  — любая длинная случайная строка (подпись входа)
+ *
+ * Доступ к GitHub — одно из двух:
+ *   GH_APP_ID + GH_APP_PRIVATE_KEY — GitHub App (рекомендуется: ключ не истекает,
+ *                     сервер сам получает временный доступ на час)
+ *   GH_APP_INSTALLATION_ID — необязательно, иначе находится автоматически
+ *   GITHUB_TOKEN    — личный ключ GitHub с правом Contents: Read and write (истекает, нужно менять)
+ *
  *   GITHUB_REPO     — необязательно, по умолчанию malik-alaska2/E-BAZAR
  *   GITHUB_BRANCH   — необязательно, по умолчанию main
  */
@@ -17,7 +23,7 @@ const BRANCH = () => env("GITHUB_BRANCH", "main");
 const SESSION_DAYS = 30;
 
 function configured() {
-  return !!(env("ADMIN_LOGIN") && env("ADMIN_PASSWORD") && env("GITHUB_TOKEN") && env("SESSION_SECRET"));
+  return !!(env("ADMIN_LOGIN") && env("ADMIN_PASSWORD") && (appConfigured() || env("GITHUB_TOKEN")) && env("SESSION_SECRET"));
 }
 
 function safeEq(a, b) {
@@ -47,6 +53,20 @@ const bearer = req => {
   return h.startsWith("Bearer ") ? h.slice(7) : "";
 };
 
+/* админка с GitHub Pages (owner.github.io) ходит сюда с другого адреса — разрешаем только ему */
+function cors(req, res) {
+  const origin = req.headers.origin || "";
+  if (origin === `https://${REPO().split("/")[0].toLowerCase()}.github.io`) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
+    res.setHeader("Access-Control-Max-Age", "86400");
+    res.setHeader("Vary", "Origin");
+  }
+  if (req.method === "OPTIONS") { res.statusCode = 204; res.end(); return true; }
+  return false;
+}
+
 function send(res, status, body) {
   res.statusCode = status;
   res.setHeader("Content-Type", "application/json; charset=utf-8");
@@ -55,16 +75,45 @@ function send(res, status, body) {
 }
 
 /* ---------- GitHub ---------- */
+const ghHeaders = auth => ({
+  Authorization: "Bearer " + auth,
+  Accept: "application/vnd.github+json",
+  "User-Agent": "e-bazar-admin",
+  "Content-Type": "application/json",
+});
+
+/* GitHub App: подписываем JWT приватным ключом и меняем его на ключ установки (живёт 1 час) */
+function appConfigured() { return !!(env("GH_APP_ID") && env("GH_APP_PRIVATE_KEY")); }
+let appToken = { token: "", exp: 0 };
+function appJwt() {
+  const now = Math.floor(Date.now() / 1000);
+  const part = o => Buffer.from(JSON.stringify(o)).toString("base64url");
+  const data = part({ alg: "RS256", typ: "JWT" }) + "." + part({ iat: now - 60, exp: now + 540, iss: env("GH_APP_ID") });
+  const key = env("GH_APP_PRIVATE_KEY").replace(/\\n/g, "\n");   // в Vercel ключ могли вставить одной строкой с \n
+  return data + "." + crypto.sign("sha256", Buffer.from(data), key).toString("base64url");
+}
+async function ghAuth() {
+  if (!appConfigured()) return env("GITHUB_TOKEN");
+  if (appToken.token && appToken.exp > Date.now() + 5 * 60e3) return appToken.token;
+  const jwt = appJwt();
+  let id = env("GH_APP_INSTALLATION_ID");
+  if (!id) {
+    const r = await fetch(`https://api.github.com/repos/${REPO()}/installation`, { headers: ghHeaders(jwt) });
+    if (!r.ok) throw new Error(`GitHub App не установлен на ${REPO()} (${r.status})`);
+    id = (await r.json()).id;
+  }
+  const r = await fetch(`https://api.github.com/app/installations/${id}/access_tokens`, { method: "POST", headers: ghHeaders(jwt) });
+  if (!r.ok) throw new Error(`GitHub App: не выдан ключ установки (${r.status})`);
+  const j = await r.json();
+  appToken = { token: j.token, exp: Date.parse(j.expires_at) };
+  return appToken.token;
+}
+
 const encodePath = p => p.split("/").map(encodeURIComponent).join("/");
-function gh(path, opts = {}, query = "") {
+async function gh(path, opts = {}, query = "") {
   return fetch(`https://api.github.com/repos/${REPO()}/contents/${encodePath(path)}${query}`, {
     ...opts,
-    headers: {
-      Authorization: "Bearer " + env("GITHUB_TOKEN"),
-      Accept: "application/vnd.github+json",
-      "User-Agent": "e-bazar-admin",
-      "Content-Type": "application/json",
-    },
+    headers: ghHeaders(await ghAuth()),
   });
 }
 async function ghSha(path) {
@@ -91,4 +140,4 @@ async function ghPut(path, contentBase64, message) {
   throw new Error(last);
 }
 
-module.exports = { configured, safeEq, makeSession, checkSession, bearer, send, ghPut, env };
+module.exports = { configured, safeEq, makeSession, checkSession, bearer, send, cors, ghPut, env };

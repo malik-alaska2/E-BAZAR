@@ -891,6 +891,8 @@ const payMode = "cash"; // оплата только наличными
 let adminToken = localStorage.getItem("ghKey") || "";        // вход через ключ GitHub (запасной способ)
 let adminSession = localStorage.getItem("adminSession") || ""; // вход по логину и паролю (сервер Vercel)
 let serverAuth = null, admKeyMode = false;
+/* сервер входа по паролю: на GitHub Pages своего сервера нет — ходим на Vercel */
+const API_BASE = location.hostname.endsWith("github.io") ? new URL(CONFIG.adminUrl).origin + "/" : "";
 
 const $ = id => document.getElementById(id);
 const t = (k) => (I18N[lang][k] ?? I18N.ru[k] ?? k);
@@ -1265,10 +1267,12 @@ async function adminLogin(){
 /* есть ли на этом адресе сервер для входа по паролю (на Vercel — да, на GitHub Pages — нет) */
 async function probeServer(){
   try {
-    const res = await fetch("api/me", { cache:"no-store", headers: adminSession ? { Authorization: "Bearer " + adminSession } : {} });
+    const res = await fetch(API_BASE + "api/me", { cache:"no-store", headers: adminSession ? { Authorization: "Bearer " + adminSession } : {} });
     const j = res.ok ? await res.json() : null;
     serverAuth = !!(j && j.configured);
     if (adminSession && !(j && j.ok)) { adminSession = ""; localStorage.removeItem("adminSession"); }
+    /* сервер работает — старый ключ GitHub из телефона не нужен, входим по логину и паролю */
+    if (serverAuth && adminToken && !adminSession) { adminToken = ""; localStorage.removeItem("ghKey"); }
   } catch(e){ serverAuth = false; }
   renderAdmin();
 }
@@ -1280,7 +1284,7 @@ async function adminPwLogin(ev){
   if (!login || !password) return err(t("fillLogin"));
   err(""); $("admPwBtn").disabled = true;
   try {
-    const res = await fetch("api/login", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ login, password }) });
+    const res = await fetch(API_BASE + "api/login", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ login, password }) });
     const j = await res.json().catch(() => ({}));
     if (res.status === 503 || res.status === 404) { serverAuth = false; err(""); toast(t("notConfigured"), "info"); admShowKey(true); return; }
     if (!res.ok || !j.token) return err(t("wrongLogin"));
@@ -1618,7 +1622,7 @@ function toBase64(str){
 /* запись файла: через сервер (вход по паролю) или напрямую в GitHub (вход по ключу) */
 async function savePut(path, contentBase64, message){
   if (!adminSession) return ghPut(path, contentBase64, message);
-  const res = await fetch("api/put", {
+  const res = await fetch(API_BASE + "api/put", {
     method: "POST",
     headers: { "Content-Type":"application/json", Authorization: "Bearer " + adminSession },
     body: JSON.stringify({ path, content: contentBase64, message }),
