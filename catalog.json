@@ -899,7 +899,7 @@
       "cat": "vegetables",
       "price": 1,
       "unit": "pcs",
-      "stock": true,
+      "stock": false,
       "name": {
         "ru": "123",
         "uz": "123",
