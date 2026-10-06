@@ -910,6 +910,24 @@
         "uz": "",
         "tr": ""
       }
+    },
+    {
+      "id": 49,
+      "emoji": "",
+      "cat": "vegetables",
+      "price": 12,
+      "unit": "pcs",
+      "stock": true,
+      "name": {
+        "ru": "Hshsjss",
+        "uz": "Hshsjs",
+        "tr": "Zhansj"
+      },
+      "desc": {
+        "ru": "",
+        "uz": "",
+        "tr": ""
+      }
     }
   ],
   "categories": [
